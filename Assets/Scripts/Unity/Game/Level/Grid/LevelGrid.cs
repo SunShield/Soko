@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid
 {
     public class LevelGrid : MonoBehaviour
     {
-        private List<List<LevelGridCell>> _cells;
+        private LevelGridCell[, ] _cells;
         
         public int Rows { get; private set; }
         public int Columns { get; private set; }
@@ -14,18 +13,10 @@ namespace Soko.Unity.Game.Level.Grid
         {
             Rows = rows;
             Columns = columns;
-            _cells = new List<List<LevelGridCell>>();
-            for (int i = 0; i < Rows; i++)
-            {
-                _cells.Add(new List<LevelGridCell>());
-            }
+            _cells = new LevelGridCell[Rows, Columns];
         }
 
-        public void SetCell(int row, int column, LevelGridCell cell)
-        {
-            
-        }
-        
-        public LevelGridCell this[int row, int column] => _cells[row][column];
+        public void SetCell(int row, int column, LevelGridCell cell) => _cells[row, column] = cell;
+        public LevelGridCell this[int row, int column] => _cells[row, column];
     }
 }

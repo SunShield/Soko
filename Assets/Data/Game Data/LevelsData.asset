@@ -12,3 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89687d5e49164291b699d663a0bd6521, type: 3}
   m_Name: LevelsData
   m_EditorClassIdentifier: 
+  <Levels>k__BackingField:
+  - Name: Test
+    LevelMap: '[ ][ ][ ][ ][ ][ ]
+
+      [ ][b][w][ ][ ][ ]
+
+      [p][ ][ ][ ][
+      ][s]
+
+      [ ][ ][ ][ ][ ][ ]
+
+      [ ][b][w][ ][ ][s]
+
+      [ ][ ][b][
+      ][ ][s]
+
+      [ ][ ][ ][ ][ ][ ]'
