@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6988293556035670882}
-  - component: {fileID: 7352328569043344129}
+  - component: {fileID: 7213945475559947583}
+  - component: {fileID: 5386657932146110645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 4194572739435094074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7352328569043344129
+--- !u!114 &7213945475559947583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +43,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 34020318757749341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302cce862cf14a05a823de68603b1a69, type: 3}
+  m_Script: {fileID: 11500000, guid: e35083baaaad438eb538c5b675205cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 5386657932146110645}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <Components>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.HashSet`1[[Soko.Unity.Game.Level.Grid.Objects.Components.LevelObjectComponent,
+        Assembly-CSharp]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &5386657932146110645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34020318757749341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13379285e0944c6be375ed305965cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6805568011951026071

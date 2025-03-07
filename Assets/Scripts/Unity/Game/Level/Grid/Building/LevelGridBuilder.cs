@@ -13,6 +13,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
         private const float CellSize = 0.64f;
         private const char OpenSeparator = '[';
         private const char CloseSeparator = ']';
+        private const char DataSeparator = '|';
         
         [Inject] private LevelObjectsSo _levelObjectsSo;
         
@@ -84,12 +85,23 @@ namespace Soko.Unity.Game.Level.Grid.Building
                 for (int x = 0; x < grid.Columns; x++)
                 {
                     var key = keys[y][x];
+                    var data = "";
                     if (string.IsNullOrWhiteSpace(key)) continue;
-
+                    var dataSeparatorPosition = key.IndexOf(DataSeparator);
+                    if (dataSeparatorPosition > 0) // has special data
+                    {
+                        var keyData = key.Split(DataSeparator);
+                        key = keyData[0];
+                        data = keyData[1];
+                    }
+                    
                     var gridObjectPrefab = _levelObjectsSo.LevelObjects[key];
-                    var cellTransform = grid[y, x].transform;
-                    var gridObject = Object.Instantiate(gridObjectPrefab, cellTransform, true);
+                    var cell = grid[y, x];
+                    var gridObject = Object.Instantiate(gridObjectPrefab, cell.transform, true);
                     gridObject.transform.localPosition = Vector3.zero;
+                    gridObject.Initialize(cell);
+                    
+                    // todo: PROCESS SPECIAL DATA HERE
                 }
             }
         }
