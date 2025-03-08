@@ -37,7 +37,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             if (!hasMovementTarget) return;
 
             var movementAction = new MovementAction(direction);
-            await targetCell.OnObjectAboutToEnter(Object, movementAction);
+            targetCell.OnObjectAboutToEnter(Object, movementAction);
             
             if (!movementAction.Active) return;
             

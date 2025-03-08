@@ -12,11 +12,13 @@ namespace Soko.Unity.Game.DI
     {
         [SerializeField] private LevelManager _levelManager;
         [SerializeField] private LevelObjectsSo _levelObjectsSo;
+        [SerializeField] private ColorDataSo _colorDataSo;
         
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_levelManager).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
+            builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
             builder.RegisterEntryPoint<LevelObjectOneCellMover>().AsSelf();
         }

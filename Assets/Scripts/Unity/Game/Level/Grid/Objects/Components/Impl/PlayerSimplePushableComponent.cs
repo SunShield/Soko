@@ -12,28 +12,43 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [Inject] private LevelObjectOneCellMover _levelObjectOneCellMover;
         
-        protected override async Task OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction action)
+        protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
-            var pushDirection = action.Direction;
-            var pushCell = Object.Cell.GetNeighbour(pushDirection);
-            if (pushCell == null)
+            var hasGroup = Object.TryGetComponent<GroupComponent>(out var groupComponent)
+                           && groupComponent.Group != GroupComponent.NoGroup;
+            var objectsToMove = hasGroup
+                ? groupComponent.GroupObjects
+                : new () { Object } ;
+            var pushAction = new MovementAction(parentMoveAction.Direction);
+
+            foreach (var objectToMove in objectsToMove)
             {
-                action.Active = false;
+                var result = ProcessMovingObject(objectToMove, pushAction);
+                if (result) continue;
+                
+                parentMoveAction.Active = false;
                 return;
             }
-            
-            var pushAction = new MovementAction(pushDirection);
-            await pushCell.OnObjectAboutToEnter(Object, pushAction);
-            if (!pushAction.Active)
+
+            foreach (var objectToMove in objectsToMove)
             {
-                action.Active = false;
-                return;
+                var pushCell = objectToMove.Cell.GetNeighbour(pushAction.Direction);
+                ExecuteMovement(objectToMove, pushCell);
             }
+        }
+
+        private LevelGridCell ProcessMovingObject(LevelObjectBase movingObject, MovementAction pushAction)
+        {
+            var pushCell = movingObject.Cell.GetNeighbour(pushAction.Direction);
+            if (pushCell == null) return null;
             
-            ExecuteMovement(pushCell);
+            pushCell.OnObjectAboutToEnter(movingObject, pushAction);
+            if (!pushAction.Active) return null;
+            
+            return pushCell;
         }
         
-        private void ExecuteMovement(LevelGridCell targetCell) => 
-            _levelObjectOneCellMover.MoveOneCell(Object, targetCell);
+        private void ExecuteMovement(LevelObjectBase objectToMove, LevelGridCell targetCell) => 
+            _levelObjectOneCellMover.MoveOneCell(objectToMove, targetCell);
     }
 }

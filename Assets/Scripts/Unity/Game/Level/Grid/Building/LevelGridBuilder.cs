@@ -3,6 +3,9 @@ using System.Linq;
 using Soko.Core.Models.Levels;
 using Soko.Service.Extensions;
 using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.Level.Grid.Enums;
+using Soko.Unity.Game.Level.Grid.Objects;
+using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,9 +18,14 @@ namespace Soko.Unity.Game.Level.Grid.Building
         private const char OpenSeparator = '[';
         private const char CloseSeparator = ']';
         private const char DataSeparator = '|';
+        private const char DataElementSeparator = ':';
+        
+        private const string ColorDataKey = "c";
+        private const string GroupDataKey = "g";
 
         [Inject] private IObjectResolver _objectResolver;
         [Inject] private LevelObjectsSo _levelObjectsSo;
+        [Inject] private ColorDataSo _colorDataSo;
         
         public LevelGrid BuildLevelGrid(Transform root, LevelData levelData)
         {
@@ -25,7 +33,6 @@ namespace Soko.Unity.Game.Level.Grid.Building
             var levelGrid = SpawnLevelGridObject(root, keys);
             SpawnLevelGridCells(levelGrid);
             SpawnLevelObjects(levelGrid, keys);
-            _objectResolver.InjectGameObject(levelGrid.gameObject);
             return levelGrid;
         }
 
@@ -88,24 +95,82 @@ namespace Soko.Unity.Game.Level.Grid.Building
                 for (int x = 0; x < grid.Columns; x++)
                 {
                     var key = keys[y][x];
-                    var data = "";
+                    var data = new Dictionary<string, string>();
                     if (string.IsNullOrWhiteSpace(key)) continue;
                     var dataSeparatorPosition = key.IndexOf(DataSeparator);
                     if (dataSeparatorPosition > 0) // has special data
                     {
                         var keyData = key.Split(DataSeparator);
                         key = keyData[0];
-                        data = keyData[1];
+
+                        for (int i = 1; i < keyData.Length; i++)
+                        {
+                            var dataElement = keyData[i];
+                            var dataSplit = dataElement.Split(DataElementSeparator);
+                            data.Add(dataSplit[0], dataSplit[1]);
+                        }
                     }
                     
                     var gridObjectPrefab = _levelObjectsSo.LevelObjects[key];
                     var cell = grid[y, x];
                     var gridObject = Object.Instantiate(gridObjectPrefab, cell.transform, true);
+                    _objectResolver.InjectGameObject(gridObject.gameObject);
                     gridObject.transform.localPosition = Vector3.zero;
                     gridObject.Initialize(cell);
                     cell.AddObject(gridObject);
+                    grid.RegisterObject(gridObject);
                     
-                    // todo: PROCESS SPECIAL DATA HERE
+                    ProcessColoredObject(gridObject, data);
+                    ProcessGroupedObject(gridObject, data);
+                }
+            }
+            
+            ConnectGroupedObjects(grid);
+        }
+
+        private void ProcessColoredObject(LevelObjectBase levelObject, Dictionary<string, string> specialData)
+        {
+            if (!levelObject.TryGetComponent<ColorComponent>(out var colorComponent)) return;
+
+            var color = ObjectColor.White;
+            if (specialData.TryGetValue(ColorDataKey, out var colorData))
+                color = _colorDataSo.Colors[colorData].Color;
+           
+            colorComponent.SetColor(color);
+        }
+
+        private void ProcessGroupedObject(LevelObjectBase levelObject, Dictionary<string, string> specialData)
+        {
+            if (!levelObject.TryGetComponent<GroupComponent>(out var groupComponent)) return;
+
+            var group = -1;
+            if (specialData.TryGetValue(GroupDataKey, out var _))
+                group = int.Parse(specialData[GroupDataKey]);
+            
+            groupComponent.SetGroup(group);
+        }
+
+        private void ConnectGroupedObjects(LevelGrid grid)
+        {
+            var groupedObjects = new Dictionary<int, List<GroupComponent>>();
+            foreach (var levelObject in grid.LevelObjects)
+            {
+                if (!levelObject.TryGetComponent<GroupComponent>(out var groupComponent)) continue;
+                if (groupComponent.Group == -1) continue;
+                
+                if (!groupedObjects.ContainsKey(groupComponent.Group))
+                    groupedObjects.Add(groupComponent.Group, new());
+                groupedObjects[groupComponent.Group].Add(groupComponent);
+            }
+
+            foreach (var groupComponents in groupedObjects.Values)
+            {
+                foreach (var groupComponent in groupComponents)
+                {
+                    foreach (var groupComponent2 in groupComponents)
+                    {
+                        groupComponent.AddObject(groupComponent2.Object);
+                    }
                 }
             }
         }

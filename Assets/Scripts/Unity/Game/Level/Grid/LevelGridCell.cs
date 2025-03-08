@@ -28,11 +28,11 @@ namespace Soko.Unity.Game.Level.Grid
 
         public void RemoveObject(LevelObjectBase objectBase) => Objects.Remove(objectBase);
 
-        public async Task OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
+        public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
         {
             foreach (var levelObject in Objects)
             {
-                await levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
+                levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
             }
         }
 

@@ -28,25 +28,34 @@ namespace Soko.Unity.Game.Level.Grid.Objects
 
         public void SetCell(LevelGridCell cell) => Cell = cell;
 
-        public async Task OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
+        public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
         {
             foreach (var component in _componentsList)
             {
-                await component.OnObjectAboutToEnter(enteringObject, movementAction);
+                component.OnObjectAboutToEnter(enteringObject, movementAction);
                 if (!movementAction.Active) break;
             }
         }
         
-        public async Task OnObjectEntered(LevelObjectBase enteringObject, MovementAction movementAction)
+        public void OnObjectEntered(LevelObjectBase enteringObject, MovementAction movementAction)
         {
             foreach (var component in _componentsList)
             {
-                await component.OnObjectAboutToEnter(enteringObject, movementAction);
+                component.OnObjectAboutToEnter(enteringObject, movementAction);
             }
         }
         
         public bool HasComponent<TComponent>()
             where TComponent : LevelObjectComponent
             => _componentTypes.Contains(typeof(TComponent));
+
+        public bool TryGetComponent<TComponent>(out TComponent component)
+            where TComponent : LevelObjectComponent
+        {
+            component = null;
+            if (!HasComponent<TComponent>()) return false;
+            component = (TComponent)_componentsList.Find(component => component.GetType() == typeof(TComponent));
+            return true;
+        }
     }
 }
