@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -13,12 +14,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         [field: OdinSerialize] public HashSet<LevelObjectComponent> Components { get; private set; }
         
         private List<LevelObjectComponent> _componentsList = new ();
+        private HashSet<Type> _componentTypes = new ();
         public LevelGridCell Cell { get; private set; }
         public GridCoords Position => Cell.Coords;
 
         public void Initialize(LevelGridCell cell)
         {
             Cell = cell;
+            _componentTypes = Components.Select(component => component.GetType()).ToHashSet();
             _componentsList = Components.ToList();
             _componentsList.ForEach(c => c.Initialize(this));
         }
@@ -41,5 +44,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects
                 await component.OnObjectAboutToEnter(enteringObject, movementAction);
             }
         }
+        
+        public bool HasComponent<TComponent>()
+            where TComponent : LevelObjectComponent
+            => _componentTypes.Contains(typeof(TComponent));
     }
 }

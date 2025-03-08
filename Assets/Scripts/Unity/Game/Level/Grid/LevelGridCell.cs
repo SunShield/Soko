@@ -39,9 +39,9 @@ namespace Soko.Unity.Game.Level.Grid
         public LevelGridCell GetNeighbour(Direction direction) => direction switch
         {
             Direction.Up    when Coords.Rows - 1 >= 0               => Grid[Coords.Rows - 1, Coords.Columns],
-            Direction.Down  when Coords.Rows + 1 <= Grid.Rows       => Grid[Coords.Rows + 1, Coords.Columns],
+            Direction.Down  when Coords.Rows + 1 < Grid.Rows       => Grid[Coords.Rows + 1, Coords.Columns],
             Direction.Left  when Coords.Columns - 1 >= 0            => Grid[Coords.Rows, Coords.Columns - 1],
-            Direction.Right when Coords.Columns + 1 <= Grid.Columns => Grid[Coords.Rows, Coords.Columns + 1],
+            Direction.Right when Coords.Columns + 1 < Grid.Columns => Grid[Coords.Rows, Coords.Columns + 1],
             _ => null
         };
     }
