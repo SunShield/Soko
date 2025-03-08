@@ -5,6 +5,7 @@ using Soko.Service.Extensions;
 using Soko.Unity.DataLayer.So;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Soko.Unity.Game.Level.Grid.Building
 {
@@ -14,7 +15,8 @@ namespace Soko.Unity.Game.Level.Grid.Building
         private const char OpenSeparator = '[';
         private const char CloseSeparator = ']';
         private const char DataSeparator = '|';
-        
+
+        [Inject] private IObjectResolver _objectResolver;
         [Inject] private LevelObjectsSo _levelObjectsSo;
         
         public LevelGrid BuildLevelGrid(Transform root, LevelData levelData)
@@ -23,6 +25,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             var levelGrid = SpawnLevelGridObject(root, keys);
             SpawnLevelGridCells(levelGrid);
             SpawnLevelObjects(levelGrid, keys);
+            _objectResolver.InjectGameObject(levelGrid.gameObject);
             return levelGrid;
         }
 
@@ -74,7 +77,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             cellGo.transform.localRotation = Quaternion.identity;
             
             var cell = cellGo.AddComponent<LevelGridCell>();
-            cell.Initialize(new (row, col));
+            cell.Initialize(grid, new (row, col));
             grid.SetCell(row, col, cell);
         }
 
@@ -100,6 +103,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
                     var gridObject = Object.Instantiate(gridObjectPrefab, cell.transform, true);
                     gridObject.transform.localPosition = Vector3.zero;
                     gridObject.Initialize(cell);
+                    cell.AddObject(gridObject);
                     
                     // todo: PROCESS SPECIAL DATA HERE
                 }

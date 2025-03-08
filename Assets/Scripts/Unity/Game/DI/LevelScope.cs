@@ -1,5 +1,6 @@
 ﻿using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid.Building;
+using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Management;
 using UnityEngine;
 using VContainer;
@@ -17,6 +18,7 @@ namespace Soko.Unity.Game.DI
             builder.RegisterComponent(_levelManager).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
+            builder.RegisterEntryPoint<LevelObjectOneCellMover>().AsSelf();
         }
     }
 }
