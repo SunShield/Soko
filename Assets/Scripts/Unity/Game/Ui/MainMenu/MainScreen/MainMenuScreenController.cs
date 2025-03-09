@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.MainMenu.MainScreen
 {
-    public class MainScreenController : UiElement
+    public class MainMenuScreenController : UiElement
     {
-        [SerializeField] private MainScreenView _view;
+        [SerializeField] private MainMenuScreenView _view;
     }
 }

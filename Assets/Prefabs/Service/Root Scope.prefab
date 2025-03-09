@@ -49,3 +49,4 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _levelsDataSo: {fileID: 11400000, guid: 4478aa2673aad1546a4eca4dd3deb580, type: 2}
+  _uiDataSo: {fileID: 11400000, guid: a99d27bfbcc310b43a1a8aba2e8989be, type: 2}

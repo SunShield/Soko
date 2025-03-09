@@ -1,6 +1,5 @@
 ﻿using Soko.Unity.DataLayer.So;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 

@@ -2,7 +2,7 @@
 
 namespace Soko.Unity.Game.Ui.MainMenu.MainScreen
 {
-    public class MainScreenView : MonoBehaviour
+    public class MainMenuScreenView : MonoBehaviour
     {
         
     }

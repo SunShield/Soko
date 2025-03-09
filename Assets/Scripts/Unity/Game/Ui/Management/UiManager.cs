@@ -21,6 +21,15 @@ namespace Soko.Unity.Game.Ui.Management
         private readonly Dictionary<UiElements, UiElement> _activeUiElements = new ();
         private readonly Dictionary<UiElements, UiElement> _inactiveUiElements = new ();
 
+        [Inject]
+        private void Construct()
+        {
+            foreach (var rootGameObject in gameObject.scene.GetRootGameObjects())
+            {
+                DontDestroyOnLoad(rootGameObject);
+            }
+        }
+
         public UiElement OpenUiElement(UiElements element, int order)
         {
             var uiContainer = GetOrCreateUiContainer(order);
