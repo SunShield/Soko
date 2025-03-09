@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+﻿using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using VContainer;
 

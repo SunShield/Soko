@@ -37,12 +37,16 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             }
         }
         
-        public void OnObjectEntered(LevelObjectBase enteringObject, MovementAction movementAction)
+        public void OnObjectEntered(LevelObjectBase enteringObject)
         {
             foreach (var component in _componentsList)
-            {
-                component.OnObjectAboutToEnter(enteringObject, movementAction);
-            }
+                component.OnObjectEntered(enteringObject);
+        }
+        
+        public void OnObjectLeft(LevelObjectBase leftObject)
+        {
+            foreach (var component in _componentsList)
+                component.OnObjectLeft(leftObject);
         }
         
         public bool HasComponent<TComponent>()

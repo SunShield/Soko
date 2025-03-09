@@ -8,6 +8,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
     public class ColorComponent : LevelObjectComponent
     {
+        [SerializeField] private List<GameObject> _colorGraphics;
         [SerializeField] private List<SpriteRenderer> _coloredElements;
 
         [Inject] private ColorDataSo _colorDataSo;
@@ -17,6 +18,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         public void SetColor(ObjectColor color)
         {
             Color = color;
+            _colorGraphics.ForEach(obj => obj.gameObject.SetActive(color != ObjectColor.None));
+            
+            if (color == ObjectColor.None) return;
             _coloredElements.ForEach(obj => obj.color = GetColor(Color));
         }
 

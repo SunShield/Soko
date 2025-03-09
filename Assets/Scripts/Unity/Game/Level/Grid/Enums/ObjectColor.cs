@@ -2,6 +2,7 @@
 {
     public enum ObjectColor
     {
+        None = 0,
         Red,
         Green,
         Blue,

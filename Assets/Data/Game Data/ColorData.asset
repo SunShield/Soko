@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 2|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 5
+      Data: 6
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -82,7 +82,7 @@ MonoBehaviour:
       Data: 3|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -118,7 +118,7 @@ MonoBehaviour:
       Data: 4|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -154,7 +154,7 @@ MonoBehaviour:
       Data: 5|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -190,7 +190,7 @@ MonoBehaviour:
       Data: 6|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -226,7 +226,7 @@ MonoBehaviour:
       Data: 7|Soko.Core.Models.Levels.LevelObjectColorData, Assembly-CSharp
     - Name: Color
       Entry: 3
-      Data: 4
+      Data: 5
     - Name: UnityColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule

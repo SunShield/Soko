@@ -132,7 +132,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
         {
             if (!levelObject.TryGetComponent<ColorComponent>(out var colorComponent)) return;
 
-            var color = ObjectColor.White;
+            var color = ObjectColor.None;
             if (specialData.TryGetValue(ColorDataKey, out var colorData))
                 color = _colorDataSo.Colors[colorData].Color;
            

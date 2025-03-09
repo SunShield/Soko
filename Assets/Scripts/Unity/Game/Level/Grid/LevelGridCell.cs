@@ -23,24 +23,40 @@ namespace Soko.Unity.Game.Level.Grid
         {
             if (objectBase.Cell != null) objectBase.Cell.RemoveObject(objectBase);
             objectBase.SetCell(this);
+            objectBase.Cell.OnObjectEntered(objectBase);
+            
             Objects.Add(objectBase);
         }
 
-        public void RemoveObject(LevelObjectBase objectBase) => Objects.Remove(objectBase);
+        public void RemoveObject(LevelObjectBase objectBase)
+        {
+            OnObjectLeft(objectBase);
+            Objects.Remove(objectBase);
+        }
 
         public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
         {
             foreach (var levelObject in Objects)
-            {
                 levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
-            }
+        }
+
+        public void OnObjectEntered(LevelObjectBase objectBase)
+        {
+            foreach (var levelObject in Objects)
+                levelObject.OnObjectEntered(objectBase);
+        }
+
+        public void OnObjectLeft(LevelObjectBase leftObject)
+        {
+            foreach (var levelObject in Objects)
+                levelObject.OnObjectLeft(leftObject);
         }
 
         public LevelGridCell GetNeighbour(Direction direction) => direction switch
         {
-            Direction.Up    when Coords.Rows - 1 >= 0               => Grid[Coords.Rows - 1, Coords.Columns],
+            Direction.Up    when Coords.Rows - 1 >= 0              => Grid[Coords.Rows - 1, Coords.Columns],
             Direction.Down  when Coords.Rows + 1 < Grid.Rows       => Grid[Coords.Rows + 1, Coords.Columns],
-            Direction.Left  when Coords.Columns - 1 >= 0            => Grid[Coords.Rows, Coords.Columns - 1],
+            Direction.Left  when Coords.Columns - 1 >= 0           => Grid[Coords.Rows, Coords.Columns - 1],
             Direction.Right when Coords.Columns + 1 < Grid.Columns => Grid[Coords.Rows, Coords.Columns + 1],
             _ => null
         };

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Levels>k__BackingField:
   - Name: Test
-    LevelMap: '[ ][ ][ ][ ][ ][ ]
+    LevelMap: '[ ][ ][ ][ ][ ][ ][ ]
 
-      [ ][b|c:r|g:1][w][ ][ ][ ]
+      [ ][ ][ ][s|c:b][ ][ ][ ]
 
-      [p][b|c:r|g:1][
-      ][ ][ ][s|c:g]
+      [ ][
+      ][ ][s|c:g][ ][ ][ ]
 
-      [ ][ ][ ][ ][ ][ ]
+      [ ][ ][ ][b|c:b|g:1][ ][ ][ ]
 
-      [ ][b|c:g][w][ ][ ][s|c:b]
+      [ ][ ][ ][b|c:g|g:1][
+      ][ ][ ]
 
-      [
-      ][ ][b|c:b][ ][ ][s|c:r]
+      [ ][ ][ ][p][ ][ ][ ]
 
-      [ ][ ][ ][ ][ ][ ]'
+      [ ][ ][ ][ ][ ][ ][ ]'
