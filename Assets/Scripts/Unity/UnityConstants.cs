@@ -4,7 +4,9 @@
     {
         public class Scenes
         {
-            public const string LevelScene = "Level";
+            public const string MainMenu = "MainMenu";
+            public const string UI = "UI";
+            public const string Level = "Level";
         }
     }
 }

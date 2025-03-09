@@ -1,5 +1,7 @@
 ﻿using Soko.Unity.Game.Level.Grid.Enums;
+using Soko.Unity.Game.Level.Management;
 using UnityEngine;
+using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
@@ -12,6 +14,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [SerializeField] private GameObject _activeGraphics;
         [SerializeField] private GameObject _inactiveGraphics;
+        
+        [Inject] private LevelManager _levelManager;
         
         public bool Activated { get; private set; }
 
@@ -51,6 +55,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             Activated = activated;
             _activeGraphics.SetActive(activated);
             _inactiveGraphics.SetActive(!activated);
+            
+            if (Activated) _levelManager.CheckWin();
         }
     }
 }

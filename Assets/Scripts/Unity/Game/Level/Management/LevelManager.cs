@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 
@@ -29,6 +29,18 @@ namespace Soko.Unity.Game.Level.Management
         {
             LevelData = _levelsDataSo.Levels.First(levelData => levelData.Name == levelName);
             LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
+        }
+
+        public void CheckWin()
+        {
+            var isWin = LevelGrid.SpotComponents.All(c => c.Activated);
+            if (!isWin) return;
+            
+            WinLevel();
+        }
+
+        private async void WinLevel()
+        {
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Soko.Unity
     {
         public async void Initialize()
         {
-            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.LevelScene);
+            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.Level);
         }
     }
 }
