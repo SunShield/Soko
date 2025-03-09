@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5904861492353104687
+--- !u!1 &3569927139580211345
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3837179189599307882}
-  - component: {fileID: 4964808492829200181}
+  - component: {fileID: 2015777153109991586}
+  - component: {fileID: 7168219576954353087}
   m_Layer: 0
-  m_Name: Root Scope
+  m_Name: GameScope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3837179189599307882
+--- !u!4 &2015777153109991586
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5904861492353104687}
+  m_GameObject: {fileID: 3569927139580211345}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,21 +32,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4964808492829200181
+--- !u!114 &7168219576954353087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5904861492353104687}
+  m_GameObject: {fileID: 3569927139580211345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4477e6992f64de6b1de8764a87b1c40, type: 3}
+  m_Script: {fileID: 11500000, guid: d6a7b0d174c74ef58441a5ef557c4468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _levelsDataSo: {fileID: 11400000, guid: 4478aa2673aad1546a4eca4dd3deb580, type: 2}
-  _uiDataSo: {fileID: 11400000, guid: a99d27bfbcc310b43a1a8aba2e8989be, type: 2}
+  _installersCollection: {fileID: 11400000, guid: ce6ffe0bccb8b444184183f04a1cc4c1, type: 2}

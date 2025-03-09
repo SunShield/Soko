@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1736725970}
   - component: {fileID: 1736725971}
-  - component: {fileID: 1736725972}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -164,23 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ceb7c19fefc1b246b6a2fd44b2d5665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1736725972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736725969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42b3581c9f64a4391ec00eaa45f09b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentReference:
-    TypeName: Soko.Unity.Game.DI.RootScope
-  autoRun: 1
-  autoInjectGameObjects: []
-  _gameInitializer: {fileID: 1736725971}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
