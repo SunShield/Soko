@@ -4,5 +4,6 @@
     {
         MainMenuScreen,
         LevelSelectScreen,
+        SettingsPopup,
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Ui.Management.Elements;
@@ -23,9 +23,11 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         {
             _view.OnPreviousLevelPackClicked += SelectPreviousLevelPack;
             _view.OnNextLevelPackClicked += SelectNextLevelPack;
+
+            _view.OnBackClicked += Close;
         }
 
-        private void OnEnable()
+        protected override async UniTask OnEnabledAndConstructed()
         {
             SetLevelPack(0);
         }
@@ -37,7 +39,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         {
             _levelPackIndex = levelPackIndex;
             _levelIndex = 0;
-            _view.SetLevelPackButtonsState(_levelPackIndex > 0, _levelPackIndex < _levelPacksSo.LevelPacks.Count - 1);
+            _view.SetLevelPackButtonsState(_levelPackIndex == 0, _levelPackIndex == _levelPacksSo.LevelPacks.Count - 1);
             _levelPackInfo.SetLevelPackInfo(CurrentLevelPack);
         }
     }

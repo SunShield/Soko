@@ -57,6 +57,7 @@ namespace Soko.Unity.Game.Ui.Management
             var elementPrefab = _uiDataSo.UiElements[element];
             var newUiElement = Instantiate(elementPrefab, _activeUiRoot);
             _objectResolver.InjectGameObject(newUiElement.gameObject);
+            newUiElement.SetKey(element);
             newUiElement.gameObject.SetActive(false);
             _inactiveUiElements.Add(element, newUiElement);
         }
