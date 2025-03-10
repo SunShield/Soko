@@ -11,6 +11,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
     {
         [SerializeField] private LevelSelectScreenView _view;
         [SerializeField] private LevelPackInfoController _levelPackInfo;
+        [SerializeField] private LevelPackDrawerController _levelPackDrawer;
 
         [Inject] private LevelPacksSo _levelPacksSo;
         
@@ -41,6 +42,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _levelIndex = 0;
             _view.SetLevelPackButtonsState(_levelPackIndex == 0, _levelPackIndex == _levelPacksSo.LevelPacks.Count - 1);
             _levelPackInfo.SetLevelPackInfo(CurrentLevelPack);
+            _levelPackDrawer.SetLevelPack(CurrentLevelPack);
         }
     }
 }
