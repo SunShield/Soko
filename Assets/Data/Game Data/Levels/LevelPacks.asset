@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799ddc1a609c439fb75dffd2a2e337cb, type: 3}
+  m_Name: LevelPacks
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  <LevelPacks>k__BackingField:
+  - {fileID: 11400000, guid: 73c9c9c631e49cd4eaf3f9cc230dbbfe, type: 2}
+  - {fileID: 11400000, guid: dbd56a11a2f5ebf458395b61c11500e5, type: 2}
+  - {fileID: 11400000, guid: c1d36958934c0c14f8e98787b0804b98, type: 2}
+  - {fileID: 11400000, guid: 63ab1a3b4d232f84586830fc2bdef89d, type: 2}
+  - {fileID: 11400000, guid: dc013dba4286f8741b963f2f877faa45, type: 2}

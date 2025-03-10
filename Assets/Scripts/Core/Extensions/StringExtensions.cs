@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Soko.Service.Extensions
+namespace Soko.Core.Extensions
 {
     public static class StringExtensions
     {

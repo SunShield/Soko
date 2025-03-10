@@ -7,8 +7,6 @@ namespace Soko.Core.Models.Levels
     public class LevelData
     {
         public string Name;
-        
-        [TextArea(4, 20)]
-        public string LevelMap;
+        [TextArea(4, 20)] public string LevelMap;
     }
 }

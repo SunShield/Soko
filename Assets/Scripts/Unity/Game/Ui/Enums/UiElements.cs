@@ -3,5 +3,6 @@
     public enum UiElements
     {
         MainMenuScreen,
+        LevelSelectScreen,
     }
 }

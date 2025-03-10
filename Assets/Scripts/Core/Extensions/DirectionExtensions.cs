@@ -1,6 +1,6 @@
 ﻿using Soko.Unity.Game.Level.Grid.Enums;
 
-namespace Soko.Service.Extensions
+namespace Soko.Core.Extensions
 {
     public static class DirectionExtensions
     {

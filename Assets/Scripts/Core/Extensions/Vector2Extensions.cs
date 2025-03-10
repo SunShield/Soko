@@ -1,7 +1,7 @@
 ﻿using Soko.Unity.Game.Level.Grid.Enums;
 using UnityEngine;
 
-namespace Soko.Service.Extensions
+namespace Soko.Core.Extensions
 {
     public static class Vector2Extensions
     {

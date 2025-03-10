@@ -16,7 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 4478aa2673aad1546a4eca4dd3deb580, type: 2}
+    - {fileID: 11400000, guid: efd0b611cb5037e47859f67cd023cf15, type: 2}
     - {fileID: 11400000, guid: a99d27bfbcc310b43a1a8aba2e8989be, type: 2}
     - {fileID: 6939307245478153638, guid: f2a4fd28c92a7154e962b7881709edc8, type: 3}
     SerializedBytesString: 
@@ -34,7 +34,7 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|Soko.Unity.Game.DI.Installers.DataInstaller, Assembly-CSharp
-    - Name: _levelsDataSo
+    - Name: _levelPacksSo
       Entry: 10
       Data: 0
     - Name: _uiDataSo

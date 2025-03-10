@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Soko.Service.Extensions;
+using Soko.Core.Extensions;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;

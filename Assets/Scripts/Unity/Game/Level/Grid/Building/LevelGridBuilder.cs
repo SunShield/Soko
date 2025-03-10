@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Soko.Core.Extensions;
 using Soko.Core.Models.Levels;
-using Soko.Service.Extensions;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects;

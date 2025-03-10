@@ -14,21 +14,20 @@ namespace Soko.Unity.Game.Level.Management
     {
         [field: SerializeField] public Transform LevelRoot { get; private set; }
         
-        [Inject] private LevelsDataSo _levelsDataSo;
+        [Inject] private LevelPacksSo _levelPacksSo;
         [Inject] private LevelGridBuilder _levelGridBuilder;
         
+        public LevelPack LevelPack { get; private set; }
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
 
         public void Initialize()
         {
-            StartLevel("Test");
         }
 
-        public void StartLevel(string levelName)
+        public void StartLevel(string levelPackName, string levelName)
         {
-            LevelData = _levelsDataSo.Levels.First(levelData => levelData.Name == levelName);
-            LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
+            
         }
 
         public void CheckWin()
