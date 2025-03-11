@@ -14,34 +14,21 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         
         protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
+            var objectsToMove = GetObjectsToMove(parentMoveAction);
+            var pushPaths = new Dictionary<LevelObjectBase, List<LevelGridCell>>();
+            if (!CalculateObjectsMovement(parentMoveAction, objectsToMove, pushPaths)) return;
+
+            MoveAllObjects(objectsToMove, pushPaths);
+        }
+
+        private List<LevelObjectBase> GetObjectsToMove(MovementAction parentMoveAction)
+        {
             var hasGroup = Object.TryGetComponent<GroupComponent>(out var groupComponent)
-                        && groupComponent.Group != GroupComponent.NoGroup;
+                           && groupComponent.Group != GroupComponent.NoGroup;
             var objectsToMove = hasGroup
                 ? SortObjectsByDistance(groupComponent.GroupObjects, parentMoveAction.Direction)
-                : new () { Object } ;
-            var pushAction = new MovementAction(parentMoveAction.Direction);
-
-            var pushPaths = new Dictionary<LevelObjectBase, List<LevelGridCell>>();
-            var destinations = new HashSet<LevelGridCell>();
-            foreach (var objectToMove in objectsToMove)
-            {
-                pushPaths.Add(objectToMove, new List<LevelGridCell>());
-                var pushCell = GetPushCell(objectToMove, pushAction, pushPaths[objectToMove], destinations);
-                if (objectToMove == Object && pushCell == null)
-                {
-                    parentMoveAction.Active = false;
-                    return;
-                }
-
-                destinations.Add(pushCell);
-                pushPaths[objectToMove].Add(pushCell);
-            }
-
-            foreach (var objectToMove in objectsToMove)
-            {
-                var pushPath = pushPaths[objectToMove];
-                ExecuteMovement(objectToMove, pushPath);
-            }
+                : new () { Object };
+            return objectsToMove;
         }
 
         private List<LevelObjectBase> SortObjectsByDistance(List<LevelObjectBase> objects, Direction direction)
@@ -53,9 +40,32 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 Direction.Right => objects.OrderByDescending(o => o.Cell.Coords.Columns).ToList(),
             };
 
-        private LevelGridCell GetPushCell(LevelObjectBase movingObject, MovementAction pushAction,
-                    List<LevelGridCell> pushPath, HashSet<LevelGridCell> destinations)
+        private bool CalculateObjectsMovement(MovementAction parentMoveAction, List<LevelObjectBase> objectsToMove, 
+            Dictionary<LevelObjectBase, List<LevelGridCell>> pushPaths)
         {
+            var pushAction = new MovementAction(parentMoveAction.Direction);
+            var destinations = new HashSet<LevelGridCell>();
+            foreach (var objectToMove in objectsToMove)
+            {
+                pushPaths.Add(objectToMove, new List<LevelGridCell>());
+                var pushCell = GetPushCell(objectToMove, pushAction, pushPaths[objectToMove], destinations);
+                if (objectToMove == Object && pushCell == null)
+                {
+                    parentMoveAction.Active = false;
+                    return false;
+                }
+
+                destinations.Add(pushCell);
+                pushPaths[objectToMove].Add(pushCell);
+            }
+
+            return true;
+        }
+
+        private LevelGridCell GetPushCell(LevelObjectBase movingObject, MovementAction pushAction,
+            List<LevelGridCell> pushPath, HashSet<LevelGridCell> destinations)
+        {
+            // todo: looks refactorable.
             var secondaryPushAction = new MovementAction(pushAction.Direction);
             var pushCell = movingObject.Cell.GetNeighbour(pushAction.Direction);
             if (pushCell == null) return null;
@@ -75,6 +85,15 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             }
             
             return pushCell;
+        }
+
+        private void MoveAllObjects(List<LevelObjectBase> objectsToMove, Dictionary<LevelObjectBase, List<LevelGridCell>> pushPaths)
+        {
+            foreach (var objectToMove in objectsToMove)
+            {
+                var pushPath = pushPaths[objectToMove];
+                ExecuteMovement(objectToMove, pushPath);
+            }
         }
         
         private void ExecuteMovement(LevelObjectBase objectToMove, List<LevelGridCell> path) => 

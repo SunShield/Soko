@@ -1,4 +1,5 @@
-﻿using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+﻿using System.Collections.Generic;
+using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using VContainer;
 
@@ -13,27 +14,35 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         
         protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
+            var objectsToMove = GetObjectsToMove();
+            var pushAction = new MovementAction(parentMoveAction.Direction);
+            if (!EnsureObjectsMovable(parentMoveAction, objectsToMove, pushAction)) return;
+
+            MoveObjects(objectsToMove, pushAction);
+        }
+
+        private List<LevelObjectBase> GetObjectsToMove()
+        {
             var hasGroup = Object.TryGetComponent<GroupComponent>(out var groupComponent)
                            && groupComponent.Group != GroupComponent.NoGroup;
             var objectsToMove = hasGroup
                 ? groupComponent.GroupObjects
                 : new () { Object } ;
-            var pushAction = new MovementAction(parentMoveAction.Direction);
+            return objectsToMove;
+        }
 
+        private bool EnsureObjectsMovable(MovementAction parentMoveAction, List<LevelObjectBase> objectsToMove, MovementAction pushAction)
+        {
             foreach (var objectToMove in objectsToMove)
             {
                 var result = ProcessMovingObject(objectToMove, pushAction);
                 if (result) continue;
                 
                 parentMoveAction.Active = false;
-                return;
+                return false;
             }
 
-            foreach (var objectToMove in objectsToMove)
-            {
-                var pushCell = objectToMove.Cell.GetNeighbour(pushAction.Direction);
-                ExecuteMovement(objectToMove, pushCell);
-            }
+            return true;
         }
 
         private LevelGridCell ProcessMovingObject(LevelObjectBase movingObject, MovementAction pushAction)
@@ -45,6 +54,15 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             if (!pushAction.Active) return null;
             
             return pushCell;
+        }
+
+        private void MoveObjects(List<LevelObjectBase> objectsToMove, MovementAction pushAction)
+        {
+            foreach (var objectToMove in objectsToMove)
+            {
+                var pushCell = objectToMove.Cell.GetNeighbour(pushAction.Direction);
+                ExecuteMovement(objectToMove, pushCell);
+            }
         }
         
         private void ExecuteMovement(LevelObjectBase objectToMove, LevelGridCell targetCell) => 
