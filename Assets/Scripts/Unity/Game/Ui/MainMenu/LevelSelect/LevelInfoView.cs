@@ -11,7 +11,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         public void SetLevelInfo(string levelName, int bestResult)
         {
             _levelNameText.text = levelName;
-            _bestResultText.text = bestResult.ToString();
+            _bestResultText.text = $"Best Turns: {bestResult}";
         }
     }
 }

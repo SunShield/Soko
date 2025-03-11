@@ -1,4 +1,6 @@
-﻿using Soko.Core.Models.Levels;
+﻿using System.Linq;
+using Soko.Core.Models.Levels;
+using Soko.Unity.Game.Save.Impl.LevelsData;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
@@ -7,10 +9,12 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
     {
         [SerializeField] private LevelPackInfoView _view;
 
-        public void SetLevelPackInfo(LevelPack levelPack)
+        public void SetLevelPackInfo(LevelPack levelPack, LevelPackSaveData levelPackSaveData)
         {
-            // todo get completed levels from savedata
-            _view.SetLevelPackInfo(levelPack.Name, 0, levelPack.Levels.Count);
+            var levelsWon = levelPackSaveData != null 
+                ? levelPackSaveData.Levels.Count(l => l.BestTurnsCount != 0) 
+                : 0;
+            _view.SetLevelPackInfo(levelPack.Name, levelsWon, levelPack.Levels.Count);
         }
     }
 }

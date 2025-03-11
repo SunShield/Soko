@@ -26,7 +26,19 @@ MonoBehaviour:
     HeaderSprite: {fileID: 0}
     Levels:
     - Name: Buenos Dias
-      LevelMap: 
+      LevelMap: '[ ][ ][ ][s][ ][ ][ ]
+
+        [s][ ][ ][ ][ ][s][ ]
+
+        [
+        ][ ][ ][ ][ ][ ][ ]
+
+        [ ][b][ ][b][ ][b][ ]
+
+        [ ][w][w][b][w][w][
+        ]
+
+        [ ][s][ ][p][ ][ ][ ]'
     - Name: Triple Crossing
       LevelMap: 
     - Name: Trains

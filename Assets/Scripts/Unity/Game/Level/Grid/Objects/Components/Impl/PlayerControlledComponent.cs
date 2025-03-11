@@ -43,6 +43,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             
             RotatePlayer(direction);
             await ExecuteMovement(targetCell);
+            _levelPlayCycleManager.AdvanceTurnCount();
         }
 
         private void RotatePlayer(Direction direction)

@@ -62,7 +62,7 @@ namespace Soko.Unity.Game.Level.Management
             return LevelState.Playable;
         }
 
-        public async void StartCurrentLevel()
+        public async void StartCurrentLevel(int packIndex, int levelIndex)
         {
             _uiManager.CloseUiElement(UiElements.LevelSelectScreen);
             _uiManager.CloseUiElement(UiElements.MainMenuScreen);

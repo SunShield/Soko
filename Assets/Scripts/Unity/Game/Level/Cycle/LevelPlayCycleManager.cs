@@ -18,6 +18,7 @@ namespace Soko.Unity.Game.Level.Cycle
         
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
+        public int TurnCount { get; private set; }
 
         public void Initialize()
         {
@@ -29,6 +30,8 @@ namespace Soko.Unity.Game.Level.Cycle
             LevelData = _levelsManager.CurrentLevelData;
             LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
         }
+        
+        public void AdvanceTurnCount() => TurnCount++;
 
         public void CheckWin()
         {
