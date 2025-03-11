@@ -20,7 +20,7 @@ namespace Soko.Unity.Game.DI
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
-            builder.RegisterEntryPoint<LevelObjectOneCellMover>().AsSelf();
+            builder.RegisterEntryPoint<LevelObjectMover>().AsSelf();
         }
     }
 }

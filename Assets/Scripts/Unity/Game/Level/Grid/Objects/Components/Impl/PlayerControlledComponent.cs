@@ -13,7 +13,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class PlayerControlledComponent : LevelObjectComponent
     {
         [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
-        [Inject] private LevelObjectOneCellMover _levelObjectOneCellMover;
+        [Inject] private LevelObjectMover _levelObjectMover;
         
         private PlayerInputActions _playerInputActions;
         private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
@@ -64,7 +64,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         private async Task ExecuteMovement(LevelGridCell targetCell)
         {
             _executingMovement = true;
-            await _levelObjectOneCellMover.MoveOneCell(Object, targetCell);
+            await _levelObjectMover.MoveObject(Object, targetCell);
             _executingMovement = false;
         }
 

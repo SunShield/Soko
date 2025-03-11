@@ -9,7 +9,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     /// </summary>
     public class PlayerSimplePushableComponent : PlayerInteractableComponent
     {
-        [Inject] private LevelObjectOneCellMover _levelObjectOneCellMover;
+        [Inject] private LevelObjectMover _levelObjectMover;
         
         protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
@@ -48,6 +48,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         }
         
         private void ExecuteMovement(LevelObjectBase objectToMove, LevelGridCell targetCell) => 
-            _levelObjectOneCellMover.MoveOneCell(objectToMove, targetCell);
+            _levelObjectMover.MoveObject(objectToMove, targetCell);
     }
 }

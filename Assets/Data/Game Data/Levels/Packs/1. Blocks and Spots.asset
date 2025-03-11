@@ -40,6 +40,11 @@ MonoBehaviour:
 
         [ ][s][ ][p][ ][ ][ ]'
     - Name: Triple Crossing
-      LevelMap: 
+      LevelMap: '[ ][ ][ ][ ][ ][ ][ ]
+
+        [p][sb][ ][ ][ ][ ][s]
+
+        [
+        ][ ][ ][ ][ ][ ][ ]'
     - Name: Trains
       LevelMap: 
