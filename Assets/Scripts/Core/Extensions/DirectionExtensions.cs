@@ -12,5 +12,8 @@ namespace Soko.Core.Extensions
             Direction.Right => Direction.Left,
             Direction.None => Direction.None,
         };
+
+        public static bool IsHorizontal(this Direction direction) => direction is Direction.Left or Direction.Right;
+        public static bool IsVertical(this Direction direction) => direction is Direction.Left or Direction.Right;
     }
 }

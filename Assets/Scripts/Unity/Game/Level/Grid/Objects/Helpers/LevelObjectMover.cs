@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Helpers
@@ -17,6 +18,20 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Helpers
                 .SetEase(Ease.Linear)
                 .AsyncWaitForCompletion();
             targetCell.AddObject(objectToMove);
+        }
+
+        public async Task MoveObject(LevelObjectBase objectToMove, List<LevelGridCell> path)
+        {
+            var sequence = DOTween.Sequence();
+            foreach (var cell in path)
+            {
+                var moveTween = objectToMove.transform
+                    .DOMove(cell.transform.position, MoveTime / path.Count)
+                    .OnComplete(() => cell.AddObject(objectToMove));
+                sequence.Append(moveTween);
+            }
+
+            await sequence.Play().AsyncWaitForCompletion();
         }
     }
 }
