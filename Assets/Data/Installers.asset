@@ -30,7 +30,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 7
       Data: 1|Soko.Unity.Game.DI.Installers.DataInstaller, Assembly-CSharp
@@ -45,16 +45,28 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|Soko.Unity.Game.DI.Installers.AppInitializerInstaller, Assembly-CSharp
+      Data: 2|Soko.Unity.Game.DI.Installers.GameInstaller, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Soko.Unity.Game.DI.Installers.UiInstaller, Assembly-CSharp
+      Data: 3|Soko.Unity.Game.DI.Installers.AppInitializerInstaller, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Soko.Unity.Game.DI.Installers.UiInstaller, Assembly-CSharp
     - Name: _uiManager
       Entry: 10
       Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Soko.Unity.Game.DI.Installers.SaveInstaller, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

@@ -1,33 +1,33 @@
 ﻿using System.Linq;
 using Soko.Core.Models.Levels;
-using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
+using Soko.Unity.Game.Level.Management;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 
-namespace Soko.Unity.Game.Level.Management
+namespace Soko.Unity.Game.Level.Cycle
 {
-    public class LevelManager : MonoBehaviour, IInitializable
+    public class LevelPlayCycleManager : MonoBehaviour, IInitializable
     {
         [field: SerializeField] public Transform LevelRoot { get; private set; }
         
-        [Inject] private LevelPacksSo _levelPacksSo;
         [Inject] private LevelGridBuilder _levelGridBuilder;
+        [Inject] private LevelsManager _levelsManager;
         
-        public LevelPack LevelPack { get; private set; }
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
 
         public void Initialize()
         {
+            StartLevel();
         }
 
-        public void StartLevel(string levelPackName, string levelName)
+        private void StartLevel()
         {
-            
+            LevelData = _levelsManager.CurrentLevelData;
+            LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
         }
 
         public void CheckWin()

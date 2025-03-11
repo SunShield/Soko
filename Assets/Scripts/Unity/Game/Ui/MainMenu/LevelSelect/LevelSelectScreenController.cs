@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
 using VContainer;
@@ -14,6 +15,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         [SerializeField] private LevelPackDrawerController _levelPackDrawer;
 
         [Inject] private LevelPacksSo _levelPacksSo;
+        [Inject] private LevelsManager _levelsManager;
         
         private int _levelPackIndex;
         private int _levelIndex;
@@ -30,7 +32,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
 
         protected override async UniTask OnEnabledAndConstructed()
         {
-            SetLevelPack(0);
+            SetLevelPack(_levelsManager.LevelPackIndex);
         }
 
         private void SelectPreviousLevelPack() => SetLevelPack(_levelPackIndex - 1);
@@ -39,10 +41,21 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         private void SetLevelPack(int levelPackIndex)
         {
             _levelPackIndex = levelPackIndex;
-            _levelIndex = 0;
+            _levelIndex = _levelsManager.LevelIndex;
             _view.SetLevelPackButtonsState(_levelPackIndex == 0, _levelPackIndex == _levelPacksSo.LevelPacks.Count - 1);
             _levelPackInfo.SetLevelPackInfo(CurrentLevelPack);
-            _levelPackDrawer.SetLevelPack(CurrentLevelPack);
+            _levelPackDrawer.SetLevelPack(_levelPackIndex, CurrentLevelPack);
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                _levelsManager.WinCurrentLevel(10);
+                SetLevelPack(_levelsManager.LevelPackIndex);
+            }
+        }
+#endif
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Soko.Core.Extensions;
+using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
-using Soko.Unity.Game.Level.Management;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
@@ -12,11 +12,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
     public class PlayerControlledComponent : LevelObjectComponent
     {
-        [Inject] private LevelManager _levelManager;
+        [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
         [Inject] private LevelObjectOneCellMover _levelObjectOneCellMover;
         
         private PlayerInputActions _playerInputActions;
-        private Vector2Int GridSize => _levelManager.LevelGrid.Dimensions;
+        private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
         
         private bool _executingMovement = false;
         private float _defaultScaleX;

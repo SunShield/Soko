@@ -1,4 +1,5 @@
 ﻿using System;
+using Soko.Unity.Game.Level.Enums;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
@@ -12,10 +13,11 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         private void Awake() => View.OnClick += ClickHandler;
         private void ClickHandler() => OnClicked?.Invoke(Index);
 
-        public void Setup(int index)
+        public void Setup(int index, LevelState levelState)
         {
             Index = index;
             View.SetLevelIndexText(Index);
+            View.SetState(levelState);
         }
         
         public event Action<int> OnClicked;

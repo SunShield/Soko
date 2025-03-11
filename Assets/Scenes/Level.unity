@@ -335,7 +335,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _levelManager: {fileID: 991062876}
+  _levelPlayCycleManager: {fileID: 991062876}
   _levelObjectsSo: {fileID: 11400000, guid: c94de471907abfb4cb61c54549f7c2e1, type: 2}
   _colorDataSo: {fileID: 11400000, guid: f0eebb13ec7f0964c9bf3ceb0465ad3e, type: 2}
 --- !u!1660057539 &9223372036854775807
