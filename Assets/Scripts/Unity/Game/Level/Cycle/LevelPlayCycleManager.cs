@@ -43,6 +43,8 @@ namespace Soko.Unity.Game.Level.Cycle
 
         private async void WinLevel()
         {
+            _levelsManager.WinCurrentLevel(TurnCount);
+            _levelsManager.EndCurrentLevel();
         }
     }
 }

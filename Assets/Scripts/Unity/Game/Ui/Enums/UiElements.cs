@@ -5,5 +5,6 @@
         MainMenuScreen,
         LevelSelectScreen,
         SettingsPopup,
+        LevelStatsScreen,
     }
 }

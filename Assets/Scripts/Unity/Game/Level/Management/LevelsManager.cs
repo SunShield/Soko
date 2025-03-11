@@ -64,6 +64,8 @@ namespace Soko.Unity.Game.Level.Management
 
         public async void StartCurrentLevel(int packIndex, int levelIndex)
         {
+            LevelPackIndex = packIndex;
+            LevelIndex = levelIndex;
             _uiManager.CloseUiElement(UiElements.LevelSelectScreen);
             _uiManager.CloseUiElement(UiElements.MainMenuScreen);
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.Level);
@@ -71,9 +73,21 @@ namespace Soko.Unity.Game.Level.Management
 
         public void WinCurrentLevel(int bestTurnCount)
         {
-            var currentPackSaveData = SaveData.PackSaveDatas[LevelPackIndex];
-            currentPackSaveData.Levels[LevelIndex].BestTurnsCount = bestTurnCount;
+            var levelState = CheckLevelState(LevelPackIndex, LevelIndex);
             
+            var currentPackSaveData = SaveData.PackSaveDatas[LevelPackIndex];
+            var currentTurnCount = currentPackSaveData.Levels[LevelIndex].BestTurnsCount;
+            if (currentTurnCount == 0 || currentTurnCount > bestTurnCount) 
+                currentPackSaveData.Levels[LevelIndex].BestTurnsCount = bestTurnCount;
+
+            if (levelState == LevelState.Playable)
+                UnlockNextLevel(currentPackSaveData);
+            
+            _progressSaveDataManager.Save();
+        }
+
+        private void UnlockNextLevel(LevelPackSaveData currentPackSaveData)
+        {
             if (currentPackSaveData.Levels.Count < CurrentLevelPack.Levels.Count)
             {
                 LevelIndex++;
@@ -86,13 +100,12 @@ namespace Soko.Unity.Game.Level.Management
                 SaveData.PackSaveDatas.Add(new LevelPackSaveData());
                 SaveData.PackSaveDatas[LevelPackIndex].Levels.Add(new ());
             }
-            
-            _progressSaveDataManager.Save();
         }
 
         public void EndCurrentLevel()
         {
-            
+            _uiManager.CloseUiElement(UiElements.LevelStatsScreen);
+            SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
         }
     }
 }
