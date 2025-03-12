@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   LevelPack:
     Name: Blocks and Spots
-    HeaderSprite: {fileID: 0}
+    HeaderSprite: {fileID: 21300000, guid: 088c0519720288141a529629f5793604, type: 3}
     Levels:
     - Name: Buenos Dias
       LevelMap: '[ ][ ][ ][s][ ][ ][ ]

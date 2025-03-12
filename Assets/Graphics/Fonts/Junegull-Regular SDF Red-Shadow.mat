@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Junegull-Regular SDF Blue-Shadow
+  m_Name: Junegull-Regular SDF Red-Shadow
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -76,7 +76,7 @@ Material:
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.73125
+    - _ScaleRatioC: 0.32528913
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -89,7 +89,7 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 2048
     - _TextureWidth: 2048
-    - _UnderlayDilate: -0.97
+    - _UnderlayDilate: 0.37
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: -1
     - _UnderlaySoftness: 0.878
@@ -107,6 +107,6 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0.10778838, g: 0.13970174, b: 0.31446534, a: 1}
+    - _UnderlayColor: {r: 0.6792453, g: 0.13209634, b: 0.13029537, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

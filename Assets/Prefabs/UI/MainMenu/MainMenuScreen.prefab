@@ -410,14 +410,14 @@ MonoBehaviour:
   m_text: exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85b9cb4f6947f4a4ebeeb84e2f2e37d5, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: a8668c44cd8c5d24694e6af8fa7f574f, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: f1f4857da0b52e94c94d003151453838, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284688664
-  m_fontColor: {r: 0.09441868, g: 0.1598282, b: 0.38993704, a: 1}
+    rgba: 4279834723
+  m_fontColor: {r: 0.3882353, g: 0.09411765, b: 0.09924267, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c82c6407bc4fc64da23c4761466b0fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 386a07b04219c7d439ab6a63b2495e18, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

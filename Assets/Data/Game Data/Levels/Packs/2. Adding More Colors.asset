@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   LevelPack:
     Name: Adding More Colors
-    HeaderSprite: {fileID: 0}
+    HeaderSprite: {fileID: 21300000, guid: 1a996eb65849f5348af57288c3802402, type: 3}
     Levels:
     - Name: RGB
       LevelMap: 
