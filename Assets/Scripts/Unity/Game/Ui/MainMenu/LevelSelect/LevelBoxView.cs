@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Soko.Unity.Game.Level.Enums;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
     public class LevelBoxView : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private TextMeshProUGUI _levelIndexText;
+        [SerializeField] private List<TextMeshProUGUI> _levelIndexTexts;
         [SerializeField] private GameObject _passedGraphics;
         [SerializeField] private GameObject _lockedGraphics;
         
@@ -21,8 +22,8 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _lockedGraphics.SetActive(state == LevelState.Locked);
             _button.interactable = state != LevelState.Locked;
         }
-        
-        public void SetLevelIndexText(int levelIndex) => _levelIndexText.text = levelIndex.ToString();
+
+        public void SetLevelIndexText(int levelIndex) => _levelIndexTexts.ForEach(t => t.text = $"{levelIndex}");
         
         private void ClickHandler() => OnClick?.Invoke();
         public event Action OnClick;

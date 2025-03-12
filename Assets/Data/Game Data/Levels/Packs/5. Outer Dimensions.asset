@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e11131c0d244b6f806247762dc54713, type: 3}
-  m_Name: 5. Playing With Dimensions
+  m_Name: 5. Outer Dimensions
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   LevelPack:
-    Name: Playing With Dimensions
+    Name: Outer Dimensions
     HeaderSprite: {fileID: 21300000, guid: babd013bd553da144b2f53f00c70a92a, type: 3}
     Levels:
     - Name: Islands
