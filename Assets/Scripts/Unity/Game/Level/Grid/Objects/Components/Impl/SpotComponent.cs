@@ -15,8 +15,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         [SerializeField] private GameObject _activeGraphics;
         [SerializeField] private GameObject _inactiveGraphics;
         
-        [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
-        
         public bool Activated { get; private set; }
 
         public override void OnObjectEntered(LevelObjectBase enteringObject)
@@ -56,7 +54,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             _activeGraphics.SetActive(activated);
             _inactiveGraphics.SetActive(!activated);
             
-            if (Activated) _levelPlayCycleManager.CheckWin();
+            if (Activated) LevelPlayCycleManager.CheckWin();
         }
     }
 }

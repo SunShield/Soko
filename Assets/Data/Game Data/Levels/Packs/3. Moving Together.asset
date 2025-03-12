@@ -26,7 +26,30 @@ MonoBehaviour:
     HeaderSprite: {fileID: 0}
     Levels:
     - Name: Caged
-      LevelMap: 
+      LevelMap: '[s][ ][s][ ][s][ ][ ][ ][ ][ ]
+
+        [ ][p][ ][w][ ][w][ ][w][
+        ][ ]
+
+        [ ][ ][ ][ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][w][ ][b|g:1][ ][b|g:1][
+        ][b|g:1][ ][ ]
+
+        [ ][b|g:2][ ][b|g:2][ ][b|g:2][ ][ ][ ][ ]
+
+        [
+        ][w][ ][ ][ ][ ][ ][ ][w][ ]
+
+        [ ][ ][ ][ ][ ][ ][ ][ ][w][ ]
+
+        [
+        ][w][ ][ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][ ][ ][ ][w][ ][w][ ][w][ ]
+
+        [
+        ][ ][ ][ ][ ][s][ ][s][ ][s]'
     - Name: The Big T
       LevelMap: 
     - Name: Whirlwind

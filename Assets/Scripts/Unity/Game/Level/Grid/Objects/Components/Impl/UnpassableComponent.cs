@@ -16,7 +16,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             if (enteringObject.TryGetComponent<GroupComponent>(out var groupComponent)
                 && Object.TryGetComponent<GroupComponent>(out var currentGroupComponent)) 
             {
-                if (currentGroupComponent.Group == groupComponent.Group) return;
+                if (currentGroupComponent.Group != -1 && groupComponent.Group != -1 && 
+                    currentGroupComponent.Group == groupComponent.Group) return;
             }
                 
             action.Active = false;

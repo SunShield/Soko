@@ -33,5 +33,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Helpers
 
             await sequence.Play().AsyncWaitForCompletion();
         }
+
+        public void TeleportObject(LevelObjectBase objectToMove, LevelGridCell targetCell)
+        {
+            objectToMove.transform.position = targetCell.transform.position;
+            targetCell.AddObject(objectToMove, true);
+        }
     }
 }

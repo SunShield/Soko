@@ -589,7 +589,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -618,12 +618,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 11
+        dayOfTheWeek: Tuesday
+        minute: 22
+        hour: 21
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:

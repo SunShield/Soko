@@ -19,13 +19,12 @@ namespace Soko.Unity.Game.Level.Grid
             Coords = coords;
         }
 
-        public void AddObject(LevelObjectBase objectBase)
+        public void AddObject(LevelObjectBase objectBase, bool suppressEnterEvent = false)
         {
             if (objectBase.Cell != null) objectBase.Cell.RemoveObject(objectBase);
             objectBase.SetCell(this);
-            objectBase.Cell.OnObjectEntered(objectBase);
-            
             Objects.Add(objectBase);
+            if (!suppressEnterEvent) objectBase.Cell.OnObjectEntered(objectBase);
         }
 
         public void RemoveObject(LevelObjectBase objectBase)
@@ -36,19 +35,22 @@ namespace Soko.Unity.Game.Level.Grid
 
         public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
         {
-            foreach (var levelObject in Objects)
+            var objects = new List<LevelObjectBase>(Objects);
+            foreach (var levelObject in objects)
                 levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
         }
 
         public void OnObjectEntered(LevelObjectBase objectBase)
         {
-            foreach (var levelObject in Objects)
+            var objects = new List<LevelObjectBase>(Objects);
+            foreach (var levelObject in objects)
                 levelObject.OnObjectEntered(objectBase);
         }
 
         public void OnObjectLeft(LevelObjectBase leftObject)
         {
-            foreach (var levelObject in Objects)
+            var objects = new List<LevelObjectBase>(Objects);
+            foreach (var levelObject in objects)
                 levelObject.OnObjectLeft(leftObject);
         }
 

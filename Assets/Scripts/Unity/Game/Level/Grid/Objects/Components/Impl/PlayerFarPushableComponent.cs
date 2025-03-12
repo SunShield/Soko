@@ -49,7 +49,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             {
                 pushPaths.Add(objectToMove, new List<LevelGridCell>());
                 var pushCell = GetPushCell(objectToMove, pushAction, pushPaths[objectToMove], destinations);
-                if (objectToMove == Object && pushCell == null)
+                if (objectToMove == Object && (pushCell == null || pushCell == objectToMove.Cell))
                 {
                     parentMoveAction.Active = false;
                     return false;
@@ -68,10 +68,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             // todo: looks refactorable.
             var secondaryPushAction = new MovementAction(pushAction.Direction);
             var pushCell = movingObject.Cell.GetNeighbour(pushAction.Direction);
-            if (pushCell == null) return null;
+            if (pushCell == null) return movingObject.Cell;
             pushCell.OnObjectAboutToEnter(movingObject, secondaryPushAction);
-            if (!secondaryPushAction.Active) return null;
-            if(destinations.Contains(pushCell)) return null;
+            if (!secondaryPushAction.Active) return movingObject.Cell;
+            if(destinations.Contains(pushCell)) return movingObject.Cell;
 
             while (pushCell != null)
             {
