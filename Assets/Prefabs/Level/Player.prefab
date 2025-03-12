@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4194572739435094074}
@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 01011b0000003c0043006f006d0070006f006e0065006e00740073003e006b005f005f004200610063006b0069006e0067004600690065006c0064002f000000000188000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b0053006f006b006f002e0055006e006900740079002e00470061006d0065002e004c006500760065006c002e0047007200690064002e004f0062006a0065006300740073002e0043006f006d0070006f006e0065006e00740073002e004c006500760065006c004f0062006a0065006300740043006f006d0070006f006e0065006e0074002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c002000530079007300740065006d002e0043006f0072006500000000000603000000000000000c000000000c010000000c020000000705
     ReferencedUnityObjects:
     - {fileID: 5386657932146110645}
     - {fileID: 4749361022104256593}
@@ -59,29 +59,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: <Components>k__BackingField
-      Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[Soko.Unity.Game.Level.Grid.Objects.Components.LevelObjectComponent,
-        Assembly-CSharp]], System.Core
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
 --- !u!114 &4749361022104256593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +107,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4194572739435094074}
   - component: {fileID: 4024431573259313819}
-  - component: {fileID: 302949297933940725}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -196,7 +173,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -654737500350741434, guid: 03280fde078ad764db9d747617da2fb2, type: 3}
+  m_Sprite: {fileID: 6620620959568865963, guid: 5dbd5f4a950b3af4b9eb2e77363d8241, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -207,25 +184,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &302949297933940725
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805568011951026071}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 348dfa3731e8d2147b312e566b87f728, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
