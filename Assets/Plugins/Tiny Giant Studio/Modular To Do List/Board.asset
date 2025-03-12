@@ -179,7 +179,7 @@ MonoBehaviour:
       myDescription: If last level is completed, it's rendered as incompleted.
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -208,12 +208,12 @@ MonoBehaviour:
           hour: 1
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 12
+        dayOfTheWeek: Wednesday
+        minute: 53
+        hour: 16
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -246,7 +246,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 3
-      heightTakenInEditor: 47
+      heightTakenInEditor: 51
     creationTime:
       year: 2025
       month: 3
@@ -273,7 +273,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -302,12 +302,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 12
+        dayOfTheWeek: Wednesday
+        minute: 53
+        hour: 16
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -347,7 +347,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -376,12 +376,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 12
+        dayOfTheWeek: Wednesday
+        minute: 53
+        hour: 16
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -421,7 +421,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -450,12 +450,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 12
+        dayOfTheWeek: Wednesday
+        minute: 53
+        hour: 16
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -582,7 +582,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 1
-      heightTakenInEditor: 47
+      heightTakenInEditor: 51
     - myName: Far-pushable Objects
       hideMyDetails: 1
       addedDescription: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -692,12 +692,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 12
+        dayOfTheWeek: Wednesday
+        minute: 50
+        hour: 15
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:

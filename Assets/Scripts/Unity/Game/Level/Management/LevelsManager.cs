@@ -2,6 +2,7 @@
 using System.Linq;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;
 using Soko.Unity.Game.Ui.Enums;
@@ -22,6 +23,7 @@ namespace Soko.Unity.Game.Level.Management
         public List<LevelPack> LevelPacks = new();
         public int LevelPackIndex { get; private set; }
         public int LevelIndex { get; private set; }
+        public LevelPlayCycleManager PlayCycleManager { get; private set; }
 
         public LevelsProgressSaveData SaveData => _progressSaveDataManager.SaveData;
         public LevelPack CurrentLevelPack => _levelPacksSo.LevelPacks[LevelPackIndex].LevelPack;
@@ -61,6 +63,11 @@ namespace Soko.Unity.Game.Level.Management
             
             return LevelState.Playable;
         }
+        
+        // this soultion is 'kinda' weird, but also kinda consistens
+        // we keep level stuff isolated inside and avoid DI crap
+        public void SetCycleManager(LevelPlayCycleManager levelPlayCycleManager)
+            => PlayCycleManager = levelPlayCycleManager;
 
         public async void StartCurrentLevel(int packIndex, int levelIndex)
         {
@@ -68,6 +75,7 @@ namespace Soko.Unity.Game.Level.Management
             LevelIndex = levelIndex;
             _uiManager.CloseUiElement(UiElements.LevelSelectScreen);
             _uiManager.CloseUiElement(UiElements.MainMenuScreen);
+            // TODO: add ui elements parenting
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.Level);
         }
 
@@ -104,7 +112,7 @@ namespace Soko.Unity.Game.Level.Management
 
         public void EndCurrentLevel()
         {
-            _uiManager.CloseUiElement(UiElements.LevelStatsScreen);
+            PlayCycleManager = null;
             SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
         }
     }

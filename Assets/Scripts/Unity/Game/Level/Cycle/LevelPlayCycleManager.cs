@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Management;
+using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,6 +18,7 @@ namespace Soko.Unity.Game.Level.Cycle
         
         [Inject] private LevelGridBuilder _levelGridBuilder;
         [Inject] private LevelsManager _levelsManager;
+        [Inject] private UiManager _uiManager;
         
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
@@ -22,6 +26,8 @@ namespace Soko.Unity.Game.Level.Cycle
 
         public void Initialize()
         {
+            _levelsManager.SetCycleManager(this);
+            _uiManager.OpenUiElement(UiElements.LevelMainScreen, 1);
             StartLevel();
         }
 
@@ -31,7 +37,11 @@ namespace Soko.Unity.Game.Level.Cycle
             LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
         }
         
-        public void AdvanceTurnCount() => TurnCount++;
+        public void AdvanceTurnCount()
+        {
+            TurnCount++;
+            OnTurnCountChanged?.Invoke(TurnCount);
+        }
 
         public void CheckWin()
         {
@@ -43,8 +53,11 @@ namespace Soko.Unity.Game.Level.Cycle
 
         private async void WinLevel()
         {
+            _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.WinCurrentLevel(TurnCount);
             _levelsManager.EndCurrentLevel();
         }
+        
+        public event Action<int> OnTurnCountChanged;
     }
 }
