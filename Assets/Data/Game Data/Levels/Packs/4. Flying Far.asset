@@ -28,8 +28,18 @@ MonoBehaviour:
     HeaderSprite: {fileID: 21300000, guid: a91e6f04a03a67f4ba2069adc18aeb29, type: 3}
     Levels:
     - Name: Departure
-      LevelMap: 
-    - Name: Waking a Hive
+      LevelMap: '[ ][ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][ ][s][ ][s][ ][b][ ]
+
+        [
+        ][ ][b][ ][ ][w][ ][ ]
+
+        [ ][p][sb|g:1][sb|g:1][ ][s][ ][ ]
+
+        [
+        ][ ][ ][ ][ ][ ][ ][s]'
+    - Name: Unpacking
       LevelMap: 
     - Name: Causeway
       LevelMap: 

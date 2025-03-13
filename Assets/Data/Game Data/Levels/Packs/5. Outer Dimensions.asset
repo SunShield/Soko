@@ -28,7 +28,12 @@ MonoBehaviour:
     HeaderSprite: {fileID: 21300000, guid: babd013bd553da144b2f53f00c70a92a, type: 3}
     Levels:
     - Name: Islands
-      LevelMap: 
+      LevelMap: '[ ][ ][ ][ ][w][ ][ ]
+
+        [p][t|c:r][w][s][ ][b][t|c:r]
+
+        [
+        ][ ][ ][ ][w][ ][ ]'
     - Name: Outer Star
       LevelMap: 
     - Name: Wormhole
