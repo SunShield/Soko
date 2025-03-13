@@ -28,8 +28,49 @@ MonoBehaviour:
     HeaderSprite: {fileID: 21300000, guid: 1a996eb65849f5348af57288c3802402, type: 3}
     Levels:
     - Name: RGB
-      LevelMap: 
-    - Name: Light and Magic
-      LevelMap: 
+      LevelMap: '[ ][ ][ ][ ][ ][ ][ ][s|c:w]
+
+        [ ][b|c:r][ ][ ][ ][ ][ ][s|c:r]
+
+        [p][b|c:g][b|c:w][w][
+        ][ ][ ][ ]
+
+        [ ][b|c:b][ ][ ][ ][ ][w][s|c:b]
+
+        [ ][ ][ ][
+        ][ ][ ][ ][s|c:w]'
     - Name: Spectre
-      LevelMap: 
+      LevelMap: '[s|c:b][w][s|c:g][p][ ][ ][s|c:r][ ]
+
+        [s|c:g][b|c:r][b|c:b][
+        ][ ][b|c:b][b|c:g][ ]
+
+        [ ][b|c:g][ ][ ][ ][b|c:r][s|c:b][ ]
+
+        [
+        ][ ][w][s|c:r][b|c:g][ ][ ][ ]
+
+        [ ][ ][ ][b|c:b][b|c:r][ ][s|c:g][
+        ]
+
+        [ ][w][ ][ ][ ][ ][w][ ]
+
+        [s|c:b][s|c:r][ ][ ][ ][ ][
+        ][ ]'
+    - Name: Light and Magic
+      LevelMap: '[ ][s|c:b][ ][ ][ ][ ][ ][ ]
+
+        [ ][b|c:r][ ][w][ ][ ][b|c:b][
+        ]
+
+        [p][s|c:b][b|c:r][ ][w][ ][s|c:r][ ]
+
+        [ ][w][ ][ ][w][
+        ][w][ ]
+
+        [ ][s|c:b][ ][w][w][ ][s|c:r][ ]
+
+        [ ][b|c:r][ ][
+        ][b|c:b][ ][b|c:b][ ]
+
+        [ ][ ][ ][ ][ ][ ][s|c:r][ ]'
