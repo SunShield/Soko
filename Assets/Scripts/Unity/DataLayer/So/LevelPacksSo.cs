@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Soko.Core.Models.Levels;
 using UnityEngine;
 
 namespace Soko.Unity.DataLayer.So

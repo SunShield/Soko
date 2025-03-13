@@ -23,6 +23,8 @@ MonoBehaviour:
     SerializationNodes: []
   LevelPack:
     Name: Blocks and Spots
+    MusicKey: LevelPack1
+    LevelBackground: {fileID: 21300000, guid: 8edc2aa1cbcee11489dbc543d4d381d8, type: 3}
     HeaderSprite: {fileID: 21300000, guid: 088c0519720288141a529629f5793604, type: 3}
     Levels:
     - Name: Buenos Dias

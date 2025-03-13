@@ -4,6 +4,8 @@ using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Management;
+using Soko.Unity.Game.Level.Visuals;
+using Soko.Unity.Game.Sounds;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
@@ -15,10 +17,12 @@ namespace Soko.Unity.Game.Level.Cycle
     public class LevelPlayCycleManager : MonoBehaviour, IInitializable
     {
         [field: SerializeField] public Transform LevelRoot { get; private set; }
+        [SerializeField] private LevelBackgroundManager _levelBackgroundManager;
         
         [Inject] private LevelGridBuilder _levelGridBuilder;
         [Inject] private LevelsManager _levelsManager;
         [Inject] private UiManager _uiManager;
+        [Inject] private SoundsManager _soundsManager;
         
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
@@ -35,6 +39,8 @@ namespace Soko.Unity.Game.Level.Cycle
         {
             LevelData = _levelsManager.CurrentLevelData;
             LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
+            _soundsManager.PlayMusic(_levelsManager.CurrentLevelPack.MusicKey);
+            _levelBackgroundManager.SetBackground(_levelsManager.CurrentLevelPack.LevelBackground);
         }
         
         public void AdvanceTurnCount()

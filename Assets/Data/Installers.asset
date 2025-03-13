@@ -19,6 +19,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: efd0b611cb5037e47859f67cd023cf15, type: 2}
     - {fileID: 11400000, guid: a99d27bfbcc310b43a1a8aba2e8989be, type: 2}
     - {fileID: 11400000, guid: 38fcd8818fd6b3349ac4bbc5e5cafd51, type: 2}
+    - {fileID: 11400000, guid: ccf6efc1e4d358a469fe2bf0ed1b987e, type: 2}
+    - {fileID: 4811727746479535530, guid: 2b2fcc22570abca4d92da94501490e07, type: 3}
     - {fileID: 6939307245478153638, guid: f2a4fd28c92a7154e962b7881709edc8, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -44,12 +46,18 @@ MonoBehaviour:
     - Name: _groupSpritesSo
       Entry: 10
       Data: 2
+    - Name: _soundSo
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
       Data: 2|Soko.Unity.Game.DI.Installers.GameInstaller, Assembly-CSharp
+    - Name: _soundsManager
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -64,7 +72,7 @@ MonoBehaviour:
       Data: 4|Soko.Unity.Game.DI.Installers.UiInstaller, Assembly-CSharp
     - Name: _uiManager
       Entry: 10
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 8
       Data: 

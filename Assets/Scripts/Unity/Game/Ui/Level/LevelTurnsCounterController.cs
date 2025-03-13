@@ -9,6 +9,7 @@ namespace Soko.Unity.Game.Ui.Level
 
         public void Initialize(LevelsManager levelManager)
         {
+            _view.SetTurns(0);
             levelManager.PlayCycleManager.OnTurnCountChanged += _view.SetTurns;
         }
     }

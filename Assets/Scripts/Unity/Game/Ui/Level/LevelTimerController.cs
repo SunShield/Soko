@@ -8,9 +8,16 @@ namespace Soko.Unity.Game.Ui.Level
         
         [SerializeField] private LevelTimerView _view;
         
-        private float _timePassed = 1f;
+        private float _timePassed = Second;
         private int _secondsPassed = 0;
         private bool SecondPassed => _timePassed == 0f;
+
+        private void OnEnable()
+        {
+            _timePassed = Second;
+            _secondsPassed = 0;
+            _view.SetTimePassed(0);
+        }
 
         private void Update()
         {

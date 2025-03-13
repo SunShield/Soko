@@ -23,6 +23,8 @@ MonoBehaviour:
     SerializationNodes: []
   LevelPack:
     Name: Moving Together
+    MusicKey: LevelPack3
+    LevelBackground: {fileID: 21300000, guid: b1a0aa0f870fc8040abd5ee203b45028, type: 3}
     HeaderSprite: {fileID: 21300000, guid: 5e9eefe2cb305ee4f8d520732f9de899, type: 3}
     Levels:
     - Name: Caged

@@ -22,7 +22,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         {
             Group = group;
             _groupInfoBlock.SetActive(group != NoGroup);
+            
             if (group == NoGroup) return;
+            
             _groupSprite.sprite = _groupSpritesSo.GroupSprites[group];
         }
 
