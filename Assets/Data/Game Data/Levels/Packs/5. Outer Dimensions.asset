@@ -27,14 +27,60 @@ MonoBehaviour:
     LevelBackground: {fileID: 21300000, guid: 1c972c000d9a1f943b2e65f5cdf067fa, type: 3}
     HeaderSprite: {fileID: 21300000, guid: babd013bd553da144b2f53f00c70a92a, type: 3}
     Levels:
-    - Name: Islands
-      LevelMap: '[ ][ ][ ][ ][w][ ][ ]
+    - Name: Countercurrent
+      LevelMap: '[ ][ ][ ][w][ ][ ][s|c:r][ ]
 
-        [p][t|c:r][w][s][ ][b][t|c:r]
+        [ ][b|c:r][ ][t|c:r][ ][ ][t|c:r][
+        ]
+
+        [p][b|c:g][ ][t|c:g][ ][ ][t|c:g][s|c:g]
+
+        [ ][b|c:b][
+        ][t|c:b][ ][ ][t|c:b][ ]
+
+        [ ][ ][ ][w][ ][ ][s|c:b][ ]'
+    - Name: Isolated Rooms
+      LevelMap: '[ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][ ][s|c:g][ ][ ][ ][ ]
 
         [
-        ][ ][ ][ ][w][ ][ ]'
-    - Name: Outer Star
-      LevelMap: 
-    - Name: Wormhole
-      LevelMap: 
+        ][s|c:b][ ][ ][ ][ ][ ]
+
+        [ ][s|c:b][s|c:r][b|c:b|g:0][b|c:g|g:1][
+        ][ ]
+
+        [ ][ ][b|c:r|g:2][b|c:b|g:0][ ][ ][ ]
+
+        [ ][ ][ ][t|c:y][w][w][w]
+
+        [w][w][w][w][w][t|c:y][
+        ]
+
+        [s|c:g][s|c:g][s|c:b][s|c:r][ ][ ][ ]
+
+        [ ][ ][s|c:b][b|c:r|g:2][b|c:b|g:0][
+        ][ ]
+
+        [ ][ ][b|c:g|g:1][b|c:g|g:1][b|c:b|g:0][ ][ ]
+
+        [ ][
+        ][ ][p][ ][ ][ ]
+
+        [ ][ ][ ][ ][ ][ ][ ]'
+    - Name: Goodbye
+      LevelMap: '[ ][ ][ ][p][ ][ ][ ]
+
+        [ ][w][w][t|c:r][w][w][ ]
+
+        [w][
+        ][ ][w][ ][ ][w]
+
+        [w][ ][ ][s|c:r][ ][ ][w]
+
+        [ ][w][ ][b|c:r][
+        ][w][ ]
+
+        [ ][ ][w][t|c:r][w][ ][ ]
+
+        [ ][ ][ ][w][ ][ ][ ]'
