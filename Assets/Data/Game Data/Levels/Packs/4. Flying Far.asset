@@ -27,19 +27,63 @@ MonoBehaviour:
     LevelBackground: {fileID: 21300000, guid: 42866204b8fabe84493ade98ec3f7977, type: 3}
     HeaderSprite: {fileID: 21300000, guid: a91e6f04a03a67f4ba2069adc18aeb29, type: 3}
     Levels:
-    - Name: Departure
+    - Name: Packing Your Stuff
+      LevelMap: '[s|c:r][s|c:g][ ][ ][ ][ ]
+
+        [s|c:b][sb|c:b|g:0][sb|c:r|g:0][sb|c:g|g:0][b][
+        ]
+
+        [ ][ ][ ][ ][ ][ ]
+
+        [ ][p][ ][ ][ ][ ]
+
+        [ ][ ][
+        ][ ][ ][ ]
+
+        [ ][ ][ ][ ][ ][s]'
+    - Name: Excess Connections
       LevelMap: '[ ][ ][ ][ ][ ][ ][ ][ ]
 
-        [ ][ ][s][ ][s][ ][b][ ]
+        [ ][ ][ ][ ][ ][ ][ ][ ]
 
         [
-        ][ ][b][ ][ ][w][ ][ ]
+        ][s][b][s][b][ ][ ][ ]
 
-        [ ][p][sb|g:1][sb|g:1][ ][s][ ][ ]
+        [ ][ ][ ][ ][ ][w][ ][ ]
+
+        [p][sb|g:0][sb|g:0][
+        ][s][ ][ ][ ]
+
+        [ ][ ][ ][ ][ ][ ][ ][s]'
+    - Name: Remote Control
+      LevelMap: '[w][w][w][ ][ ][ ][ ][ ]
+
+        [w][w][w][ ][w][sb|c:b|g:0][ ][
+        ]
+
+        [w][w][w][ ][w][sb|c:r|g:1][ ][ ]
+
+        [w][w][w][ ][w][w][w][
+        ]
+
+        [w][w][w][s|c:b][s|c:r][ ][ ][ ]
+
+        [w][w][w][w][w][w][w][w]
 
         [
-        ][ ][ ][ ][ ][ ][ ][s]'
-    - Name: Unpacking
-      LevelMap: 
-    - Name: Causeway
-      LevelMap: 
+        ][ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][sb|c:r|g:1][ ][ ][p][ ][ ][ ]
+
+        [
+        ][ ][ ][ ][ ][ ][ ][s|c:r]
+
+        [ ][b][ ][ ][sb|c:b|g:0][ ][ ][s|c:b]
+
+        [
+        ][ ][ ][ ][ ][ ][ ][s]
+
+        [ ][ ][ ][ ][ ][ ][ ][ ]
+
+        [ ][ ][
+        ][ ][ ][ ][ ][ ]'

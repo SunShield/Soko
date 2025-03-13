@@ -36,8 +36,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         private List<LevelObjectBase> SortObjectsByDistance(List<LevelObjectBase> objects, Direction direction)
             => direction switch
             {
-                Direction.Up    => objects.OrderByDescending(o => o.Cell.Coords.Rows).ToList(),
-                Direction.Down  => objects.OrderByDescending(o => -o.Cell.Coords.Rows).ToList(),
+                Direction.Up    => objects.OrderByDescending(o => -o.Cell.Coords.Rows).ToList(),
+                Direction.Down  => objects.OrderByDescending(o => o.Cell.Coords.Rows).ToList(),
                 Direction.Left  => objects.OrderByDescending(o => -o.Cell.Coords.Columns).ToList(),
                 Direction.Right => objects.OrderByDescending(o => o.Cell.Coords.Columns).ToList(),
             };
