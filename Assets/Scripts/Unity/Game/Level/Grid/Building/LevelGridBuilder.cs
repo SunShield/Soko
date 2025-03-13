@@ -43,21 +43,22 @@ namespace Soko.Unity.Game.Level.Grid.Building
             levelGridGo.transform.SetParent(root);
             var dimensions = GetLevelDimensions(keys);
             levelGrid.Initialize(dimensions.Rows, dimensions.Columns);
-            root.transform.position = new Vector3(-dimensions.Columns * CellSize / 2, 
-                dimensions.Rows * CellSize / 2, 
-                0);
+            CenterGrid(root, dimensions);
             return levelGrid;
+        }
+
+        private void CenterGrid(Transform grid, (int Rows, int Columns) dimensions)
+        {
+            grid.transform.position = new Vector3(-dimensions.Columns * CellSize / 2f + CellSize / 2, 
+                dimensions.Rows * CellSize / 2f - CellSize / 2, 
+                0);
         }
 
         private void SpawnLevelGridCells(LevelGrid grid)
         {
             for (int y = 0; y < grid.Rows; y++)
-            {
                 for (int x = 0; x < grid.Columns; x++)
-                {
                     SpawnGridCell(grid, y, x);
-                }
-            }
         }
 
         private (int Rows, int Columns) GetLevelDimensions(List<List<string>> keys)
@@ -95,37 +96,51 @@ namespace Soko.Unity.Game.Level.Grid.Building
                 for (int x = 0; x < grid.Columns; x++)
                 {
                     var key = keys[y][x];
-                    var data = new Dictionary<string, string>();
-                    if (string.IsNullOrWhiteSpace(key)) continue;
-                    var dataSeparatorPosition = key.IndexOf(DataSeparator);
-                    if (dataSeparatorPosition > 0) // has special data
-                    {
-                        var keyData = key.Split(DataSeparator);
-                        key = keyData[0];
+                    if (!GetGridObjectData(out var data, ref key)) continue;
 
-                        for (int i = 1; i < keyData.Length; i++)
-                        {
-                            var dataElement = keyData[i];
-                            var dataSplit = dataElement.Split(DataElementSeparator);
-                            data.Add(dataSplit[0], dataSplit[1]);
-                        }
-                    }
-                    
-                    var gridObjectPrefab = _levelObjectsSo.LevelObjects[key];
-                    var cell = grid[y, x];
-                    var gridObject = Object.Instantiate(gridObjectPrefab, cell.transform, true);
-                    _objectResolver.InjectGameObject(gridObject.gameObject);
-                    gridObject.transform.localPosition = Vector3.zero;
-                    gridObject.Initialize(cell);
-                    cell.AddObject(gridObject);
-                    grid.RegisterObject(gridObject);
-                    
+                    var gridObject = CreateGridObject(grid, key, y, x);
+
                     ProcessColoredObject(gridObject, data);
                     ProcessGroupedObject(gridObject, data);
                 }
             }
             
             ConnectGroupedObjects(grid);
+        }
+
+        private bool GetGridObjectData(out Dictionary<string, string> data, ref string key)
+        {
+            data = new Dictionary<string, string>();
+            if (string.IsNullOrWhiteSpace(key)) return false;
+            
+            var dataSeparatorPosition = key.IndexOf(DataSeparator);
+            if (dataSeparatorPosition > 0) // has special data
+            {
+                var keyData = key.Split(DataSeparator);
+                key = keyData[0];
+
+                for (int i = 1; i < keyData.Length; i++)
+                {
+                    var dataElement = keyData[i];
+                    var dataSplit = dataElement.Split(DataElementSeparator);
+                    data.Add(dataSplit[0], dataSplit[1]);
+                }
+            }
+
+            return true;
+        }
+
+        private LevelObjectBase CreateGridObject(LevelGrid grid, string key, int y, int x)
+        {
+            var gridObjectPrefab = _levelObjectsSo.LevelObjects[key];
+            var cell = grid[y, x];
+            var gridObject = Object.Instantiate(gridObjectPrefab, cell.transform, true);
+            _objectResolver.InjectGameObject(gridObject.gameObject);
+            gridObject.transform.localPosition = Vector3.zero;
+            gridObject.Initialize(cell);
+            cell.AddObject(gridObject);
+            grid.RegisterObject(gridObject);
+            return gridObject;
         }
 
         private void ProcessColoredObject(LevelObjectBase levelObject, Dictionary<string, string> specialData)
@@ -164,15 +179,9 @@ namespace Soko.Unity.Game.Level.Grid.Building
             }
 
             foreach (var groupComponents in groupedObjects.Values)
-            {
                 foreach (var groupComponent in groupComponents)
-                {
                     foreach (var groupComponent2 in groupComponents)
-                    {
                         groupComponent.AddObject(groupComponent2.Object);
-                    }
-                }
-            }
         }
     }
 }
