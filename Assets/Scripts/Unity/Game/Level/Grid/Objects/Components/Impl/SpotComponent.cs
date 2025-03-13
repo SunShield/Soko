@@ -1,5 +1,5 @@
-﻿using Soko.Unity.Game.Level.Cycle;
-using Soko.Unity.Game.Level.Grid.Enums;
+﻿using Soko.Unity.Game.Level.Grid.Enums;
+using Soko.Unity.Game.Sounds;
 using UnityEngine;
 using VContainer;
 
@@ -14,6 +14,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [SerializeField] private GameObject _activeGraphics;
         [SerializeField] private GameObject _inactiveGraphics;
+        
+        [Inject] private SoundsManager _soundsManager;
         
         public bool Activated { get; private set; }
 
@@ -53,8 +55,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             Activated = activated;
             _activeGraphics.SetActive(activated);
             _inactiveGraphics.SetActive(!activated);
-            
-            if (Activated) LevelPlayCycleManager.CheckWin();
+
+            if (Activated)
+            {
+                _soundsManager.PlaySfx(GameSfx.SpotEnter);
+                LevelPlayCycleManager.CheckWin();
+            }
         }
     }
 }

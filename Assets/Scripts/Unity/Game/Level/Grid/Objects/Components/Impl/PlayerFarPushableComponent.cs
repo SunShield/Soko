@@ -4,6 +4,7 @@ using Soko.Core.Extensions;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Sounds;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
@@ -11,6 +12,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class PlayerFarPushableComponent : PlayerInteractableComponent
     {
         [Inject] private LevelObjectMover _levelObjectMover;
+        [Inject] private SoundsManager _soundsManager;
         
         protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
@@ -96,7 +98,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             }
         }
         
-        private void ExecuteMovement(LevelObjectBase objectToMove, List<LevelGridCell> path) => 
-            _levelObjectMover.MoveObject(objectToMove, path);
+        private async void ExecuteMovement(LevelObjectBase objectToMove, List<LevelGridCell> path)
+        {
+            _soundsManager.PlaySfx(GameSfx.SlideableBoxPush);
+            await _levelObjectMover.MoveObject(objectToMove, path);
+            _soundsManager.PlaySfx(GameSfx.SlideableBoxPushEnd);
+        }
     }
 }

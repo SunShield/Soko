@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Sounds;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
@@ -11,6 +12,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class PlayerSimplePushableComponent : PlayerInteractableComponent
     {
         [Inject] private LevelObjectMover _levelObjectMover;
+        [Inject] private SoundsManager _soundsManager;
         
         protected override void OnPlayerAboutToEnter(LevelObjectBase enteringObject, MovementAction parentMoveAction)
         {
@@ -65,7 +67,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             }
         }
         
-        private void ExecuteMovement(LevelObjectBase objectToMove, LevelGridCell targetCell) => 
+        private void ExecuteMovement(LevelObjectBase objectToMove, LevelGridCell targetCell)
+        {
+            _soundsManager.PlaySfx(GameSfx.BoxPush);
             _levelObjectMover.MoveObject(objectToMove, targetCell);
+        }
     }
 }

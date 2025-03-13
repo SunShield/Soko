@@ -5,6 +5,8 @@
         ButtonClick,
         PlayerMove,
         BoxPush,
+        SlideableBoxPush,
+        SlideableBoxPushEnd,
         Teleporter,
         SpotEnter
     }

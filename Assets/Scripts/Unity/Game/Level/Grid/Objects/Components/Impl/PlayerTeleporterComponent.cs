@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Sounds;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
@@ -7,6 +8,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class PlayerTeleporterComponent : PlayerInteractableComponent
     {
         [Inject] private LevelObjectMover _levelObjectMover;
+        [Inject] private SoundsManager _soundsManager;
         
         protected override void OnPlayerEntered(LevelObjectBase enteringObject)
         {
@@ -30,6 +32,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 
         private void ExecuteTeleportation(LevelObjectBase playerObject, LevelObjectBase boundTeleporter)
         {
+            _soundsManager.PlaySfx(GameSfx.Teleporter);
             _levelObjectMover.TeleportObject(playerObject, boundTeleporter.Cell);
         }
     }

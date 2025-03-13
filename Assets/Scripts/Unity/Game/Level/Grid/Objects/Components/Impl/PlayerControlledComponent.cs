@@ -4,6 +4,7 @@ using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Sounds;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
@@ -14,6 +15,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
         [Inject] private LevelObjectMover _levelObjectMover;
+        [Inject] private SoundsManager _soundsManager;
         
         private PlayerInputActions _playerInputActions;
         private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
@@ -64,6 +66,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         private async Task ExecuteMovement(LevelGridCell targetCell)
         {
             _executingMovement = true;
+            _soundsManager.PlaySfx(GameSfx.PlayerMove);
             await _levelObjectMover.MoveObject(Object, targetCell);
             _executingMovement = false;
         }

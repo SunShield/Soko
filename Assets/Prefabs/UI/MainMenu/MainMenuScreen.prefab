@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 2028863771159265612}
   - component: {fileID: 3864655871595117283}
   - component: {fileID: 6853968016144699410}
+  - component: {fileID: 7279467663712304270}
   m_Layer: 0
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -765,6 +766,29 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7279467663712304270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994007893566183003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c796620abb4bcab7c4bfc841afbe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _button: {fileID: 6853968016144699410}
+  _gameSfx: 0
 --- !u!1 &5693407835946699571
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +801,7 @@ GameObject:
   - component: {fileID: 3971283220974308043}
   - component: {fileID: 6898832777202078384}
   - component: {fileID: 4703880156181329633}
+  - component: {fileID: 4185146047738931587}
   m_Layer: 0
   m_Name: ExitButton
   m_TagString: Untagged
@@ -886,6 +911,29 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4185146047738931587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693407835946699571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c796620abb4bcab7c4bfc841afbe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _button: {fileID: 4703880156181329633}
+  _gameSfx: 0
 --- !u!1 &5819042801696066980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1491,7 @@ GameObject:
   - component: {fileID: 7560783872543633207}
   - component: {fileID: 8242630708928231537}
   - component: {fileID: 3980208682540646710}
+  - component: {fileID: 7613708651304967942}
   m_Layer: 0
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -1552,3 +1601,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7613708651304967942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031549185611227970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c796620abb4bcab7c4bfc841afbe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _button: {fileID: 3980208682540646710}
+  _gameSfx: 0

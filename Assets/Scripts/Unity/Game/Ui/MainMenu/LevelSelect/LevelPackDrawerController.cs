@@ -4,6 +4,7 @@ using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Management;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
 {
@@ -13,6 +14,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         [SerializeField] private LevelBoxController _levelBoxPrefab;
 
         [Inject] private LevelsManager _levelsManager;
+        [Inject] private IObjectResolver _objectResolver;
         
         private readonly List<LevelBoxController> _levelBoxControllers = new();
 
@@ -24,6 +26,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             {
                 var levelData = levelPack.Levels[i];
                 var levelBox = Instantiate(_levelBoxPrefab, transform);
+                _objectResolver.InjectGameObject(levelBox.gameObject);
                 _levelBoxControllers.Add(levelBox);
                 var levelState = _levelsManager.CheckLevelState(packIndex, i);
                 levelBox.Setup(i, levelState);

@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 4587613443448456808}
   - component: {fileID: 6257322393526276365}
   - component: {fileID: 6391674423119294321}
+  - component: {fileID: 3377403259107423377}
   m_Layer: 0
   m_Name: LevelBox
   m_TagString: Untagged
@@ -580,6 +581,29 @@ MonoBehaviour:
   - {fileID: 4707436087226390101}
   _passedGraphics: {fileID: 8178816443044572240}
   _lockedGraphics: {fileID: 6217733143568998971}
+--- !u!114 &3377403259107423377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276873477581212384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c796620abb4bcab7c4bfc841afbe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _button: {fileID: 4587613443448456808}
+  _gameSfx: 0
 --- !u!1 &5482358076771228694
 GameObject:
   m_ObjectHideFlags: 0
