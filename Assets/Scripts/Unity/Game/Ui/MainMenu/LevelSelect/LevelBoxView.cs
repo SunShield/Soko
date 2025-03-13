@@ -23,7 +23,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _button.interactable = state != LevelState.Locked;
         }
 
-        public void SetLevelIndexText(int levelIndex) => _levelIndexTexts.ForEach(t => t.text = $"{levelIndex}");
+        public void SetLevelIndexText(int levelIndex) => _levelIndexTexts.ForEach(t => t.text = $"{levelIndex + 1}");
         
         private void ClickHandler() => OnClick?.Invoke();
         public event Action OnClick;

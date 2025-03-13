@@ -64,7 +64,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _levelInfo.SetLevel(CurrentLevelData, CurrentLevelSaveData);
         }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))
