@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using TMPro;
+using Soko.Unity.DataLayer.So;
 using UnityEngine;
+using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
@@ -9,7 +10,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         public const int NoGroup = -1; 
         
         [SerializeField] private GameObject _groupInfoBlock;
-        [SerializeField] private TextMeshPro _groupText;
+        [SerializeField] private SpriteRenderer _groupSprite;
+
+        [Inject] private GroupSpritesSo _groupSpritesSo;
 
         public List<LevelObjectBase> GroupObjects { get; private set; } = new();
 
@@ -19,7 +22,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         {
             Group = group;
             _groupInfoBlock.SetActive(group != NoGroup);
-            _groupText.text = group.ToString();
+            if (group == NoGroup) return;
+            _groupSprite.sprite = _groupSpritesSo.GroupSprites[group];
         }
 
         public void AddObject(LevelObjectBase levelObject) => GroupObjects.Add(levelObject);

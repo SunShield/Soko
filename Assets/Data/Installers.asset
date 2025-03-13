@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: efd0b611cb5037e47859f67cd023cf15, type: 2}
     - {fileID: 11400000, guid: a99d27bfbcc310b43a1a8aba2e8989be, type: 2}
+    - {fileID: 11400000, guid: 38fcd8818fd6b3349ac4bbc5e5cafd51, type: 2}
     - {fileID: 6939307245478153638, guid: f2a4fd28c92a7154e962b7881709edc8, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -40,6 +41,9 @@ MonoBehaviour:
     - Name: _uiDataSo
       Entry: 10
       Data: 1
+    - Name: _groupSpritesSo
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -60,7 +64,7 @@ MonoBehaviour:
       Data: 4|Soko.Unity.Game.DI.Installers.UiInstaller, Assembly-CSharp
     - Name: _uiManager
       Entry: 10
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
