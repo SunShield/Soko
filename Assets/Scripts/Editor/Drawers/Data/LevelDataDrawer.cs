@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using Soko.Core.Models.Levels;
+using Soko.Editor.Service.Drawers;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects;
 using UnityEditor;
 using UnityEngine;
 
-namespace Soko.Editor
+namespace Soko.Editor.Drawers.Data
 {
-    public class LevelData2Drawer : OdinValueDrawer<LevelData2>
+    public class LevelDataDrawer : OdinValueDrawer<LevelData2>
     {
+        private TabsGroupDrawer _tabsGroupDrawer;
+        
         private string selectedObjectKey = "";
         private LevelObjectsSo objectDatabase;
         private ColorDataSo colorData;
@@ -21,8 +25,13 @@ namespace Soko.Editor
 
         private int newWidth;
         private int newHeight;
-        private string tabKey = "Objects";
-        private string _tab;
+
+        protected override void Initialize()
+        {
+            _tabsGroupDrawer = new (
+                new List<string>() { "Objects", "Colors", "Group" },
+                new List<Action>() { DrawObjectSelector, DrawColorSelector, DrawGroupSelector } );
+        }
 
         protected override void DrawPropertyLayout(GUIContent label)
         {
@@ -52,30 +61,7 @@ namespace Soko.Editor
                 colorData = AssetDatabase.LoadAssetAtPath<ColorDataSo>("Assets/Data/Game Data/ColorData.asset");
             }
             
-            var tabs = SirenixEditorGUI.CreateAnimatedTabGroup(tabKey);
-            var tab1 = tabs.RegisterTab("Objects");
-            var tab2 = tabs.RegisterTab("Colors");
-            var tab3 = tabs.RegisterTab("Groups");
-            tabs.BeginGroup(drawToolbar: true);
-            if (tab1.BeginPage())
-            {
-                _tab = "Objects";
-                DrawObjectSelector();
-            }
-            tab1.EndPage(); 
-            if (tab2.BeginPage())
-            {
-                _tab = "Colors";
-                DrawColorSelector();
-            }
-            tab2.EndPage(); 
-            if (tab3.BeginPage())
-            {
-                _tab = "Groups";
-                DrawGroupSelector();
-            }
-            tab3.EndPage(); 
-            tabs.EndGroup();
+            _tabsGroupDrawer.DrawTabGroup();
 
             DrawGrid(level);
             DrawResizeControls(level);
@@ -190,7 +176,7 @@ namespace Soko.Editor
 
         private void HandleCellClick(CellData cell, bool isRightClick)
         {
-            if (_tab == "Colors")
+            if (_tabsGroupDrawer.SelectedTabKey == "Colors")
             {
                 if (isRightClick)
                 {
@@ -201,7 +187,7 @@ namespace Soko.Editor
                     cell.Color = selectedColor;
                 }
             }
-            else if (_tab == "Groups")
+            else if (_tabsGroupDrawer.SelectedTabKey == "Groups")
             {
                 if (isRightClick)
                 {
