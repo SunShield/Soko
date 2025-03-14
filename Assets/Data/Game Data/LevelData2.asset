@@ -1,0 +1,1016 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 031bf6d222b44699855baaaaca39734c, type: 3}
+  m_Name: LevelData2
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: levelData
+      Entry: 7
+      Data: 0|Soko.Core.Models.Levels.LevelData2, Assembly-CSharp
+    - Name: Cells
+      Entry: 7
+      Data: 1|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 81
+    - Name: ranks
+      Entry: 1
+      Data: 9|9
+    - Name: 
+      Entry: 7
+      Data: 2|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: b
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 14|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 16|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 17|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 19|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 20|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 22|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 24|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 25|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 26|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 27|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 28|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 29|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 30|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 31|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 33|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 34|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 35|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 36|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 37|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 38|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 39|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 40|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 41|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 42|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: p
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 43|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 44|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 45|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 46|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 47|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 48|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 49|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 50|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 51|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 52|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 53|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 54|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 55|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 56|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 57|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 58|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 59|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 60|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 61|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 62|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 63|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 64|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 65|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 66|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 67|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 68|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 69|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 70|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 71|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 72|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 73|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 74|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 75|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 76|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 77|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 78|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 79|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 80|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 81|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 82|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: TileKey
+      Entry: 6
+      Data: 
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
