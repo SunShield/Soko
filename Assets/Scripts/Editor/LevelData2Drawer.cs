@@ -16,17 +16,17 @@ namespace Soko.Editor
         private string selectedObjectKey = "";
         private LevelObjectsSo objectDatabase;
         private ColorDataSo colorData;
-        private bool colorMode = false; // Toggle for color mode
         private ObjectColor selectedColor = ObjectColor.None; // Selected color
-        private bool groupMode = false; // Toggle for group mode
         private int selectedGroup = 0;  // Default group
 
         private int newWidth;
         private int newHeight;
+        private string tabKey = "Objects";
+        private string _tab;
 
         protected override void DrawPropertyLayout(GUIContent label)
         {
-            LevelData2 level = ValueEntry.SmartValue;
+            var level = ValueEntry.SmartValue;
 
             if (level.Cells == null || level.Cells.Length == 0)
             {
@@ -51,25 +51,31 @@ namespace Soko.Editor
             {
                 colorData = AssetDatabase.LoadAssetAtPath<ColorDataSo>("Assets/Data/Game Data/ColorData.asset");
             }
-
-            // Box Group for Object Mode
-            SirenixEditorGUI.BeginBox("Object Mode");
-            DrawObjectSelector();
-            SirenixEditorGUI.EndBox();
-
-            GUILayout.Space(10);
-
-            // Box Group for Color Mode
-            SirenixEditorGUI.BeginBox("Color Mode");
-            DrawColorSelector();
-            SirenixEditorGUI.EndBox();
-
-            GUILayout.Space(10);
-
-            // Box Group for Group Mode
-            SirenixEditorGUI.BeginBox("Group Mode");
-            DrawGroupSelector();
-            SirenixEditorGUI.EndBox();
+            
+            var tabs = SirenixEditorGUI.CreateAnimatedTabGroup(tabKey);
+            var tab1 = tabs.RegisterTab("Objects");
+            var tab2 = tabs.RegisterTab("Colors");
+            var tab3 = tabs.RegisterTab("Groups");
+            tabs.BeginGroup(drawToolbar: true);
+            if (tab1.BeginPage())
+            {
+                _tab = "Objects";
+                DrawObjectSelector();
+            }
+            tab1.EndPage(); 
+            if (tab2.BeginPage())
+            {
+                _tab = "Colors";
+                DrawColorSelector();
+            }
+            tab2.EndPage(); 
+            if (tab3.BeginPage())
+            {
+                _tab = "Groups";
+                DrawGroupSelector();
+            }
+            tab3.EndPage(); 
+            tabs.EndGroup();
 
             DrawGrid(level);
             DrawResizeControls(level);
@@ -80,16 +86,7 @@ namespace Soko.Editor
         /// </summary>
         private void DrawObjectSelector()
         {
-            if (objectDatabase == null)
-            {
-                EditorGUILayout.HelpBox("No LevelObjectsSo found! Assign it manually.", MessageType.Warning);
-                return;
-            }
-
-            EditorGUILayout.LabelField("Object Selector", EditorStyles.boldLabel);
-
-            string[] keys = new string[objectDatabase.LevelObjects.Count + 1];
-            keys[0] = "(None)";
+            var keys = new string[objectDatabase.LevelObjects.Count + 1];
             objectDatabase.LevelObjects.Keys.CopyTo(keys, 1);
 
             int selectedIndex = Array.IndexOf(keys, selectedObjectKey);
@@ -104,32 +101,16 @@ namespace Soko.Editor
         /// </summary>
         private void DrawColorSelector()
         {
-            if (colorData == null)
-            {
-                EditorGUILayout.HelpBox("No ColorDataSo found! Assign it manually.", MessageType.Warning);
-                return;
-            }
-
-            colorMode = EditorGUILayout.Toggle("Enable Color Mode", colorMode);
-
-            if (colorMode)
-            {
-                var colorKeys = Enum.GetValues(typeof(ObjectColor)).Cast<ObjectColor>().ToArray();
-                int selectedIndex = Array.IndexOf(colorKeys, selectedColor);
-                selectedIndex = EditorGUILayout.Popup("Select Color", selectedIndex, colorKeys.Select(c => c.ToString()).ToArray());
-                selectedColor = colorKeys[selectedIndex];
-            }
+            var colorKeys = Enum.GetValues(typeof(ObjectColor)).Cast<ObjectColor>().ToArray();
+            int selectedIndex = Array.IndexOf(colorKeys, selectedColor);
+            selectedIndex = EditorGUILayout.Popup("Select Color", selectedIndex, colorKeys.Select(c => c.ToString()).ToArray());
+            selectedColor = colorKeys[selectedIndex];
         }
         
         private void DrawGroupSelector()
         {
-            groupMode = EditorGUILayout.Toggle("Enable Group Mode", groupMode);
-
-            if (groupMode)
-            {
-                string[] groupOptions = { "-1", "0", "1", "2", "3" };
-                selectedGroup = EditorGUILayout.Popup("Select Group", selectedGroup, groupOptions);
-            }
+            string[] groupOptions = { "-1", "0", "1", "2", "3" };
+            selectedGroup = EditorGUILayout.Popup("Select Group", selectedGroup, groupOptions);
         }
 
         private void DrawGrid(LevelData2 level)
@@ -209,33 +190,38 @@ namespace Soko.Editor
 
         private void HandleCellClick(CellData cell, bool isRightClick)
         {
-            if (isRightClick)
+            if (_tab == "Colors")
             {
-                // Right-click: Remove object, color, and group
-                cell.ObjectKey = "";
-                cell.Color = ObjectColor.None;
-                cell.Group = -1; // Reset group
-            }
-            else if (colorMode)
-            {
-                // Left-click in Color Mode: Only apply color if an object exists
-                if (!string.IsNullOrEmpty(cell.ObjectKey))
+                if (isRightClick)
+                {
+                    cell.Color = ObjectColor.None;
+                }
+                else if (!string.IsNullOrEmpty(cell.ObjectKey))
                 {
                     cell.Color = selectedColor;
                 }
             }
-            else if (groupMode)
+            else if (_tab == "Groups")
             {
-                // Left-click in Group Mode: Only apply group if an object exists
-                if (!string.IsNullOrEmpty(cell.ObjectKey))
+                if (isRightClick)
+                {
+                    cell.Group = -1; // Reset group
+                }
+                else if (!string.IsNullOrEmpty(cell.ObjectKey))
                 {
                     cell.Group = selectedGroup;
                 }
             }
             else
             {
-                // Left-click in Object Mode: Place object
-                if (!string.IsNullOrEmpty(selectedObjectKey))
+                if (isRightClick)
+                {
+                    // Right-click: Remove object, color, and group
+                    cell.ObjectKey = "";
+                    cell.Color = ObjectColor.None;
+                    cell.Group = -1; // Reset group
+                }
+                else if (!string.IsNullOrEmpty(selectedObjectKey))
                 {
                     cell.ObjectKey = selectedObjectKey;
                 }
