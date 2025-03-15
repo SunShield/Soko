@@ -27,21 +27,20 @@ namespace Soko.Unity.Game.Level.Grid.Building
         [Inject] private LevelObjectsSo _levelObjectsSo;
         [Inject] private ColorDataSo _colorDataSo;
         
-        public LevelGrid BuildLevelGrid(Transform root, LevelData levelData)
+        public LevelGrid BuildLevelGrid(Transform root, LevelData2 levelData)
         {
-            var keys = GetLevelObjectKeys(levelData);
-            var levelGrid = SpawnLevelGridObject(root, keys);
+            var levelGrid = SpawnLevelGridObject(root, levelData);
             SpawnLevelGridCells(levelGrid);
-            SpawnLevelObjects(levelGrid, keys);
+            SpawnLevelObjects(levelGrid, levelData);
             return levelGrid;
         }
 
-        private LevelGrid SpawnLevelGridObject(Transform root, List<List<string>> keys)
+        private LevelGrid SpawnLevelGridObject(Transform root, LevelData2 levelData)
         {
             var levelGridGo = new GameObject("LevelGrid");
             var levelGrid = levelGridGo.AddComponent<LevelGrid>();
             levelGridGo.transform.SetParent(root);
-            var dimensions = GetLevelDimensions(keys);
+            var dimensions = GetLevelDimensions(levelData);
             levelGrid.Initialize(dimensions.Rows, dimensions.Columns);
             CenterGrid(root, dimensions);
             return levelGrid;
@@ -61,18 +60,11 @@ namespace Soko.Unity.Game.Level.Grid.Building
                     SpawnGridCell(grid, y, x);
         }
 
-        private (int Rows, int Columns) GetLevelDimensions(List<List<string>> keys)
+        private (int Rows, int Columns) GetLevelDimensions(LevelData2 levelData)
         {
-            var columns = keys.Max(list => list.Count); // longest row
-            var rows = keys.Count;
+            var columns = levelData.Cells.GetLength(0);
+            var rows = levelData.Cells.GetLength(1);
             return (rows, columns);
-        }
-
-        private List<List<string>> GetLevelObjectKeys(LevelData levelData)
-        {
-            return levelData.LevelMap.Split('\n')
-                .Select(rowString => rowString.SplitByTwoSeparators(OpenSeparator, CloseSeparator))
-                .ToList();
         }
 
         private void SpawnGridCell(LevelGrid grid, int row, int col)
@@ -89,45 +81,23 @@ namespace Soko.Unity.Game.Level.Grid.Building
             grid.SetCell(row, col, cell);
         }
 
-        private void SpawnLevelObjects(LevelGrid grid, List<List<string>> keys)
+        private void SpawnLevelObjects(LevelGrid grid, LevelData2 levelData)
         {
             for (int y = 0; y < grid.Rows; y++)
             {
                 for (int x = 0; x < grid.Columns; x++)
                 {
-                    var key = keys[y][x];
-                    if (!GetGridObjectData(out var data, ref key)) continue;
+                    var cellData = levelData.Cells[x, y];
+                    if (string.IsNullOrWhiteSpace(cellData.ObjectKey)) continue;
 
-                    var gridObject = CreateGridObject(grid, key, y, x);
+                    var gridObject = CreateGridObject(grid, cellData.ObjectKey, y, x);
 
-                    ProcessColoredObject(gridObject, data);
-                    ProcessGroupedObject(gridObject, data);
+                    ProcessColoredObject(gridObject, cellData);
+                    ProcessGroupedObject(gridObject, cellData);
                 }
             }
             
             ConnectGroupedObjects(grid);
-        }
-
-        private bool GetGridObjectData(out Dictionary<string, string> data, ref string key)
-        {
-            data = new Dictionary<string, string>();
-            if (string.IsNullOrWhiteSpace(key)) return false;
-            
-            var dataSeparatorPosition = key.IndexOf(DataSeparator);
-            if (dataSeparatorPosition > 0) // has special data
-            {
-                var keyData = key.Split(DataSeparator);
-                key = keyData[0];
-
-                for (int i = 1; i < keyData.Length; i++)
-                {
-                    var dataElement = keyData[i];
-                    var dataSplit = dataElement.Split(DataElementSeparator);
-                    data.Add(dataSplit[0], dataSplit[1]);
-                }
-            }
-
-            return true;
         }
 
         private LevelObjectBase CreateGridObject(LevelGrid grid, string key, int y, int x)
@@ -143,26 +113,18 @@ namespace Soko.Unity.Game.Level.Grid.Building
             return gridObject;
         }
 
-        private void ProcessColoredObject(LevelObjectBase levelObject, Dictionary<string, string> specialData)
+        private void ProcessColoredObject(LevelObjectBase levelObject, CellData cellData)
         {
             if (!levelObject.TryGetComponent<ColorComponent>(out var colorComponent)) return;
-
-            var color = ObjectColor.None;
-            if (specialData.TryGetValue(ColorDataKey, out var colorData))
-                color = _colorDataSo.Colors[colorData].Color;
            
-            colorComponent.SetColor(color);
+            colorComponent.SetColor(cellData.Color);
         }
 
-        private void ProcessGroupedObject(LevelObjectBase levelObject, Dictionary<string, string> specialData)
+        private void ProcessGroupedObject(LevelObjectBase levelObject, CellData cellData)
         {
             if (!levelObject.TryGetComponent<GroupComponent>(out var groupComponent)) return;
-
-            var group = -1;
-            if (specialData.TryGetValue(GroupDataKey, out var _))
-                group = int.Parse(specialData[GroupDataKey]);
             
-            groupComponent.SetGroup(group);
+            groupComponent.SetGroup(cellData.Group);
         }
 
         private void ConnectGroupedObjects(LevelGrid grid)

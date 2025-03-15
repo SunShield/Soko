@@ -24,7 +24,7 @@ namespace Soko.Unity.Game.Level.Cycle
         [Inject] private UiManager _uiManager;
         [Inject] private SoundsManager _soundsManager;
         
-        public LevelData LevelData { get; private set; }
+        public LevelData2 LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
         public int TurnCount { get; private set; }
 

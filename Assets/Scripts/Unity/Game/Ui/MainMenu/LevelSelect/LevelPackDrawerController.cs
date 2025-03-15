@@ -22,9 +22,9 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         {
             ClearLevelBoxes();
 
-            for (int i = 0; i < levelPack.Levels.Count; i++)
+            for (int i = 0; i < levelPack.Levels2.Count; i++)
             {
-                var levelData = levelPack.Levels[i];
+                var levelData = levelPack.Levels2[i];
                 var levelBox = Instantiate(_levelBoxPrefab, transform);
                 _objectResolver.InjectGameObject(levelBox.gameObject);
                 _levelBoxControllers.Add(levelBox);

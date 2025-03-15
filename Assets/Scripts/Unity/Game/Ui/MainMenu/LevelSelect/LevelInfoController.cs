@@ -8,7 +8,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
     {
         [SerializeField] private LevelInfoView _view;
 
-        public void SetLevel(LevelData levelData, LevelSaveData levelSaveData)
+        public void SetLevel(LevelData2 levelData, LevelSaveData levelSaveData)
         {
             var turnsCount = levelSaveData?.BestTurnsCount ?? 0;
             _view.SetLevelInfo(levelData.Name, turnsCount);

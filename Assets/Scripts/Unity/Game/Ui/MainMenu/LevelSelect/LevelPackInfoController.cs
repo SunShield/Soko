@@ -14,7 +14,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             var levelsWon = levelPackSaveData != null 
                 ? levelPackSaveData.Levels.Count(l => l.BestTurnsCount != 0) 
                 : 0;
-            _view.SetLevelPackInfo(levelPack.Name, levelsWon, levelPack.Levels.Count);
+            _view.SetLevelPackInfo(levelPack.Name, levelsWon, levelPack.Levels2.Count);
             _view.SetLevelPackImage(levelPack.HeaderSprite);
         }
     }

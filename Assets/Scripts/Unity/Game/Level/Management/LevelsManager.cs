@@ -27,7 +27,7 @@ namespace Soko.Unity.Game.Level.Management
 
         public LevelsProgressSaveData SaveData => _progressSaveDataManager.SaveData;
         public LevelPack CurrentLevelPack => _levelPacksSo.LevelPacks[LevelPackIndex].LevelPack;
-        public LevelData CurrentLevelData => CurrentLevelPack.Levels[LevelIndex];
+        public LevelData2 CurrentLevelData => CurrentLevelPack.Levels2[LevelIndex];
         
         public void Initialize()
         {
@@ -96,7 +96,7 @@ namespace Soko.Unity.Game.Level.Management
 
         private void UnlockNextLevel(LevelPackSaveData currentPackSaveData)
         {
-            if (currentPackSaveData.Levels.Count < CurrentLevelPack.Levels.Count)
+            if (currentPackSaveData.Levels.Count < CurrentLevelPack.Levels2.Count)
             {
                 LevelIndex++;
                 currentPackSaveData.Levels.Add(new ());
