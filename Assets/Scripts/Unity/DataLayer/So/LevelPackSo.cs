@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Soko.Core.Models.Levels;
 using UnityEngine;
 
@@ -8,6 +9,6 @@ namespace Soko.Unity.DataLayer.So
     public class LevelPackSo : SerializedScriptableObject
     {
         [InlineProperty] [HideLabel] [HideReferenceObjectPicker]
-        public LevelPack LevelPack;
+        [OdinSerialize] public LevelPack LevelPack;
     }
 }
