@@ -19,6 +19,8 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             View.SetLevelIndexText(Index);
             View.SetState(levelState);
         }
+
+        public void SetSelected(bool selected) => View.SetSelected(selected);
         
         public event Action<int> OnClicked;
     }

@@ -27,7 +27,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
         [Inject] private LevelObjectsSo _levelObjectsSo;
         [Inject] private ColorDataSo _colorDataSo;
         
-        public LevelGrid BuildLevelGrid(Transform root, LevelData2 levelData)
+        public LevelGrid BuildLevelGrid(Transform root, LevelData levelData)
         {
             var levelGrid = SpawnLevelGridObject(root, levelData);
             SpawnLevelGridCells(levelGrid);
@@ -35,7 +35,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             return levelGrid;
         }
 
-        private LevelGrid SpawnLevelGridObject(Transform root, LevelData2 levelData)
+        private LevelGrid SpawnLevelGridObject(Transform root, LevelData levelData)
         {
             var levelGridGo = new GameObject("LevelGrid");
             var levelGrid = levelGridGo.AddComponent<LevelGrid>();
@@ -60,7 +60,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
                     SpawnGridCell(grid, y, x);
         }
 
-        private (int Rows, int Columns) GetLevelDimensions(LevelData2 levelData)
+        private (int Rows, int Columns) GetLevelDimensions(LevelData levelData)
         {
             var columns = levelData.Cells.GetLength(0);
             var rows = levelData.Cells.GetLength(1);
@@ -81,7 +81,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             grid.SetCell(row, col, cell);
         }
 
-        private void SpawnLevelObjects(LevelGrid grid, LevelData2 levelData)
+        private void SpawnLevelObjects(LevelGrid grid, LevelData levelData)
         {
             for (int y = 0; y < grid.Rows; y++)
             {

@@ -24,7 +24,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         private int _levelPackIndex;
         private int _levelIndex;
         private LevelPack CurrentLevelPack => _levelPacksSo.LevelPacks[_levelPackIndex].LevelPack;
-        private LevelData2 CurrentLevelData => _levelPacksSo.LevelPacks[_levelPackIndex].LevelPack.Levels2[_levelIndex];
+        private LevelData CurrentLevelData => _levelPacksSo.LevelPacks[_levelPackIndex].LevelPack.Levels[_levelIndex];
         private List<LevelPackSaveData> PackSaveDatas => _progressSaveDataManager.SaveData.PackSaveDatas;
         private LevelPackSaveData CurrentPackSaveData 
             => PackSaveDatas.Count - 1 >= _levelPackIndex ? PackSaveDatas[_levelPackIndex] : null;
@@ -54,7 +54,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _levelPackIndex = levelPackIndex;
             _view.SetLevelPackButtonsState(_levelPackIndex == 0, _levelPackIndex == _levelPacksSo.LevelPacks.Count - 1);
             _levelPackInfo.SetLevelPackInfo(CurrentLevelPack, CurrentPackSaveData);
-            _levelPackDrawer.SetLevelPack(_levelPackIndex, CurrentLevelPack);
+            _levelPackDrawer.SetLevelPack(_levelPackIndex, levelIndex, CurrentLevelPack);
             SetLevel(levelIndex);
         }
 

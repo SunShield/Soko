@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
-using Soko.Core.Extensions;
-using Soko.Unity.DataLayer.So;
-using UnityEditor;
 using UnityEngine;
 
 namespace Soko.Core.Models.Levels
@@ -16,7 +12,7 @@ namespace Soko.Core.Models.Levels
         public string MusicKey;
         public Sprite LevelBackground;
         public Sprite HeaderSprite;
-        [HideReferenceObjectPicker] public List<LevelData2> Levels2;
+        [HideReferenceObjectPicker] public List<LevelData> Levels;
 
         // [Button]
         // public void Sync()

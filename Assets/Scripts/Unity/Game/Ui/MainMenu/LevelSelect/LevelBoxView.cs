@@ -13,6 +13,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         [SerializeField] private List<TextMeshProUGUI> _levelIndexTexts;
         [SerializeField] private GameObject _passedGraphics;
         [SerializeField] private GameObject _lockedGraphics;
+        [SerializeField] private GameObject _selectedBg;
         
         private void Awake() => _button.onClick.AddListener(ClickHandler);
 
@@ -22,6 +23,8 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _lockedGraphics.SetActive(state == LevelState.Locked);
             _button.interactable = state != LevelState.Locked;
         }
+        
+        public void SetSelected(bool selected) => _selectedBg.SetActive(selected);
 
         public void SetLevelIndexText(int levelIndex) => _levelIndexTexts.ForEach(t => t.text = $"{levelIndex + 1}");
         

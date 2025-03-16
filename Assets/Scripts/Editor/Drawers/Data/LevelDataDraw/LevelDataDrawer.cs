@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Soko.Editor.Drawers.Data.LevelDataDraw
 {
-    public class LevelDataDrawer : OdinValueDrawer<LevelData2>
+    public class LevelDataDrawer : OdinValueDrawer<LevelData>
     {
         private const string NameLabel = "Name";
         private const string LevelSizeLabel = "Size";
@@ -25,7 +25,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
         private LevelDataTabsDrawer _tabsDrawer;
         private Vector2Int _newSize;
 
-        private LevelData2 LevelData => ValueEntry.SmartValue;
+        private LevelData LevelData => ValueEntry.SmartValue;
         private LevelObjectsSo LevelObjectsSo => EditorDataProvider.Instance.LevelObjectsSo;
         private ColorDataSo ColorDataSo => EditorDataProvider.Instance.ColorDataSo;
 
@@ -65,7 +65,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
             if (GUILayout.Button(ResizeButtonLabel)) ResizeLevel(LevelData, _newSize.y, _newSize.x);
         }
         
-        private void ResizeLevel(LevelData2 level, int width, int height)
+        private void ResizeLevel(LevelData level, int width, int height)
         {
             var newCells = new CellData[width, height];
             for (int x = 0; x < width; x++)

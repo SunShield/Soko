@@ -17,14 +17,17 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         [Inject] private IObjectResolver _objectResolver;
         
         private readonly List<LevelBoxController> _levelBoxControllers = new();
+        private int _selectedLevelIndex;
+        
+        private LevelBoxController CurrentLevelBoxController => _levelBoxControllers[_selectedLevelIndex];
 
-        public void SetLevelPack(int packIndex, LevelPack levelPack)
+        public void SetLevelPack(int packIndex, int selectedLevelIndex, LevelPack levelPack)
         {
             ClearLevelBoxes();
 
-            for (int i = 0; i < levelPack.Levels2.Count; i++)
+            for (int i = 0; i < levelPack.Levels.Count; i++)
             {
-                var levelData = levelPack.Levels2[i];
+                var levelData = levelPack.Levels[i];
                 var levelBox = Instantiate(_levelBoxPrefab, transform);
                 _objectResolver.InjectGameObject(levelBox.gameObject);
                 _levelBoxControllers.Add(levelBox);
@@ -33,6 +36,9 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
                 levelBox.OnClicked += LevelBoxClickHandler;
                 _view.AddLevelBox(levelBox.View);
             }
+            
+            _selectedLevelIndex = selectedLevelIndex;
+            CurrentLevelBoxController.SetSelected(true);
         }
 
         private void ClearLevelBoxes()
@@ -43,8 +49,14 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             _view.ClearLevelBoxes();
         }
 
-        private void LevelBoxClickHandler(int levelIndex) => OnLevelBoxClicked?.Invoke(levelIndex);
-        
+        private void LevelBoxClickHandler(int levelIndex)
+        {
+            CurrentLevelBoxController.SetSelected(false);
+            _selectedLevelIndex = levelIndex;
+            CurrentLevelBoxController.SetSelected(true);
+            OnLevelBoxClicked?.Invoke(levelIndex);
+        }
+
         public event Action<int> OnLevelBoxClicked;
     }
 }
