@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;
 using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -110,10 +112,14 @@ namespace Soko.Unity.Game.Level.Management
             }
         }
 
-        public void EndCurrentLevel()
+        public async void EndCurrentLevel()
         {
             PlayCycleManager = null;
-            SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
+            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
+            if (_uiManager.GetUiElementState(UiElements.MainMenuScreen) != UiElementState.Active)
+                await UniTask.WaitUntil(() => 
+                    _uiManager.GetUiElementState(UiElements.MainMenuScreen) == UiElementState.Active);
+            _uiManager.OpenUiElement(UiElements.LevelSelectScreen, 2);
         }
     }
 }
