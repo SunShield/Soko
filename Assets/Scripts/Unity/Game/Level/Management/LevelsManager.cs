@@ -3,11 +3,12 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.Events;
+using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;
 using Soko.Unity.Game.Ui.Enums;
-using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,7 @@ namespace Soko.Unity.Game.Level.Management
         [Inject] private LevelPacksSo _levelPacksSo;
         [Inject] private LevelsProgressSaveDataManager _progressSaveDataManager;
         [Inject] private UiManager _uiManager;
+        [Inject] private EventBus _eventBus;
         
         public List<LevelPack> LevelPacks = new();
         public int LevelPackIndex { get; private set; }
@@ -94,6 +96,7 @@ namespace Soko.Unity.Game.Level.Management
                 UnlockNextLevel(currentPackSaveData);
             
             _progressSaveDataManager.Save();
+            _eventBus.GetEvent<LevelWinEvent>().InvokeForGlobal(new());
         }
 
         private void UnlockNextLevel(LevelPackSaveData currentPackSaveData)

@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Soko.Core.Extensions;
+using Soko.Unity.Game.Events;
+using Soko.Unity.Game.Events.Impl.Args;
+using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
@@ -16,11 +19,13 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
         [Inject] private LevelObjectMover _levelObjectMover;
         [Inject] private SoundsManager _soundsManager;
+        [Inject] private EventBus _eventBus;
         
         private PlayerInputActions _playerInputActions;
         private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
         
         private bool _executingMovement = false;
+        private bool _isMovementDisabled;
         private float _defaultScaleX;
 
         protected override void PostInitialize()
@@ -29,10 +34,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             _playerInputActions = new ();
             _playerInputActions.Enable();
             _playerInputActions.Player.Move.performed += PerformMove;
+            _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(DisableMovement);
         }
+        
+        private void DisableMovement(EmptyArgs args) => _isMovementDisabled = true;
 
         private async void PerformMove(InputAction.CallbackContext context)
         {
+            if (_isMovementDisabled) return;
             if (_executingMovement) return;
 
             var hasMovementTarget = GetMovementTarget(context, out var direction, out var targetCell);

@@ -7,6 +7,7 @@ using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Level.Visuals;
 using Soko.Unity.Game.Sounds;
 using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.Level;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using VContainer;
@@ -54,13 +55,28 @@ namespace Soko.Unity.Game.Level.Cycle
             var isWin = LevelGrid.SpotComponents.All(c => c.Activated);
             if (!isWin) return;
             
-            WinLevel();
+            ConfirmWin();
+            ShowWinLevelPopup();
         }
 
-        private async void WinLevel()
+        private void ConfirmWin()
         {
-            _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.WinCurrentLevel(TurnCount);
+        }
+
+        private void ShowWinLevelPopup()
+        {
+            var levelWinScreen = _uiManager.OpenUiElement(UiElements.LevelWinScreen, 2) as LevelWinScreenController;
+            levelWinScreen.OnClosed += LeaveLevel;
+            levelWinScreen.SetLevelWinResults(LevelData.Name, TurnCount);
+        }
+
+        private void LeaveLevel()
+        {
+            var levelMainScreen = _uiManager.GetUiElement(UiElements.LevelMainScreen);
+            levelMainScreen.OnClosed -= LeaveLevel;
+            
+            _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.EndCurrentLevel();
         }
         

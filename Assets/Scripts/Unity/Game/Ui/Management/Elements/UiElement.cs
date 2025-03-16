@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Soko.Unity.Game.Ui.Enums;
@@ -19,7 +20,10 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         private void Construct()
         {
             IsConstructed = true;
+            PostConstruct();
         }
+        
+        protected virtual void PostConstruct() { }
 
         private async void OnEnable()
         {
@@ -36,8 +40,11 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         {
             OnPreClose();
             UiManager.CloseUiElement(_key);
+            OnClosed?.Invoke();
         }
         
         protected virtual void OnPreClose() { }
+        
+        public event Action OnClosed;
     }
 }

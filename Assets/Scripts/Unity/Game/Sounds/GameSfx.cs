@@ -8,6 +8,8 @@
         SlideableBoxPush,
         SlideableBoxPushEnd,
         Teleporter,
-        SpotEnter
+        SpotEnter,
+        
+        WinLevel = 100,
     }
 }

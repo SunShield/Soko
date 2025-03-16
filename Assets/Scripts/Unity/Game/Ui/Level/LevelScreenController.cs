@@ -1,4 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using Soko.Unity.Game.Events;
+using Soko.Unity.Game.Events.Impl.Args;
+using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management;
@@ -12,13 +16,16 @@ namespace Soko.Unity.Game.Ui.Level
     {
         [SerializeField] private LevelScreenView _view;
         [SerializeField] private LevelTurnsCounterController _levelTurnsCounterController;
+        [SerializeField] private LevelTimerController _levelTimerController;
         
         [Inject] private LevelsManager _levelsManager;
         [Inject] private UiManager _uiManager;
+        [Inject] private EventBus _eventBus;
 
-        private void Awake()
+        protected override void PostConstruct()
         {
             _view.OnBackClicked += EndLevel;
+            _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(args => DeactivateLevelMetrics());
         }
 
         private void EndLevel()
@@ -28,8 +35,8 @@ namespace Soko.Unity.Game.Ui.Level
         }
 
         protected override async UniTask OnEnabledAndConstructed()
-        {
-            _levelTurnsCounterController.Initialize(_levelsManager);
-        }
+            => _levelTurnsCounterController.Initialize(_levelsManager);
+        
+        private void DeactivateLevelMetrics() => _levelTimerController.SetActive(false);
     }
 }

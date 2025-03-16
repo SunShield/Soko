@@ -61,6 +61,7 @@ MonoBehaviour:
     SerializationNodes: []
   _view: {fileID: 3904375536260389962}
   _levelTurnsCounterController: {fileID: 7312912938779206323}
+  _levelTimerController: {fileID: 8420481422343925750}
 --- !u!114 &3904375536260389962
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,5 +6,6 @@
         LevelSelectScreen,
         SettingsPopup,
         LevelMainScreen,
+        LevelWinScreen
     }
 }
