@@ -254,6 +254,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  <PrefabKey>k__BackingField: t
 --- !u!114 &5903813635446082479
 MonoBehaviour:
   m_ObjectHideFlags: 0

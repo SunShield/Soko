@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7265080550884926147}
   - component: {fileID: 5268452376300511121}
-  - component: {fileID: 4543518658135815355}
+  - component: {fileID: 6318006337838963187}
   m_Layer: 0
-  m_Name: Fence
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 4543518658135815355}
+    - {fileID: 6318006337838963187}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -72,8 +72,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  <PrefabKey>k__BackingField: f
---- !u!114 &4543518658135815355
+  <PrefabKey>k__BackingField: wa
+--- !u!114 &6318006337838963187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,10 +82,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3732439155295431024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a17ab282c242e284a9ba12a2debe81, type: 3}
+  m_Script: {fileID: 11500000, guid: bf1f8e87dd6d4baab108eefbe59ab7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllowPlayerPass: 1
+  _restrictedObjects:
+  - {fileID: 7213945475559947583, guid: b17447101208f8a4b96d29b7f6c6bf32, type: 3}
 --- !u!1 &4981983835281504582
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d9fd90281e0b1954e82d23ef283279ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b98c772652dcb634f9d81ec05a3dcaed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

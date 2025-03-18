@@ -6,17 +6,21 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Soko.Unity.Game.Level.Grid.Objects.Components;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid.Objects
 {
     public class LevelObjectBase : SerializedMonoBehaviour
     {
+        [field: SerializeField] public string PrefabKey { get; private set; } // todo: perhaps change to enum
         [field: OdinSerialize] public HashSet<LevelObjectComponent> Components { get; private set; }
         
         private List<LevelObjectComponent> _componentsList = new ();
         private HashSet<Type> _componentTypes = new ();
         public LevelGridCell Cell { get; private set; }
         public GridCoords Position => Cell.Coords;
+        
+        public void SetPrefabKey(string key) => PrefabKey = key;
 
         public void Initialize(LevelGridCell cell)
         {
@@ -52,6 +56,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         public bool HasComponent<TComponent>()
             where TComponent : LevelObjectComponent
             => _componentTypes.Contains(typeof(TComponent));
+        public bool HasComponent(Type componentType) => _componentTypes.Contains(componentType);
 
         public bool TryGetComponent<TComponent>(out TComponent component)
             where TComponent : LevelObjectComponent

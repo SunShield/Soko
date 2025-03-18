@@ -15,13 +15,6 @@ namespace Soko.Unity.Game.Level.Grid.Building
     public class LevelGridBuilder
     {
         private const float CellSize = 0.64f;
-        private const char OpenSeparator = '[';
-        private const char CloseSeparator = ']';
-        private const char DataSeparator = '|';
-        private const char DataElementSeparator = ':';
-        
-        private const string ColorDataKey = "c";
-        private const string GroupDataKey = "g";
 
         [Inject] private IObjectResolver _objectResolver;
         [Inject] private LevelObjectsSo _levelObjectsSo;

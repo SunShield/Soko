@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using Soko.Unity.Game.Level.Grid.Objects;
 using UnityEngine;
 
@@ -10,6 +10,10 @@ namespace Soko.Unity.DataLayer.So
     public class LevelObjectsSo : SerializedScriptableObject
     {
         [field: SerializeField] public GameObject Empty { get; private set; }
-        [field: OdinSerialize] public Dictionary<string, LevelObjectBase> LevelObjects { get; private set; }
+        [field: SerializeField] public List<LevelObjectBase> LevelObjectsList { get; private set; }
+        
+        private Dictionary<string, LevelObjectBase> _levelObjects;
+        public Dictionary<string, LevelObjectBase> LevelObjects 
+            => _levelObjects ??= LevelObjectsList.ToDictionary(lo => lo.PrefabKey);
     }
 }
