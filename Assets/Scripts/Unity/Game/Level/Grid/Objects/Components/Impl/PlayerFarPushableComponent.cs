@@ -4,7 +4,7 @@ using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
-    public class PlayerFarPushableComponent : PlayerInteractableComponent
+    public class PlayerFarPushableComponent : MovementRulesComponent
     {
         [Inject] private LevelObjectMover _levelObjectMover;
         [Inject] private SoundsManager _soundsManager;

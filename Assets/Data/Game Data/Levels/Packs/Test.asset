@@ -56,10 +56,10 @@ MonoBehaviour:
       Data: 3|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 40
+      Data: 25
     - Name: ranks
       Entry: 1
-      Data: 8|5
+      Data: 5|5
     - Name: 
       Entry: 7
       Data: 4|Soko.Core.Models.Levels.CellData, Assembly-CSharp
@@ -179,7 +179,7 @@ MonoBehaviour:
       Data: b
     - Name: Color
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -194,10 +194,10 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -212,10 +212,10 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -338,7 +338,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -356,10 +356,10 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: t
+      Data: 
     - Name: Color
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -374,10 +374,10 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: t
+      Data: 
     - Name: Color
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -392,10 +392,10 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: t
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: Group
       Entry: 3
       Data: -1
@@ -410,7 +410,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -445,8 +445,8 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: Color
       Entry: 3
       Data: 0
@@ -463,8 +463,8 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: Color
       Entry: 3
       Data: 0
@@ -481,8 +481,8 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: Color
       Entry: 3
       Data: 0
@@ -495,276 +495,6 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 28|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 29|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 30|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 31|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 32|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 33|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 34|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: s
-    - Name: Color
-      Entry: 3
-      Data: 1
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 35|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: t
-    - Name: Color
-      Entry: 3
-      Data: 1
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 36|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: t
-    - Name: Color
-      Entry: 3
-      Data: 2
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 37|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: t
-    - Name: Color
-      Entry: 3
-      Data: 3
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 38|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: s
-    - Name: Color
-      Entry: 3
-      Data: 3
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 39|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 40|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 41|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 1
-      Data: s
-    - Name: Color
-      Entry: 3
-      Data: 2
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 42|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: TileKey
-      Entry: 6
-      Data: 
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 43|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: TileKey
       Entry: 6
       Data: 

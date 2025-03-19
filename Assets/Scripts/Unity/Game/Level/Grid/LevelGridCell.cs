@@ -22,6 +22,7 @@ namespace Soko.Unity.Game.Level.Grid
 
         public void AddObject(LevelObjectBase objectBase, bool suppressEnterEvent = false)
         {
+            Debug.Log($"object {objectBase.gameObject.name} is entering cell [{Coords.Rows}, {Coords.Columns}]]");
             if (objectBase.Cell != null) objectBase.Cell.RemoveObject(objectBase);
             objectBase.SetCell(this);
             Objects.Add(objectBase);

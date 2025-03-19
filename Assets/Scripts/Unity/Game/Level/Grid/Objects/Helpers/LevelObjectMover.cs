@@ -13,10 +13,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Helpers
         
         public async Task MoveObject(LevelObjectBase objectToMove, LevelGridCell targetCell)
         {
-            await objectToMove.transform
+            /*await objectToMove.transform
                 .DOMove(targetCell.transform.position, MoveTime)
                 .SetEase(Ease.Linear)
-                .AsyncWaitForCompletion();
+                .AsyncWaitForCompletion();*/
+            objectToMove.transform.position = targetCell.transform.position;
             targetCell.AddObject(objectToMove);
         }
 

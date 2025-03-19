@@ -3,6 +3,7 @@ using System.Linq;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using UnityEngine;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Movement
@@ -22,16 +23,19 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
     public class MoveManager
     {
         [Inject] private LevelObjectMover _mover;
-        
+
+        private MoveAction _playerMoveAction;
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
 
         public async void ExecutePlayerMovement(LevelObjectBase player, Direction direction)
         {
-            _moveActions.Add(player, CreateMoveAction(player, direction));
+            _moveActions.Clear();
+            
+            _playerMoveAction = CreateMoveAction(player, direction);
             var targetCell = player.Cell.GetNeighbour(direction);
             if (targetCell == null) return;
 
-            if (!targetCell.CheckObjectEnter(player, _moveActions[player])) return;
+            if (!targetCell.CheckObjectEnter(player, _playerMoveAction)) return;
 
             var objectToMove = targetCell.Objects.FirstOrDefault(o => o.HasComponent<PlayerMovableComponent>());
             if (objectToMove != null)
@@ -46,6 +50,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             }
             
             _moveActions.Clear();
+            _playerMoveAction = null;
         }
         
         public async void ExecuteObjectMovement(LevelObjectBase player, LevelObjectBase objectToMove, Direction direction)
@@ -90,12 +95,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     var moveAction = _moveActions[levelObject];
                     if (levelObject.Cell == moveAction.Destination) continue;
                     
-                    _mover.MoveObject(levelObject, moveAction.Destination);
+                    await _mover.MoveObject(levelObject, moveAction.Destination);
                 }
-                
+
                 continueMovement = _moveActions.Values.All(v => v.Interrupted);
                 
-            } while (continueMovement);
+            } while (!continueMovement);
         }
 
         private MoveAction CreateMoveAction(LevelObjectBase player, Direction direction)
