@@ -1,4 +1,4 @@
-﻿using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+﻿using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
@@ -6,10 +6,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class UnpassableComponent : LevelObjectComponent
     {
         [SerializeField] public bool AllowPlayerPass = false;
-        
-        public override void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction action)
+
+        public override bool CheckObjectEnter(LevelObjectBase enteringObject, MoveAction action)
         {
-            if (AllowPlayerPass && enteringObject.HasComponent<PlayerComponent>()) return;
+            if (AllowPlayerPass && enteringObject.HasComponent<PlayerComponent>()) return true;
             
             // grouped objects dont block objects from the same group,
             // otherwise, for example, 2-block group will be unable to move in some cases
@@ -17,10 +17,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 && Object.TryGetComponent<GroupComponent>(out var currentGroupComponent)) 
             {
                 if (currentGroupComponent.Group != -1 && groupComponent.Group != -1 && 
-                    currentGroupComponent.Group == groupComponent.Group) return;
+                    currentGroupComponent.Group == groupComponent.Group) return true;
             }
-                
-            action.Active = false;
+
+            return false;
         }
     }
 }

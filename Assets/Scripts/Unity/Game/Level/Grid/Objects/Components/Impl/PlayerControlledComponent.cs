@@ -7,6 +7,7 @@ using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Sounds;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         [Inject] private LevelObjectMover _levelObjectMover;
         [Inject] private SoundsManager _soundsManager;
         [Inject] private EventBus _eventBus;
+        [Inject] private MoveManager _moveManager;
         
         private PlayerInputActions _playerInputActions;
         private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
@@ -43,18 +45,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         {
             if (_isMovementDisabled) return;
             if (_executingMovement) return;
-
-            var hasMovementTarget = GetMovementTarget(context, out var direction, out var targetCell);
-            if (!hasMovementTarget) return;
-
-            var movementAction = new MovementAction(direction);
-            targetCell.OnObjectAboutToEnter(Object, movementAction);
             
-            if (!movementAction.Active) return;
-            
-            RotatePlayer(direction);
-            await ExecuteMovement(targetCell);
-            _levelPlayCycleManager.AdvanceTurnCount();
+            _moveManager.ExecutePlayerMovement(this.Object, GetMovementTarget(context));
         }
 
         private void RotatePlayer(Direction direction)
@@ -64,20 +56,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             else if (direction == Direction.Left) Object.transform.localScale = new Vector3(_defaultScaleX, scale.y, scale.z);
         }
 
-        private bool GetMovementTarget(InputAction.CallbackContext context, out Direction direction, out LevelGridCell targetCell)
+        private Direction GetMovementTarget(InputAction.CallbackContext context)
         {
             var moveDirection = context.ReadValue<Vector2>();
-            direction = moveDirection.ToDirection();
-            targetCell = Object.Cell.GetNeighbour(direction);
-            return targetCell != null;
-        }
-
-        private async Task ExecuteMovement(LevelGridCell targetCell)
-        {
-            _executingMovement = true;
-            _soundsManager.PlaySfx(GameSfx.PlayerMove);
-            await _levelObjectMover.MoveObject(Object, targetCell);
-            _executingMovement = false;
+            return moveDirection.ToDirection();
         }
 
         private void OnDisable()

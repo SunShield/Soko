@@ -2,6 +2,7 @@
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -21,6 +22,7 @@ namespace Soko.Unity.Game.DI
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
             builder.RegisterEntryPoint<LevelObjectMover>().AsSelf();
+            builder.RegisterEntryPoint<MoveManager>().AsSelf();
         }
     }
 }

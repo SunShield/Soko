@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components;
+using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid.Objects
@@ -17,17 +20,30 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         
         private List<LevelObjectComponent> _componentsList = new ();
         private HashSet<Type> _componentTypes = new ();
+        private MovementRulesComponent _movementRulesComponent;
         public LevelGridCell Cell { get; private set; }
         public GridCoords Position => Cell.Coords;
-        
-        public void SetPrefabKey(string key) => PrefabKey = key;
 
         public void Initialize(LevelGridCell cell)
         {
             Cell = cell;
+            FetchComponentDatas();
+            GetMovementRulesComponent();
+        }
+
+        private void FetchComponentDatas()
+        {
             _componentTypes = Components.Select(component => component.GetType()).ToHashSet();
             _componentsList = Components.ToList();
             _componentsList.ForEach(c => c.Initialize(this));
+        }
+
+        private void GetMovementRulesComponent()
+        {
+            var moveComponents = Components.OfType<MovementRulesComponent>();
+            if (moveComponents.Count() > 1)
+                throw new Exception("More than one movement rules component found");
+            _movementRulesComponent = Components.OfType<MovementRulesComponent>().FirstOrDefault();
         }
 
         public void SetCell(LevelGridCell cell) => Cell = cell;
@@ -56,8 +72,36 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         public bool HasComponent<TComponent>()
             where TComponent : LevelObjectComponent
             => _componentTypes.Contains(typeof(TComponent));
-        public bool HasComponent(Type componentType) => _componentTypes.Contains(componentType);
 
+        public List<LevelObjectBase> GetBoundObjects()
+        {
+            var boundObjects = new HashSet<LevelObjectBase> { this };
+
+            foreach (var component in _componentsList)
+            {
+                var componentBoundObjects = component.GetBoundObjects();
+                boundObjects = boundObjects.Union(componentBoundObjects).ToHashSet();
+            }
+
+            return boundObjects.ToList();
+        }
+
+        public bool CanMove(Direction direction, MoveAction moveAction) 
+            => _movementRulesComponent.CheckCanMove(direction, moveAction); 
+        public LevelGridCell GetTargetCell(Direction direction, MoveAction moveAction)
+            => _movementRulesComponent.GetTargetCell(direction, moveAction);
+
+        public bool OnObjectAboutToEnter(LevelObjectBase enteringObject, MoveAction moveAction)
+        {
+            foreach (var component in _componentsList)
+            {
+                var canEnter = component.CheckObjectEnter(enteringObject, moveAction);
+                if (!canEnter) return false;
+            }
+
+            return true;
+        }
+        
         public bool TryGetComponent<TComponent>(out TComponent component)
             where TComponent : LevelObjectComponent
         {

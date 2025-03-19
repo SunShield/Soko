@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 731807250705976435}
   - component: {fileID: 4890957914809132694}
   - component: {fileID: 3939043676871048048}
+  - component: {fileID: 722868332014587787}
   m_Layer: 0
   m_Name: SlidingBox
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
     - {fileID: 731807250705976435}
     - {fileID: 4890957914809132694}
     - {fileID: 3939043676871048048}
+    - {fileID: 722868332014587787}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -70,7 +72,7 @@ MonoBehaviour:
         Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 10
       Data: 0
@@ -86,6 +88,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 13
       Data: 
@@ -157,6 +162,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdcac1dc736242b4b6dd06fb780ac7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &722868332014587787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274878451576537274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b31dd5a0895488b86b396afef9fb88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1015618187912167276

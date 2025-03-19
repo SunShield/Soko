@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
+using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid
@@ -52,6 +53,18 @@ namespace Soko.Unity.Game.Level.Grid
             var objects = new List<LevelObjectBase>(Objects);
             foreach (var levelObject in objects)
                 levelObject.OnObjectLeft(leftObject);
+        }
+        
+        public bool CheckObjectEnter(LevelObjectBase enteringObject, MoveAction movementAction)
+        {
+            var objects = new List<LevelObjectBase>(Objects);
+            foreach (var levelObject in objects)
+            {
+                var canEnter = levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
+                if (!canEnter) return false;
+            }
+
+            return true;
         }
 
         public LevelGridCell GetNeighbour(Direction direction) => direction switch
