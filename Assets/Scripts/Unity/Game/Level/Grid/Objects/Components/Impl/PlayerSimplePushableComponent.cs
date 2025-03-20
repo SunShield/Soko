@@ -1,4 +1,6 @@
-﻿using Soko.Unity.Game.Level.Grid.Enums;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Sounds;
@@ -16,5 +18,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 
         protected override bool CheckCanMoveInternal(Direction direction, MoveAction moveAction)
             => moveAction.Path.Count < 2;
+
+        public override bool CheckBoundObjectsAllowMove(Dictionary<LevelObjectBase, MoveAction> bindingGroup)
+        {
+            return bindingGroup
+                .Where(entry => entry.Key.HasComponent<PlayerSimplePushableComponent>())
+                .All(entry => !entry.Value.Interrupted);
+        }
     }
 }

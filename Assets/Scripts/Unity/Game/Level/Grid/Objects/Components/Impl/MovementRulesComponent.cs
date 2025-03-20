@@ -19,7 +19,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         public bool CheckCanMove(Direction direction, MoveAction moveAction)
             => CheckCanMoveInternal(direction, moveAction) && CanMove;
         protected virtual bool CheckCanMoveInternal(Direction direction, MoveAction moveAction) => true;
-        public virtual bool CheckBoundObjectsAllowMovement(List<LevelObjectBase> boundObjects, Direction direction) 
-            => true;
+        public virtual bool CheckBoundObjectsAllowMove(Dictionary<LevelObjectBase, MoveAction> bindingGroup) => true;
     }
 }

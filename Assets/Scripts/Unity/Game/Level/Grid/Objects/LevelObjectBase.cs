@@ -10,6 +10,7 @@ using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Soko.Unity.Game.Level.Grid.Objects
 {
@@ -73,9 +74,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             where TComponent : LevelObjectComponent
             => _componentTypes.Contains(typeof(TComponent));
 
-        public List<LevelObjectBase> GetBoundObjects()
+        public List<LevelObjectBase> GetObjectBindingGroup()
         {
-            var boundObjects = new HashSet<LevelObjectBase> { this };
+            var boundObjects = new HashSet<LevelObjectBase>();
 
             foreach (var component in _componentsList)
             {
@@ -83,6 +84,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
                 boundObjects = boundObjects.Union(componentBoundObjects).ToHashSet();
             }
 
+            if (boundObjects.Contains(this)) boundObjects.Remove(this);
             return boundObjects.ToList();
         }
 
@@ -90,6 +92,15 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             => _movementRulesComponent.CheckCanMove(direction, moveAction); 
         public LevelGridCell GetTargetCell(Direction direction, MoveAction moveAction)
             => _movementRulesComponent.GetTargetCell(direction, moveAction);
+
+        public bool CheckBoundObjectsAllowMove(Dictionary<LevelObjectBase, MoveAction> bindingGroup)
+        {
+            var boundObjectsExceptThisObject = bindingGroup
+                .Where(kv => kv.Key != this)
+                .ToDictionary(kv => kv.Key, kv => kv.Value);
+
+            return _movementRulesComponent.CheckBoundObjectsAllowMove(boundObjectsExceptThisObject);
+        }
 
         public bool OnObjectAboutToEnter(LevelObjectBase enteringObject, MoveAction moveAction)
         {

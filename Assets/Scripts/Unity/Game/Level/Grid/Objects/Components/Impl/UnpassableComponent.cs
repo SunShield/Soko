@@ -9,7 +9,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 
         public override bool CheckObjectEnter(LevelObjectBase enteringObject, MoveAction action)
         {
-            if (AllowPlayerPass && enteringObject.HasComponent<PlayerComponent>()) return true;
+            /*if (AllowPlayerPass && enteringObject.HasComponent<PlayerComponent>()) return true;
             
             // grouped objects dont block objects from the same group,
             // otherwise, for example, 2-block group will be unable to move in some cases
@@ -18,7 +18,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             {
                 if (currentGroupComponent.Group != -1 && groupComponent.Group != -1 && 
                     currentGroupComponent.Group == groupComponent.Group) return true;
-            }
+            }*/
 
             return false;
         }

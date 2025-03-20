@@ -56,12 +56,23 @@ namespace Soko.Unity.Game.Level.Grid
                 levelObject.OnObjectLeft(leftObject);
         }
         
-        public bool CheckObjectEnter(LevelObjectBase enteringObject, MoveAction movementAction)
+        public bool CheckObjectEnter(LevelObjectBase enteringObject, Dictionary<LevelObjectBase, MoveAction> moveActions)
         {
+            var objMoveAction = moveActions[enteringObject];
+            
             var objects = new List<LevelObjectBase>(Objects);
-            foreach (var levelObject in objects)
+            foreach (var cellObject in objects)
             {
-                var canEnter = levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
+                if (moveActions.TryGetValue(cellObject, out var cellObjectMoveAction))
+                {
+                    // object will leave cell this movement so we don't look at interactions with it
+                    if (!cellObjectMoveAction.Interrupted || cellObjectMoveAction.Destination != this)
+                    {
+                        continue;
+                    } 
+                }
+                
+                var canEnter = cellObject.OnObjectAboutToEnter(enteringObject, objMoveAction);
                 if (!canEnter) return false;
             }
 

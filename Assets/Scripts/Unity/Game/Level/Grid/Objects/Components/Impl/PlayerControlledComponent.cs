@@ -15,7 +15,7 @@ using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
-    public class PlayerControlledComponent : LevelObjectComponent
+    public class PlayerControlledComponent : MovementRulesComponent
     {
         [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
         [Inject] private LevelObjectMover _levelObjectMover;
@@ -28,11 +28,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         
         private bool _executingMovement = false;
         private bool _isMovementDisabled;
-        private float _defaultScaleX;
 
         protected override void PostInitialize()
         {
-            _defaultScaleX = Object.transform.localScale.x;
             _playerInputActions = new ();
             _playerInputActions.Enable();
             _playerInputActions.Player.Move.performed += PerformMove;
@@ -49,18 +47,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             _moveManager.ExecutePlayerMovement(this.Object, GetMovementTarget(context));
         }
 
-        private void RotatePlayer(Direction direction)
-        {
-            var scale = Object.transform.localScale;
-            if (direction == Direction.Right)     Object.transform.localScale = new Vector3(-_defaultScaleX, scale.y, scale.z);
-            else if (direction == Direction.Left) Object.transform.localScale = new Vector3(_defaultScaleX, scale.y, scale.z);
-        }
-
         private Direction GetMovementTarget(InputAction.CallbackContext context)
         {
             var moveDirection = context.ReadValue<Vector2>();
             return moveDirection.ToDirection();
         }
+        
+        protected override bool CheckCanMoveInternal(Direction direction, MoveAction moveAction)
+            => moveAction.Path.Count < 2;
 
         private void OnDisable()
         {

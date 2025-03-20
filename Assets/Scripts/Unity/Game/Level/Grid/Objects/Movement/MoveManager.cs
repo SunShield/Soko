@@ -23,47 +23,49 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
     public class MoveManager
     {
         [Inject] private LevelObjectMover _mover;
-
-        private MoveAction _playerMoveAction;
+        
+        // todo: after movements triggered while other movements are active will be introduced,
+        // a need for a separate binding groups list can appear
+        private LevelObjectBase _player;
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
+        private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
 
         public async void ExecutePlayerMovement(LevelObjectBase player, Direction direction)
         {
+            _player = player;
             _moveActions.Clear();
+
+            RegisterObjectToMove(player, direction);
+            var targetPlayerCell = player.GetTargetCell(direction, null);
+            if (targetPlayerCell == null) return;
             
-            _playerMoveAction = CreateMoveAction(player, direction);
-            var targetCell = player.Cell.GetNeighbour(direction);
-            if (targetCell == null) return;
-
-            if (!targetCell.CheckObjectEnter(player, _playerMoveAction)) return;
-
-            var objectToMove = targetCell.Objects.FirstOrDefault(o => o.HasComponent<PlayerMovableComponent>());
-            if (objectToMove != null)
-            {
-                ExecuteObjectMovement(player, objectToMove, direction);
-                if (_moveActions[objectToMove].Destination != targetCell)
-                    _mover.MoveObject(player, targetCell);
-            }
-            else
-            {
-                _mover.MoveObject(player, targetCell);
-            }
+            var targetObject = targetPlayerCell.Objects.FirstOrDefault(obj => obj.HasComponent<PlayerMovableComponent>());
+            if (targetObject != null)
+                RegisterObjectToMove(targetObject, direction);
+            ExecuteObjectMovement(direction);
             
             _moveActions.Clear();
-            _playerMoveAction = null;
+        }
+
+        public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
+        {
+            //var bindingGroup = objectToMove.GetObjectBindingGroup(); // later
+            
+            var objectsToMove = objectToMove.GetObjectBindingGroup();
+            objectsToMove.Add(objectToMove);
+            objectsToMove.ForEach(obj => _moveActions.Add(obj, CreateMoveAction(obj, direction)));
         }
         
-        public async void ExecuteObjectMovement(LevelObjectBase player, LevelObjectBase objectToMove, Direction direction)
+        public async void ExecuteObjectMovement(Direction direction)
         {
-            var boundObjects = objectToMove.GetBoundObjects();
-            boundObjects.ForEach(obj => _moveActions.Add(obj, CreateMoveAction(obj, direction)));
-            boundObjects = SortBoundObjects(boundObjects, direction);
+            var movedObjects = _moveActions.Keys.ToList();
+            movedObjects = SortBoundObjects(movedObjects, direction);
 
             var continueMovement = true;
             var playerMoved = false;
             do
             {
-                foreach (var levelObject in boundObjects)
+                foreach (var levelObject in movedObjects)
                 {
                     var moveAction = _moveActions[levelObject];
                     var canMove = levelObject.CanMove(direction, moveAction);
@@ -80,27 +82,57 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                         continue;
                     }
 
-                    var canEnterCell = targetCell.CheckObjectEnter(levelObject, moveAction);
+                    var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
                     if (!canEnterCell)
                     {
                         moveAction.Interrupted = true;
                         continue;
                     }
-                    
-                    moveAction.Path.Add(targetCell);
                 }
 
-                foreach (var levelObject in boundObjects)
+                foreach (var levelObject in movedObjects)
                 {
                     var moveAction = _moveActions[levelObject];
-                    if (levelObject.Cell == moveAction.Destination) continue;
                     
-                    await _mover.MoveObject(levelObject, moveAction.Destination);
+                    if (!levelObject.CheckBoundObjectsAllowMove(_moveActions))
+                    {
+                        moveAction.Interrupted = true;
+                        continue;
+                    }
+                    
+                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
+                    if (targetCell != null)
+                    {
+                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
+                        if (!canEnterCell)
+                        {
+                            moveAction.Interrupted = true;
+                            continue;
+                        }
+                    }
                 }
 
+                // todo: later unbound movement from player. player is not always presented 
+                if (!playerMoved && _moveActions[_player].Interrupted) return;
+
+                foreach (var movedObject in movedObjects)
+                {
+                    var moveAction = _moveActions[movedObject];
+                    if (moveAction.Interrupted) continue;
+                    
+                    var targetCell = movedObject.GetTargetCell(direction, moveAction);
+                    _mover.MoveObject(movedObject, targetCell);
+                    moveAction.Path.Add(targetCell);
+                }
+                
+                playerMoved = true;
                 continueMovement = _moveActions.Values.All(v => v.Interrupted);
                 
             } while (!continueMovement);
+            
+            // todo: redo end criterion to _moveActions.Count == 0;
+            // todo: make a moving player "just" an object with the same "move end" criterion as anything else
+                // todo: consider adding player to a group with boxes. it can be cool 
         }
 
         private MoveAction CreateMoveAction(LevelObjectBase player, Direction direction)
