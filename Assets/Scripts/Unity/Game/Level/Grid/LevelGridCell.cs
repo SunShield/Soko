@@ -22,7 +22,6 @@ namespace Soko.Unity.Game.Level.Grid
 
         public void AddObject(LevelObjectBase objectBase, bool suppressEnterEvent = false)
         {
-            Debug.Log($"object {objectBase.gameObject.name} is entering cell [{Coords.Rows}, {Coords.Columns}]]");
             if (objectBase.Cell != null) objectBase.Cell.RemoveObject(objectBase);
             objectBase.SetCell(this);
             Objects.Add(objectBase);
@@ -33,13 +32,6 @@ namespace Soko.Unity.Game.Level.Grid
         {
             OnObjectLeft(objectBase);
             Objects.Remove(objectBase);
-        }
-
-        public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
-        {
-            var objects = new List<LevelObjectBase>(Objects);
-            foreach (var levelObject in objects)
-                levelObject.OnObjectAboutToEnter(enteringObject, movementAction);
         }
 
         public void OnObjectEntered(LevelObjectBase objectBase)

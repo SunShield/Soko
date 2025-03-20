@@ -33,6 +33,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         public async void ExecutePlayerMovement(LevelObjectBase player, Direction direction)
         {
             _player = player;
+            
+            _bindingGroups.Clear();
             _moveActions.Clear();
 
             RegisterObjectToMove(player, direction);
@@ -43,17 +45,37 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             if (targetObject != null)
                 RegisterObjectToMove(targetObject, direction);
             ExecuteObjectMovement(direction);
-            
-            _moveActions.Clear();
         }
 
         public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
         {
-            //var bindingGroup = objectToMove.GetObjectBindingGroup(); // later
+            var boundObjects = objectToMove.GetObjectBindingGroup();
+            if (_moveActions.ContainsKey(objectToMove))
+            {
+                _moveActions.Remove(objectToMove);
+                foreach (var boundObject in boundObjects)
+                    _moveActions.Remove(boundObject);
+            }
+            boundObjects.Add(objectToMove);
+            boundObjects.ForEach(obj =>
+            {
+                if (_moveActions.ContainsKey(obj)) _moveActions.Remove(obj);
+                
+                _moveActions.Add(obj, CreateMoveAction(obj, direction));
+            });
             
-            var objectsToMove = objectToMove.GetObjectBindingGroup();
-            objectsToMove.Add(objectToMove);
-            objectsToMove.ForEach(obj => _moveActions.Add(obj, CreateMoveAction(obj, direction)));
+            RegisterBindingGroupIfNeeded(objectToMove);
+        }
+
+        private void RegisterBindingGroupIfNeeded(LevelObjectBase objectToMove)
+        {
+            var group = objectToMove.Group; 
+            if (group == -1) return;
+            if (_bindingGroups.ContainsKey(group))
+                _bindingGroups.Remove(group);
+            
+            _bindingGroups.Add(group, new () { objectToMove });
+            _bindingGroups[group].AddRange(objectToMove.GetObjectBindingGroup());
         }
         
         public async void ExecuteObjectMovement(Direction direction)
@@ -93,12 +115,62 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 foreach (var levelObject in movedObjects)
                 {
                     var moveAction = _moveActions[levelObject];
-                    
-                    if (!levelObject.CheckBoundObjectsAllowMove(_moveActions))
+
+                    if (levelObject.Group != -1)
                     {
-                        moveAction.Interrupted = true;
-                        continue;
+                        var boundObjects = _bindingGroups[levelObject.Group];
+                        var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
+                        
+                        if (!levelObject.CheckBoundObjectsAllowMove(moveActions))
+                        {
+                            moveAction.Interrupted = true;
+                            continue;
+                        }
                     }
+                    
+                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
+                    if (targetCell != null)
+                    {
+                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
+                        if (!canEnterCell)
+                        {
+                            moveAction.Interrupted = true;
+                            continue;
+                        }
+                    }
+                }
+                
+                foreach (var levelObject in movedObjects)
+                {
+                    var moveAction = _moveActions[levelObject];
+
+                    if (levelObject.Group != -1)
+                    {
+                        var boundObjects = _bindingGroups[levelObject.Group];
+                        var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
+                        
+                        if (!levelObject.CheckBoundObjectsAllowMove(moveActions))
+                        {
+                            moveAction.Interrupted = true;
+                            continue;
+                        }
+                    }
+                    
+                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
+                    if (targetCell != null)
+                    {
+                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
+                        if (!canEnterCell)
+                        {
+                            moveAction.Interrupted = true;
+                            continue;
+                        }
+                    }
+                }
+
+                foreach (var levelObject in movedObjects)
+                {
+                    var moveAction = _moveActions[levelObject];
                     
                     var targetCell = levelObject.GetTargetCell(direction, moveAction);
                     if (targetCell != null)

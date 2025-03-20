@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Soko.Unity.Game.Level.Grid.Enums;
@@ -22,7 +23,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         private List<LevelObjectComponent> _componentsList = new ();
         private HashSet<Type> _componentTypes = new ();
         private MovementRulesComponent _movementRulesComponent;
+        private GroupComponent _groupComponent;
+        
         public LevelGridCell Cell { get; private set; }
+        public int Group => _groupComponent != null ? _groupComponent.Group : -1;
         public GridCoords Position => Cell.Coords;
 
         public void Initialize(LevelGridCell cell)
@@ -30,6 +34,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             Cell = cell;
             FetchComponentDatas();
             GetMovementRulesComponent();
+            GetGroupComponent();
         }
 
         private void FetchComponentDatas()
@@ -47,16 +52,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             _movementRulesComponent = Components.OfType<MovementRulesComponent>().FirstOrDefault();
         }
 
-        public void SetCell(LevelGridCell cell) => Cell = cell;
+        private void GetGroupComponent()
+            => _groupComponent = Components.OfType<GroupComponent>().FirstOrDefault();
 
-        public void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction movementAction)
-        {
-            foreach (var component in _componentsList)
-            {
-                component.OnObjectAboutToEnter(enteringObject, movementAction);
-                if (!movementAction.Active) break;
-            }
-        }
+        public void SetCell(LevelGridCell cell) => Cell = cell;
         
         public void OnObjectEntered(LevelObjectBase enteringObject)
         {
@@ -75,18 +74,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             => _componentTypes.Contains(typeof(TComponent));
 
         public List<LevelObjectBase> GetObjectBindingGroup()
-        {
-            var boundObjects = new HashSet<LevelObjectBase>();
-
-            foreach (var component in _componentsList)
-            {
-                var componentBoundObjects = component.GetBoundObjects();
-                boundObjects = boundObjects.Union(componentBoundObjects).ToHashSet();
-            }
-
-            if (boundObjects.Contains(this)) boundObjects.Remove(this);
-            return boundObjects.ToList();
-        }
+            => _groupComponent == null 
+                ? new() 
+                : _groupComponent.GroupObjects.Except(new List<LevelObjectBase>() { this }).ToList();
 
         public bool CanMove(Direction direction, MoveAction moveAction) 
             => _movementRulesComponent.CheckCanMove(direction, moveAction); 

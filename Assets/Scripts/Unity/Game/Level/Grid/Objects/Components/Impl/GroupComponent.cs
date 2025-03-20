@@ -30,6 +30,5 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         }
 
         public void AddObject(LevelObjectBase levelObject) => GroupObjects.Add(levelObject);
-        public override HashSet<LevelObjectBase> GetBoundObjects() => GroupObjects.ToHashSet();
     }
 }
