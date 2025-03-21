@@ -30,27 +30,22 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
         private readonly Dictionary<LevelObjectBase, MoveAction> _delayedMoveActions = new ();
-
-        // todo: some input system should pass input to all the ControllableComponents.
-        // player will be just one of the ControllableComponents
-        // also we will have some kind of InitSubsequentMovement which will allow moved register objects to move
-        // I guess, we will use this thing just for player: it will check its target cell and register
-        // subsequent movement for objects with PlayerMovableComponent in target cell.
         
-        public void ExecuteControlledObjectMovement(LevelObjectBase player, Direction direction)
+        public void ExecuteControlledObjectMovement(LevelObjectBase objectToMove, Direction direction)
         {
-            _player = player;
+            _player = null;
+            if (objectToMove.HasComponent<PlayerComponent>()) _player = objectToMove;
             
             _bindingGroups.Clear();
             _moveActions.Clear();
 
-            RegisterObjectToMove(player, direction);
-            var targetPlayerCell = player.GetTargetCell(direction, null);
-            if (targetPlayerCell == null) return;
-            
-            var targetObject = targetPlayerCell.Objects.FirstOrDefault(obj => obj.HasComponent<PlayerMovableComponent>());
-            if (targetObject != null)
-                RegisterObjectToMove(targetObject, direction);
+            RegisterObjectToMove(objectToMove, direction);
+            var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
+            if (subsequentObjects != null)
+            {
+                foreach (var subsequentObject in subsequentObjects)
+                    RegisterObjectToMove(subsequentObject, direction);
+            }
             ExecuteObjectMovement(direction);
         }
 
@@ -192,7 +187,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 }
 
                 // todo: later unbound movement from player. player is not always presented 
-                if (!playerMoved && _moveActions[_player].Interrupted) return;
+                if (_player != null && !playerMoved && _moveActions[_player].Interrupted) return;
 
                 foreach (var movedObject in movedObjects)
                 {
