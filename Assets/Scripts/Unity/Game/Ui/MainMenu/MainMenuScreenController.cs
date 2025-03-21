@@ -31,7 +31,6 @@ namespace Soko.Unity.Game.Ui.MainMenu
         
         private void OpenSettings()
         {
-            
         }
 
         private void ExitGame() => Application.Quit();

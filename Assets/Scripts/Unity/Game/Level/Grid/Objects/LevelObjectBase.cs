@@ -92,11 +92,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             return _movementRulesComponent.CheckBoundObjectsAllowMove(boundObjectsExceptThisObject);
         }
 
-        public bool OnObjectAboutToEnter(LevelObjectBase enteringObject, MoveAction moveAction)
+        public bool CheckObjectEnter(LevelObjectBase enteringObject)
         {
             foreach (var component in _componentsList)
             {
-                var canEnter = component.CheckObjectEnter(enteringObject, moveAction);
+                var canEnter = component.CheckObjectEnter(enteringObject);
                 if (!canEnter) return false;
             }
 

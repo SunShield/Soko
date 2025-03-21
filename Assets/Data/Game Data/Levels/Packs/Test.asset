@@ -140,7 +140,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
       Data: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
       Data: 0
@@ -626,7 +626,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
       Data: 0
@@ -1004,7 +1004,7 @@ MonoBehaviour:
       Data: 
     - Name: ObjectKey
       Entry: 1
-      Data: b
+      Data: sb
     - Name: Color
       Entry: 3
       Data: 0

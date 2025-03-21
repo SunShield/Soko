@@ -29,8 +29,15 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private LevelObjectBase _player;
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
+        private readonly Dictionary<LevelObjectBase, MoveAction> _delayedMoveActions = new ();
 
-        public async void ExecutePlayerMovement(LevelObjectBase player, Direction direction)
+        // todo: some input system should pass input to all the ControllableComponents.
+        // player will be just one of the ControllableComponents
+        // also we will have some kind of InitSubsequentMovement which will allow moved register objects to move
+        // I guess, we will use this thing just for player: it will check its target cell and register
+        // subsequent movement for objects with PlayerMovableComponent in target cell.
+        
+        public void ExecuteControlledObjectMovement(LevelObjectBase player, Direction direction)
         {
             _player = player;
             
@@ -78,7 +85,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _bindingGroups[group].AddRange(objectToMove.GetObjectBindingGroup());
         }
         
-        public async void ExecuteObjectMovement(Direction direction)
+        public void ExecuteObjectMovement(Direction direction)
         {
             var movedObjects = _moveActions.Keys.ToList();
             movedObjects = SortBoundObjects(movedObjects, direction);

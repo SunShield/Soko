@@ -1,17 +1,20 @@
 ﻿using System.Linq;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
+using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Sounds;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
-    public class PlayerTeleporterComponent : PlayerInteractableComponent
+    public class PlayerTeleporterComponent : LevelObjectComponent
     {
         [Inject] private LevelObjectMover _levelObjectMover;
         [Inject] private SoundsManager _soundsManager;
-        
-        protected override void OnPlayerEntered(LevelObjectBase enteringObject)
+
+        public override void OnObjectEntered(LevelObjectBase enteringObject)
         {
+            if (!enteringObject.HasComponent<PlayerComponent>()) return;
+            
             var group = Object.GetComponent<ColorComponent>();
             var boundTeleporter = LevelPlayCycleManager.LevelGrid.LevelObjects
                 .Except(new[] { Object })
@@ -26,6 +29,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .First();
 
             if (boundTeleporter == null) return;
+            if (!boundTeleporter.CheckObjectEnter(enteringObject)) return;
             
             ExecuteTeleportation(enteringObject, boundTeleporter);
         }

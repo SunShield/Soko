@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
@@ -8,15 +7,16 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [SerializeField] private List<LevelObjectBase> _restrictedObjects = new ();
         
-        public override void OnObjectAboutToEnter(LevelObjectBase enteringObject, MovementAction action)
+        public override bool CheckObjectEnter(LevelObjectBase enteringObject)
         {
             foreach (var restrictedObject in _restrictedObjects)
             {
                 if (enteringObject.PrefabKey != restrictedObject.PrefabKey) continue;
-                
-                action.Active = false;
-                return;
+
+                return false;
             }
+
+            return true;
         }
     }
 }

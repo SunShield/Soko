@@ -1,11 +1,9 @@
-﻿using System.Threading.Tasks;
-using Soko.Core.Extensions;
+﻿using Soko.Core.Extensions;
 using Soko.Unity.Game.Events;
 using Soko.Unity.Game.Events.Impl.Args;
 using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Sounds;
@@ -15,7 +13,7 @@ using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
-    public class PlayerControlledComponent : MovementRulesComponent
+    public class UserControlledComponent : LevelObjectComponent
     {
         [Inject] private LevelPlayCycleManager _levelPlayCycleManager;
         [Inject] private LevelObjectMover _levelObjectMover;
@@ -24,9 +22,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         [Inject] private MoveManager _moveManager;
         
         private PlayerInputActions _playerInputActions;
-        private Vector2Int GridSize => _levelPlayCycleManager.LevelGrid.Dimensions;
         
-        private bool _executingMovement = false;
         private bool _isMovementDisabled;
 
         protected override void PostInitialize()
@@ -39,22 +35,15 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         
         private void DisableMovement(EmptyArgs args) => _isMovementDisabled = true;
 
-        private async void PerformMove(InputAction.CallbackContext context)
+        private void PerformMove(InputAction.CallbackContext context)
         {
             if (_isMovementDisabled) return;
-            if (_executingMovement) return;
             
-            _moveManager.ExecutePlayerMovement(this.Object, GetMovementTarget(context));
+            _moveManager.ExecuteControlledObjectMovement(this.Object, GetMovementDirection(context));
         }
 
-        private Direction GetMovementTarget(InputAction.CallbackContext context)
-        {
-            var moveDirection = context.ReadValue<Vector2>();
-            return moveDirection.ToDirection();
-        }
-        
-        protected override bool CheckCanMoveInternal(Direction direction, MoveAction moveAction)
-            => moveAction.Path.Count < 2;
+        private Direction GetMovementDirection(InputAction.CallbackContext context)
+            => context.ReadValue<Vector2>().ToDirection();
 
         private void OnDisable()
         {

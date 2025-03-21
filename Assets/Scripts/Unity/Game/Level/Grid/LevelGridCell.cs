@@ -48,10 +48,9 @@ namespace Soko.Unity.Game.Level.Grid
                 levelObject.OnObjectLeft(leftObject);
         }
         
+        // todo: move to MoveManager, at least partially
         public bool CheckObjectEnter(LevelObjectBase enteringObject, Dictionary<LevelObjectBase, MoveAction> moveActions)
         {
-            var objMoveAction = moveActions[enteringObject];
-            
             var objects = new List<LevelObjectBase>(Objects);
             foreach (var cellObject in objects)
             {
@@ -64,7 +63,7 @@ namespace Soko.Unity.Game.Level.Grid
                     } 
                 }
                 
-                var canEnter = cellObject.OnObjectAboutToEnter(enteringObject, objMoveAction);
+                var canEnter = cellObject.CheckObjectEnter(enteringObject);
                 if (!canEnter) return false;
             }
 
