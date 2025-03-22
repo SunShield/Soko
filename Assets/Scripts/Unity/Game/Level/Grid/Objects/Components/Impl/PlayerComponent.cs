@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 
@@ -18,9 +17,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             var targetPlayerCell = Object.GetTargetCell(direction, null);
             if (targetPlayerCell == null) return null;
             
-            var targetObject = targetPlayerCell.Objects
-                .FirstOrDefault(obj => obj.HasComponent<PlayerMovableComponent>());
-            return targetObject == null ? null : new List<LevelObjectBase> { targetObject };
+            var hasPossibleObject = targetPlayerCell.Objects.TryGetValue(ObjectLayer.Solid, out var possibleObject);
+            if (!hasPossibleObject) return null;
+            
+            var isPLayerMovable = possibleObject.HasComponent<PlayerMovableComponent>();
+            return isPLayerMovable ? new List<LevelObjectBase> { possibleObject } : null;
         }
     }
 }

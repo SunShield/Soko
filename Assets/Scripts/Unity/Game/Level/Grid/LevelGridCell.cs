@@ -11,7 +11,7 @@ namespace Soko.Unity.Game.Level.Grid
     public class LevelGridCell : MonoBehaviour
     {
         public LevelGrid Grid { get; private set; }
-        public List<LevelObjectBase> Objects { get; private set; } = new();
+        public Dictionary<ObjectLayer, LevelObjectBase> Objects { get; private set; } = new();
         public GridCoords Coords { get; private set; }
         
         public void Initialize(LevelGrid grid, GridCoords coords)
@@ -24,26 +24,26 @@ namespace Soko.Unity.Game.Level.Grid
         {
             if (objectBase.Cell != null) objectBase.Cell.RemoveObject(objectBase);
             objectBase.SetCell(this);
-            Objects.Add(objectBase);
+            Objects.Add(objectBase.Layer, objectBase);
             if (!suppressEnterEvent) objectBase.Cell.OnObjectEntered(objectBase);
         }
 
         public void RemoveObject(LevelObjectBase objectBase)
         {
             OnObjectLeft(objectBase);
-            Objects.Remove(objectBase);
+            Objects.Remove(objectBase.Layer);
         }
 
         public void OnObjectEntered(LevelObjectBase objectBase)
         {
-            var objects = new List<LevelObjectBase>(Objects);
+            var objects = new List<LevelObjectBase>(Objects.Values);
             foreach (var levelObject in objects)
                 levelObject.OnObjectEntered(objectBase);
         }
 
         public void OnObjectLeft(LevelObjectBase leftObject)
         {
-            var objects = new List<LevelObjectBase>(Objects);
+            var objects = new List<LevelObjectBase>(Objects.Values);
             foreach (var levelObject in objects)
                 levelObject.OnObjectLeft(leftObject);
         }
@@ -51,7 +51,7 @@ namespace Soko.Unity.Game.Level.Grid
         // todo: move to MoveManager, at least partially
         public bool CheckObjectEnter(LevelObjectBase enteringObject, Dictionary<LevelObjectBase, MoveAction> moveActions)
         {
-            var objects = new List<LevelObjectBase>(Objects);
+            var objects = new List<LevelObjectBase>(Objects.Values);
             foreach (var cellObject in objects)
             {
                 if (moveActions.TryGetValue(cellObject, out var cellObjectMoveAction))

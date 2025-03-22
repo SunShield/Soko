@@ -80,17 +80,30 @@ namespace Soko.Unity.Game.Level.Grid.Building
             {
                 for (int x = 0; x < grid.Columns; x++)
                 {
-                    var cellData = levelData.Cells[x, y];
-                    if (string.IsNullOrWhiteSpace(cellData.ObjectKey)) continue;
-
-                    var gridObject = CreateGridObject(grid, cellData.ObjectKey, y, x);
-
-                    ProcessColoredObject(gridObject, cellData);
-                    ProcessGroupedObject(gridObject, cellData);
+                    SpawnCellObjects(grid, levelData, x, y);
                 }
             }
             
             ConnectGroupedObjects(grid);
+        }
+
+        private void SpawnCellObjects(LevelGrid grid, LevelData levelData, int x, int y)
+        {
+            var cellData = levelData.Cells[x, y];
+
+            if (!string.IsNullOrWhiteSpace(cellData.GroundObjectKey))
+            {
+                var groundObject = CreateGridObject(grid, cellData.GroundObjectKey, y, x);
+                ProcessColoredObject(groundObject, cellData.GroundColor);
+                ProcessGroupedObject(groundObject, cellData.GroundGroup);
+            }
+
+            if (!string.IsNullOrWhiteSpace(cellData.ObjectKey))
+            {
+                var solidObject = CreateGridObject(grid, cellData.ObjectKey, y, x);
+                ProcessColoredObject(solidObject, cellData.Color);
+                ProcessGroupedObject(solidObject, cellData.Group);
+            }
         }
 
         private LevelObjectBase CreateGridObject(LevelGrid grid, string key, int y, int x)
@@ -106,18 +119,18 @@ namespace Soko.Unity.Game.Level.Grid.Building
             return gridObject;
         }
 
-        private void ProcessColoredObject(LevelObjectBase levelObject, CellData cellData)
+        private void ProcessColoredObject(LevelObjectBase levelObject, ObjectColor color)
         {
             if (!levelObject.TryGetObjectComponent<ColorComponent>(out var colorComponent)) return;
            
-            colorComponent.SetColor(cellData.Color);
+            colorComponent.SetColor(color);
         }
 
-        private void ProcessGroupedObject(LevelObjectBase levelObject, CellData cellData)
+        private void ProcessGroupedObject(LevelObjectBase levelObject, int group)
         {
             if (!levelObject.TryGetObjectComponent<GroupComponent>(out var groupComponent)) return;
             
-            groupComponent.SetGroup(cellData.Group);
+            groupComponent.SetGroup(group);
         }
 
         private void ConnectGroupedObjects(LevelGrid grid)
