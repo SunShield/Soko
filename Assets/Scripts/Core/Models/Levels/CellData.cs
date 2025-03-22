@@ -6,8 +6,9 @@ namespace Soko.Core.Models.Levels
     [Serializable]
     public class CellData
     {
-        public string TileKey;
         public string GroundObjectKey;
+        public ObjectColor GroundColor;
+        public int GroundGroup = -1;
         public string ObjectKey;
         public ObjectColor Color;
         public int Group = -1;
