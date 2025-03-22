@@ -190,6 +190,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     
                     subsequentObjectSetData.objects.ForEach(o => _moveActions[o].Interrupted = true);    
                 }
+                _subsequentObjectsSets.Clear();
 
                 foreach (var movedObject in movedObjects)
                 {
@@ -229,6 +230,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 Direction.Right => objects.OrderByDescending(o =>  o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
             };
 
+        /// <summary>
+        /// Teleportations occur STRICTLY after movement caused them. So after all object's final positions are
+        /// determined, we can check if teleportation is possible
+        /// </summary>
         private void ExecuteObjectsTeleportation()
         {
             var teleportedObjects = _teleportActions.Keys.ToList();

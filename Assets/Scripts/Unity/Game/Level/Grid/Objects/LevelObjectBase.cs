@@ -57,6 +57,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects
 
         public void SetCell(LevelGridCell cell) => Cell = cell;
         
+        public void SetCanMove(bool canMove) => _movementRulesComponent.SetCanMove(canMove);
+        
         public void OnObjectEntered(LevelObjectBase enteringObject)
         {
             foreach (var component in _componentsList)

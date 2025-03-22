@@ -14,6 +14,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [SerializeField] private GameObject _activeGraphics;
         [SerializeField] private GameObject _inactiveGraphics;
+        [SerializeField] private bool _lockObject;
         
         [Inject] private SoundsManager _soundsManager;
         
@@ -28,6 +29,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 if (currentColorComponent.Color == ObjectColor.None)
                 {
                     SetActivated(true);
+                    if (_lockObject) enteringObject.SetCanMove(false);
                     return;
                 }
                 
@@ -40,7 +42,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                     SetActivated(true);
             }
             else
+            {
                 SetActivated(true);
+                if (_lockObject) enteringObject.SetCanMove(false);
+            }
         }
 
         public override void OnObjectLeft(LevelObjectBase enteringObject)
