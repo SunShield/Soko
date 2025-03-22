@@ -108,14 +108,14 @@ namespace Soko.Unity.Game.Level.Grid.Building
 
         private void ProcessColoredObject(LevelObjectBase levelObject, CellData cellData)
         {
-            if (!levelObject.TryGetComponent<ColorComponent>(out var colorComponent)) return;
+            if (!levelObject.TryGetObjectComponent<ColorComponent>(out var colorComponent)) return;
            
             colorComponent.SetColor(cellData.Color);
         }
 
         private void ProcessGroupedObject(LevelObjectBase levelObject, CellData cellData)
         {
-            if (!levelObject.TryGetComponent<GroupComponent>(out var groupComponent)) return;
+            if (!levelObject.TryGetObjectComponent<GroupComponent>(out var groupComponent)) return;
             
             groupComponent.SetGroup(cellData.Group);
         }
@@ -125,7 +125,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             var groupedObjects = new Dictionary<int, List<GroupComponent>>();
             foreach (var levelObject in grid.LevelObjects)
             {
-                if (!levelObject.TryGetComponent<GroupComponent>(out var groupComponent)) continue;
+                if (!levelObject.TryGetObjectComponent<GroupComponent>(out var groupComponent)) continue;
                 if (groupComponent.Group == -1) continue;
                 
                 if (!groupedObjects.ContainsKey(groupComponent.Group))

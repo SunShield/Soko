@@ -21,7 +21,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .Where(o => o.HasComponent<PlayerTeleporterComponent>())
                 .Where(o =>
                 {
-                    var hasGroup = o.TryGetComponent<ColorComponent>(out var colorComponent);
+                    var hasGroup = o.TryGetObjectComponent<ColorComponent>(out var colorComponent);
                     if (!hasGroup) return false;
 
                     return colorComponent.Color == group.Color;

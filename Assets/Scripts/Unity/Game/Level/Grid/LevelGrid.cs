@@ -26,7 +26,7 @@ namespace Soko.Unity.Game.Level.Grid
         public void RegisterObject(LevelObjectBase obj)
         {
             LevelObjects.Add(obj);
-            if (!obj.TryGetComponent<SpotComponent>(out var spotComponent)) return;
+            if (!obj.TryGetObjectComponent<SpotComponent>(out var spotComponent)) return;
             SpotComponents.Add(spotComponent);
         }
 

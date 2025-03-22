@@ -32,23 +32,17 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             = new ();
         private readonly List<LevelObjectBase> _delayedMoveObjects = new();
         
-        public void ExecuteControlledObjectMovement(LevelObjectBase objectToMove, Direction direction)
+        public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
         {
-            _bindingGroups.Clear();
-            _moveActions.Clear();
-            _subsequentObjectsSets.Clear();
-
-            RegisterObjectToMove(objectToMove, direction);
+            RegisterObjectToMoveInternal(objectToMove, direction);
             var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
-            if (subsequentObjects != null)
-            {
-                foreach (var subsequentObject in subsequentObjects)
-                    RegisterObjectToMove(subsequentObject, direction, objectToMove);
-            }
-            ExecuteObjectMovement(direction);
+            if (subsequentObjects == null) return;
+            
+            foreach (var subsequentObject in subsequentObjects)
+                RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
         }
 
-        private void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction, 
+        private void RegisterObjectToMoveInternal(LevelObjectBase objectToMove, Direction direction, 
             LevelObjectBase mainObject = null)
         {
             var objectsToMove = objectToMove.GetObjectBindingGroup();
@@ -213,9 +207,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 
             } while (!continueMovement);
             
-            // todo: redo end criterion to _moveActions.Count == 0;
-            // todo: make a moving player "just" an object with the same "move end" criterion as anything else
-                // todo: consider adding player to a group with boxes. it can be cool 
+            _bindingGroups.Clear();
+            _moveActions.Clear();
+            _subsequentObjectsSets.Clear();
         }
 
         private MoveAction CreateMoveAction(LevelObjectBase player, Direction direction)

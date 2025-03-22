@@ -106,7 +106,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         public List<LevelObjectBase> GetSubsequentObjects(Direction direction, MoveAction moveAction)
             => _movementRulesComponent.GetSubsequentObjects(direction, moveAction);
         
-        public bool TryGetComponent<TComponent>(out TComponent component)
+        public bool TryGetObjectComponent<TComponent>(out TComponent component)
             where TComponent : LevelObjectComponent
         {
             component = null;

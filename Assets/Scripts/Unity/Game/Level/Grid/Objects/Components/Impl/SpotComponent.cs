@@ -23,7 +23,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         {
             if (!enteringObject.HasComponent<SpotActivatorComponent>()) return;
 
-            if (Object.TryGetComponent<ColorComponent>(out var currentColorComponent))
+            if (Object.TryGetObjectComponent<ColorComponent>(out var currentColorComponent))
             {
                 if (currentColorComponent.Color == ObjectColor.None)
                 {
@@ -32,7 +32,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 }
                 
                 var checkedColor = ObjectColor.None;
-                if (enteringObject.TryGetComponent<ColorComponent>(out var colorComponent))
+                if (enteringObject.TryGetObjectComponent<ColorComponent>(out var colorComponent))
                     checkedColor = colorComponent.Color;
                 
                 if (currentColorComponent.Color == ObjectColor.White && checkedColor != ObjectColor.None ||

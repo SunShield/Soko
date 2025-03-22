@@ -3,6 +3,7 @@ using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
+using Soko.Unity.Game.Level.Management;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,6 +19,7 @@ namespace Soko.Unity.Game.DI
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
+            builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
