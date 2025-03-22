@@ -26,40 +26,34 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         
         // todo: after movements triggered while other movements are active will be introduced,
         // a need for a separate binding groups list can appear
-        private LevelObjectBase _player;
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
-        private readonly Dictionary<LevelObjectBase, MoveAction> _delayedMoveActions = new ();
+        private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> _subsequentObjectsSets 
+            = new ();
+        private readonly List<LevelObjectBase> _delayedMoveObjects = new();
         
         public void ExecuteControlledObjectMovement(LevelObjectBase objectToMove, Direction direction)
         {
-            _player = null;
-            if (objectToMove.HasComponent<PlayerComponent>()) _player = objectToMove;
-            
             _bindingGroups.Clear();
             _moveActions.Clear();
+            _subsequentObjectsSets.Clear();
 
             RegisterObjectToMove(objectToMove, direction);
             var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
             if (subsequentObjects != null)
             {
                 foreach (var subsequentObject in subsequentObjects)
-                    RegisterObjectToMove(subsequentObject, direction);
+                    RegisterObjectToMove(subsequentObject, direction, objectToMove);
             }
             ExecuteObjectMovement(direction);
         }
 
-        public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
+        private void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction, 
+            LevelObjectBase mainObject = null)
         {
-            var boundObjects = objectToMove.GetObjectBindingGroup();
-            if (_moveActions.ContainsKey(objectToMove))
-            {
-                _moveActions.Remove(objectToMove);
-                foreach (var boundObject in boundObjects)
-                    _moveActions.Remove(boundObject);
-            }
-            boundObjects.Add(objectToMove);
-            boundObjects.ForEach(obj =>
+            var objectsToMove = objectToMove.GetObjectBindingGroup();
+            objectsToMove.Add(objectToMove);
+            objectsToMove.ForEach(obj =>
             {
                 if (_moveActions.ContainsKey(obj)) _moveActions.Remove(obj);
                 
@@ -67,6 +61,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             });
             
             RegisterBindingGroupIfNeeded(objectToMove);
+            if (mainObject != null) RegisterSubsequentObjectsSet(mainObject, objectsToMove);
         }
 
         private void RegisterBindingGroupIfNeeded(LevelObjectBase objectToMove)
@@ -79,6 +74,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _bindingGroups.Add(group, new () { objectToMove });
             _bindingGroups[group].AddRange(objectToMove.GetObjectBindingGroup());
         }
+
+        private void RegisterSubsequentObjectsSet(LevelObjectBase mainObject, List<LevelObjectBase> subsequentObjects)
+            => _subsequentObjectsSets.Add(mainObject, (subsequentObjects, false));
         
         public void ExecuteObjectMovement(Direction direction)
         {
@@ -186,8 +184,19 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     }
                 }
 
-                // todo: later unbound movement from player. player is not always presented 
-                if (_player != null && !playerMoved && _moveActions[_player].Interrupted) return;
+                // Subsequent objects movement is stopped in their main object was failed to move once
+                // The most typical example of this logic is a situation when player fails to move and all subsequent
+                // objects movement is interrupted
+                foreach (var mainObject in _subsequentObjectsSets.Keys)
+                {
+                    var subsequentObjectSetData = _subsequentObjectsSets[mainObject];
+                    if (subsequentObjectSetData.moved) continue;
+                    
+                    var moveAction = _moveActions[mainObject];
+                    if (!moveAction.Interrupted) continue;
+                    
+                    subsequentObjectSetData.objects.ForEach(o => _moveActions[o].Interrupted = true);    
+                }
 
                 foreach (var movedObject in movedObjects)
                 {
