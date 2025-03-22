@@ -51,7 +51,7 @@ namespace Soko.Unity.Game.Level.Management
 
             var direction = GetMovementDirection(context);
             _controlledObjects.ForEach(co => _moveManager.RegisterObjectToMove(co.Object, direction));
-            _moveManager.ExecuteObjectMovement(direction);
+            _moveManager.ExecuteObjectsMovement(direction);
         }
 
         private Direction GetMovementDirection(InputAction.CallbackContext context)

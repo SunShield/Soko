@@ -8,7 +8,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
     public class PlayerTeleporterComponent : LevelObjectComponent
     {
-        [Inject] private LevelObjectMover _levelObjectMover;
+        [Inject] private MoveManager _moveManager;
         [Inject] private SoundsManager _soundsManager;
 
         public override void OnObjectEntered(LevelObjectBase enteringObject)
@@ -29,15 +29,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .First();
 
             if (boundTeleporter == null) return;
-            if (!boundTeleporter.CheckObjectEnter(enteringObject)) return;
-            
-            ExecuteTeleportation(enteringObject, boundTeleporter);
-        }
-
-        private void ExecuteTeleportation(LevelObjectBase playerObject, LevelObjectBase boundTeleporter)
-        {
-            _soundsManager.PlaySfx(GameSfx.Teleporter);
-            _levelObjectMover.TeleportObject(playerObject, boundTeleporter.Cell);
+            _moveManager.RegisterObjectToTeleport(enteringObject, boundTeleporter.Cell);
         }
     }
 }

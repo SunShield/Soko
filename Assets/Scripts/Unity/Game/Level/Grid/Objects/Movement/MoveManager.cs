@@ -8,18 +8,6 @@ using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 {
-    /// <summary>
-    /// Some movement rules:
-    ///
-    /// 1. Movement is executed first by the distance from the edge object is moved towards
-    /// (right edge if right direction)
-    /// and them from top to bottom or from left to right
-    ///
-    /// 2. Movement executed per-cell per-object. So if group of objects is moving, each object, following the order
-    /// from (1), is moved 1 space, and again, and again.
-    ///
-    /// 3. Movement of any non-player object should not cause any subsequent movements to appear. 
-    /// </summary>
     public class MoveManager
     {
         [Inject] private LevelObjectMover _mover;
@@ -27,6 +15,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         // todo: after movements triggered while other movements are active will be introduced,
         // a need for a separate binding groups list can appear
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
+        private readonly Dictionary<LevelObjectBase, MoveAction> _teleportActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
         private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> _subsequentObjectsSets 
             = new ();
@@ -40,6 +29,16 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             
             foreach (var subsequentObject in subsequentObjects)
                 RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
+        }
+
+        public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target)
+        {
+            if (_teleportActions.ContainsKey(objectToTeleport)) _teleportActions.Remove(objectToTeleport);
+            
+            var teleportAction = CreateMoveAction(objectToTeleport, Direction.None);
+            teleportAction.Path.Add(target);
+            teleportAction.IsTeleport = true;
+            _teleportActions.Add(objectToTeleport, teleportAction);
         }
 
         private void RegisterObjectToMoveInternal(LevelObjectBase objectToMove, Direction direction, 
@@ -72,7 +71,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void RegisterSubsequentObjectsSet(LevelObjectBase mainObject, List<LevelObjectBase> subsequentObjects)
             => _subsequentObjectsSets.Add(mainObject, (subsequentObjects, false));
         
-        public void ExecuteObjectMovement(Direction direction)
+        public void ExecuteObjectsMovement(Direction direction)
         {
             var movedObjects = _moveActions.Keys.ToList();
             movedObjects = SortBoundObjects(movedObjects, direction);
@@ -206,16 +205,18 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 continueMovement = _moveActions.Values.All(v => v.Interrupted);
                 
             } while (!continueMovement);
+
+            ExecuteObjectsTeleportation();
             
             _bindingGroups.Clear();
             _moveActions.Clear();
             _subsequentObjectsSets.Clear();
         }
 
-        private MoveAction CreateMoveAction(LevelObjectBase player, Direction direction)
+        private MoveAction CreateMoveAction(LevelObjectBase objectToMove, Direction direction)
         {
             var moveAction = new MoveAction() { StartingDirection = direction };
-            moveAction.Path.Add(player.Cell);
+            moveAction.Path.Add(objectToMove.Cell);
             return moveAction;
         }
         
@@ -227,5 +228,32 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 Direction.Left  => objects.OrderByDescending(o => -o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
                 Direction.Right => objects.OrderByDescending(o =>  o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
             };
+
+        private void ExecuteObjectsTeleportation()
+        {
+            var teleportedObjects = _teleportActions.Keys.ToList();
+            
+            foreach (var teleportedObject in teleportedObjects)
+            {
+                var teleportAction = _teleportActions[teleportedObject];
+
+                var teleportTarget = teleportAction.Destination;
+                if (!teleportTarget.CheckObjectEnter(teleportedObject, _teleportActions))
+                {
+                    teleportAction.Interrupted = true;
+                    continue;
+                }
+            }
+
+            foreach (var teleportedObject in teleportedObjects)
+            {
+                var teleportAction = _teleportActions[teleportedObject];
+                if (teleportAction.Interrupted) continue;
+                
+                _mover.TeleportObject(teleportedObject, teleportAction.Destination);
+            }
+            
+            _teleportActions.Clear();
+        }
     }
 }
