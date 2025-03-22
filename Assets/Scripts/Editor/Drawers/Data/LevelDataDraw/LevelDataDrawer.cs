@@ -108,14 +108,12 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
                     }
                     
                     var solidTexture = GetCellTexture(cell.ObjectKey, false);
-                    GUI.color = new Color(1f, 1f, 1f, 0.75f);
-                    var buttonRect = new Rect(cellRect.x + 3, cellRect.y + 3, cellRect.width - 6, cellRect.height - 6); 
+                    var buttonRect = new Rect(cellRect.x + 6, cellRect.y + 6, cellRect.width - 12, cellRect.height - 12); 
                     if (GUI.Button(buttonRect, solidTexture, GUIStyle.none))
                     {
                         var isRightClick = Event.current.type == EventType.Used && Event.current.button == 1;
                         HandleCellClick(cell, isRightClick);
                     }
-                    GUI.color = Color.white;
                     
                     DrawCellColorBackgroundIfNeeded(!string.IsNullOrEmpty(cell.ObjectKey), cell, cellRect);
                     DrawGroupNumberIfNeeded(!string.IsNullOrEmpty(cell.ObjectKey), cell, cellRect);
