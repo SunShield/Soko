@@ -114,7 +114,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             _objectResolver.InjectGameObject(gridObject.gameObject);
             gridObject.transform.localPosition = Vector3.zero;
             gridObject.Initialize(cell);
-            cell.AddObject(gridObject);
+            cell.AddObjectOnStart(gridObject);
             grid.RegisterObject(gridObject);
             return gridObject;
         }

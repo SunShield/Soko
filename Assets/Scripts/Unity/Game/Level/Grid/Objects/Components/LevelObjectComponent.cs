@@ -21,6 +21,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components
         
         protected virtual void PostInitialize() { }
         
+        public virtual void OnStartWithObject(LevelObjectBase enteringObject) { }
         public virtual void OnObjectEntered(LevelObjectBase enteringObject) { }
         public virtual void OnObjectLeft(LevelObjectBase enteringObject) { }
         public virtual bool CheckObjectEnter(LevelObjectBase enteringObject) => true;

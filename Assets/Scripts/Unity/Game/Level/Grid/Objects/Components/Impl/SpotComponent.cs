@@ -20,7 +20,13 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         
         public bool Activated { get; private set; }
 
+        public override void OnStartWithObject(LevelObjectBase enteringObject) =>
+            ProcessEnteredObject(enteringObject, true);
+
         public override void OnObjectEntered(LevelObjectBase enteringObject)
+            => ProcessEnteredObject(enteringObject, false);
+
+        private void ProcessEnteredObject(LevelObjectBase enteringObject, bool isStart)
         {
             if (!enteringObject.HasComponent<SpotActivatorComponent>()) return;
 
@@ -28,7 +34,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             {
                 if (currentColorComponent.Color == ObjectColor.None)
                 {
-                    SetActivated(true);
+                    SetActivated(true, isStart);
                     if (_lockObject) enteringObject.SetCanMove(false);
                     return;
                 }
@@ -39,11 +45,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 
                 if (currentColorComponent.Color == ObjectColor.White && checkedColor != ObjectColor.None ||
                     currentColorComponent.Color != ObjectColor.White && checkedColor == currentColorComponent.Color)
-                    SetActivated(true);
+                    SetActivated(true, isStart);
             }
             else
             {
-                SetActivated(true);
+                SetActivated(true, isStart);
                 if (_lockObject) enteringObject.SetCanMove(false);
             }
         }
@@ -55,17 +61,16 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             SetActivated(false);
         }
         
-        private void SetActivated(bool activated)
+        private void SetActivated(bool activated, bool isStart = false)
         {
             Activated = activated;
             _activeGraphics.SetActive(activated);
             _inactiveGraphics.SetActive(!activated);
 
-            if (Activated)
-            {
-                _soundsManager.PlaySfx(GameSfx.SpotEnter);
-                LevelPlayCycleManager.CheckWin();
-            }
+            if (!Activated) return;
+            
+            _soundsManager.PlaySfx(GameSfx.SpotEnter);
+            if (!isStart) LevelPlayCycleManager.CheckWin();
         }
     }
 }

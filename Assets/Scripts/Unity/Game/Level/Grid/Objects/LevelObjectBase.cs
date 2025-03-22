@@ -60,6 +60,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         
         public void SetCanMove(bool canMove) => _movementRulesComponent.SetCanMove(canMove);
         
+        public void OnStartWithObject(LevelObjectBase enteringObject)
+        {
+            foreach (var component in _componentsList)
+                component.OnStartWithObject(enteringObject);
+        }
+        
         public void OnObjectEntered(LevelObjectBase enteringObject)
         {
             foreach (var component in _componentsList)
