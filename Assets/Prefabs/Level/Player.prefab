@@ -88,6 +88,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <PrefabKey>k__BackingField: p
+  <Layer>k__BackingField: 1
 --- !u!114 &4749361022104256593
 MonoBehaviour:
   m_ObjectHideFlags: 0

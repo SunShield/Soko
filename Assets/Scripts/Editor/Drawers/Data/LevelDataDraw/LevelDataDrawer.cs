@@ -92,14 +92,33 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
                 {
                     var cell = LevelData.Cells[x, y];
                     var hasObject = !string.IsNullOrEmpty(cell.ObjectKey);
-                    var cellTexture = GetCellTexture(hasObject, cell);
                     var buttonStyle = CreateDefaultButtonStyle();
                     
-                    DrawCell(cellTexture, buttonStyle, cell);
+                    var cellRect = GUILayoutUtility.GetRect(CellSize, CellSize, GUILayout.Width(CellSize), 
+                        GUILayout.Height(CellSize));
+
+                    var bgTexture = GetBgTexture();
+                    GUI.DrawTexture(cellRect, bgTexture, ScaleMode.ScaleToFit, true);
                     
-                    var lastRect = GUILayoutUtility.GetLastRect();
-                    DrawCellColorBackgroundIfNeeded(hasObject, cell, lastRect);
-                    DrawGroupNumberIfNeeded(hasObject, cell, lastRect);
+                    var groundTexture = GetCellTexture(cell.GroundObjectKey, true);
+                    if (groundTexture != null)
+                    {
+                        GUI.color = new Color(1f, 1f, 1f, 1f);
+                        GUI.DrawTexture(cellRect, groundTexture, ScaleMode.ScaleToFit, true);
+                    }
+                    
+                    var solidTexture = GetCellTexture(cell.ObjectKey, false);
+                    GUI.color = new Color(1f, 1f, 1f, 0.75f);
+                    var buttonRect = new Rect(cellRect.x + 3, cellRect.y + 3, cellRect.width - 6, cellRect.height - 6); 
+                    if (GUI.Button(buttonRect, solidTexture, GUIStyle.none))
+                    {
+                        var isRightClick = Event.current.type == EventType.Used && Event.current.button == 1;
+                        HandleCellClick(cell, isRightClick);
+                    }
+                    GUI.color = Color.white;
+                    
+                    DrawCellColorBackgroundIfNeeded(!string.IsNullOrEmpty(cell.ObjectKey), cell, cellRect);
+                    DrawGroupNumberIfNeeded(!string.IsNullOrEmpty(cell.ObjectKey), cell, cellRect);
                 }
                 GUILayout.EndHorizontal();
             }
@@ -136,19 +155,22 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
             GUI.Label(groupTextRect, cell.Group.ToString(), groupStyle);
         }
 
-        private Texture2D GetCellTexture(bool hasObject, CellData cell)
-        {
-            var iconTexture = AssetPreview.GetAssetPreview(LevelObjectsSo.Empty);
+        private Texture2D GetBgTexture() =>
+            LevelObjectsSo.Empty.GetComponentInChildren<SpriteRenderer>().sprite.texture;
 
-            if (LevelObjectsSo != null && hasObject &&
-                LevelObjectsSo.LevelObjects.TryGetValue(cell.ObjectKey, out LevelObjectBase obj))
+        private Texture2D GetCellTexture(string objectKey, bool isGround)
+        {
+            Texture2D texture = null;
+            if (string.IsNullOrEmpty(objectKey)) return texture;
+
+            if (LevelObjectsSo.LevelObjects.TryGetValue(objectKey, out var obj))
             {
                 var prefab = obj.gameObject;
                 if (prefab != null)
-                    iconTexture = AssetPreview.GetAssetPreview(prefab) ?? AssetPreview.GetMiniThumbnail(prefab);
+                    texture = prefab.GetComponentInChildren<SpriteRenderer>().sprite.texture;
             }
 
-            return iconTexture;
+            return texture;
         }
 
         private GUIStyle CreateDefaultButtonStyle()
@@ -174,7 +196,24 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
                 default:
                     cell.Color = ObjectColor.None;
                     cell.Group = -1;
-                    cell.ObjectKey = isRightClick ? "" : SelectedObjectKey;
+                    if (isRightClick)
+                    {
+                        // Clear both layers if right-clicking
+                        cell.ObjectKey = "";
+                        cell.GroundObjectKey = "";
+                    }
+                    else if (LevelObjectsSo.LevelObjects.TryGetValue(SelectedObjectKey, out var obj))
+                    {
+                        switch (obj.Layer)
+                        {
+                            case ObjectLayer.Solid:
+                                cell.ObjectKey = SelectedObjectKey;
+                                break;
+                            case ObjectLayer.Ground:
+                                cell.GroundObjectKey = SelectedObjectKey;
+                                break;
+                        }
+                    }
                     break;
             }
         }

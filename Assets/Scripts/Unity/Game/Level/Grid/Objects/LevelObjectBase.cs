@@ -18,6 +18,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
     public class LevelObjectBase : SerializedMonoBehaviour
     {
         [field: SerializeField] public string PrefabKey { get; private set; } // todo: perhaps change to enum
+        [field: SerializeField] public ObjectLayer Layer { get; private set; }
         [field: OdinSerialize] public HashSet<LevelObjectComponent> Components { get; private set; }
         
         private List<LevelObjectComponent> _componentsList = new ();

@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 972285625489795971}
@@ -206,7 +206,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6561217647180942708}
@@ -255,6 +255,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <PrefabKey>k__BackingField: s
+  <Layer>k__BackingField: 0
 --- !u!114 &2093019261371606907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _activeGraphics: {fileID: 2560802046388941190}
   _inactiveGraphics: {fileID: 4563335087664140769}
+  _lockObject: 0
 --- !u!114 &7467227486470620560
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ namespace Soko.Core.Models.Levels
     public class CellData
     {
         public string TileKey;
+        public string GroundObjectKey;
         public string ObjectKey;
         public ObjectColor Color;
         public int Group = -1;
