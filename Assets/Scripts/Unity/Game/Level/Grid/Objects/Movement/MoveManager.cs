@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Soko.Unity.Game.Level.Grid.Enums;
 using VContainer;
 
@@ -16,14 +19,13 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
         private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> _subsequentObjectsSets 
             = new ();
+        private readonly List<Task> _objectMovementSequences = new();
         private readonly List<LevelObjectBase> _delayedMoveObjects = new();
         
         public bool IsExecuting { get; private set; }
         
         public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
         {
-            if (IsExecuting) return;
-            
             RegisterObjectToMoveInternal(objectToMove, direction);
             var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
             if (subsequentObjects == null) return;
@@ -34,7 +36,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 
         public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target)
         {
-            if (IsExecuting) return;
             if (_teleportActions.ContainsKey(objectToTeleport)) _teleportActions.Remove(objectToTeleport);
             
             var teleportAction = CreateMoveAction(objectToTeleport, Direction.None);
@@ -203,11 +204,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     if (moveAction.Interrupted) continue;
                     
                     var targetCell = movedObject.GetTargetCell(direction, moveAction);
-                    movedObject.OnPreMoved();
-                    await _mover.MoveObject(movedObject, targetCell);
-                    movedObject.OnPostMoved();
+                    CreateObjectMoveSequence(movedObject, targetCell);
                     moveAction.Path.Add(targetCell);
                 }
+
+                await Task.WhenAll(_objectMovementSequences);
+                _objectMovementSequences.Clear();
                 
                 playerMoved = true;
                 continueMovement = _moveActions.Values.All(v => v.Interrupted);
@@ -221,6 +223,17 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _subsequentObjectsSets.Clear();
             
             IsExecuting = false;
+        }
+
+        private void CreateObjectMoveSequence(LevelObjectBase movedObject, LevelGridCell targetCell)
+        {
+            var sequence = DOTween.Sequence();
+            sequence.AppendCallback(movedObject.OnPreMoved);
+            sequence.Append(_mover.MoveObject(movedObject, targetCell));
+            sequence.AppendCallback(() => targetCell.AddObject(movedObject));
+            sequence.OnComplete(movedObject.OnPostMoved);
+            
+            _objectMovementSequences.Add(sequence.Play().AsyncWaitForCompletion());
         }
 
         private MoveAction CreateMoveAction(LevelObjectBase objectToMove, Direction direction)
@@ -265,6 +278,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 if (teleportAction.Interrupted) continue;
                 
                 _mover.TeleportObject(teleportedObject, teleportAction.Destination);
+                teleportAction.Destination.AddObject(teleportedObject, true);
             }
             
             _teleportActions.Clear();

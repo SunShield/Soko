@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using DG.Tweening;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 {
@@ -9,16 +9,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
     {
         private const float MoveTime = 0.1f;
         
-        public async Task MoveObject(LevelObjectBase objectToMove, LevelGridCell targetCell)
-        {
-            objectToMove.transform.position = targetCell.transform.position;
-            targetCell.AddObject(objectToMove);
-        }
+        public Tween MoveObject(LevelObjectBase objectToMove, LevelGridCell targetCell)
+            => objectToMove.transform.DOMove(targetCell.transform.position, MoveTime).SetEase(Ease.Linear);
 
         public void TeleportObject(LevelObjectBase objectToMove, LevelGridCell targetCell)
         {
             objectToMove.transform.position = targetCell.transform.position;
-            targetCell.AddObject(objectToMove, true);
         }
     }
 }
