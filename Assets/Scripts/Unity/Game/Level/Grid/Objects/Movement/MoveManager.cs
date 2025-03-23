@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Soko.Unity.Game.Level.Grid.Enums;
 using VContainer;
@@ -15,33 +15,45 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         // todo: after movements triggered while other movements are active will be introduced,
         // a need for a separate binding groups list can appear
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
-        private readonly Dictionary<LevelObjectBase, MoveAction> _teleportActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
-        private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> _subsequentObjectsSets 
-            = new ();
+        private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> 
+            _subsequentObjectsSets  = new ();
         private readonly List<Task> _objectMovementSequences = new();
-        private readonly List<LevelObjectBase> _delayedMoveObjects = new();
+        
+        private readonly Dictionary<LevelObjectBase, MoveAction> _teleportActions = new ();
+        private readonly Dictionary<LevelObjectBase, Action> _onTeleportActions = new ();
+        private readonly List<Task> _objectTeleportSequences = new ();
+        
+        private readonly HashSet<LevelObjectBase> _delayedMoveObjects = new();
         
         public bool IsExecuting { get; private set; }
         
         public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
         {
-            RegisterObjectToMoveInternal(objectToMove, direction);
-            var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
-            if (subsequentObjects == null) return;
+            if (!IsExecuting)
+            {
+                RegisterObjectToMoveInternal(objectToMove, direction);
+                var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
+                if (subsequentObjects == null) return;
             
-            foreach (var subsequentObject in subsequentObjects)
-                RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
+                foreach (var subsequentObject in subsequentObjects)
+                    RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
+            }
+            else
+            {
+                _delayedMoveObjects.Add(objectToMove);
+            }
         }
 
-        public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target)
+        public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target, Action onTeleport)
         {
             if (_teleportActions.ContainsKey(objectToTeleport)) _teleportActions.Remove(objectToTeleport);
             
-            var teleportAction = CreateMoveAction(objectToTeleport, Direction.None);
-            teleportAction.Path.Add(target);
-            teleportAction.IsTeleport = true;
-            _teleportActions.Add(objectToTeleport, teleportAction);
+            var teleportMoveAction = CreateMoveAction(objectToTeleport, Direction.None);
+            teleportMoveAction.Path.Add(target);
+            teleportMoveAction.IsTeleport = true;
+            _teleportActions.Add(objectToTeleport, teleportMoveAction);
+            _onTeleportActions.Add(objectToTeleport, onTeleport);
         }
 
         private void RegisterObjectToMoveInternal(LevelObjectBase objectToMove, Direction direction, 
@@ -234,7 +246,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 
             } while (!continueMovement);
 
-            ExecuteObjectsTeleportation();
+            await ExecuteObjectsTeleportation();
             
             _bindingGroups.Clear();
             _moveActions.Clear();
@@ -272,7 +284,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         /// Teleportations occur STRICTLY after movement caused them. So after all object's final positions are
         /// determined, we can check if teleportation is possible
         /// </summary>
-        private void ExecuteObjectsTeleportation()
+        private async Task ExecuteObjectsTeleportation()
         {
             var teleportedObjects = _teleportActions.Keys.ToList();
             
@@ -293,11 +305,22 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 var teleportAction = _teleportActions[teleportedObject];
                 if (teleportAction.Interrupted) continue;
                 
-                _mover.TeleportObject(teleportedObject, teleportAction.Destination);
-                teleportAction.Destination.AddObject(teleportedObject, true);
+                CreateTeleportSequence(teleportedObject, teleportAction.Destination);
             }
+
+            await Task.WhenAll(_objectTeleportSequences);
+            _objectTeleportSequences.Clear();
             
+            _onTeleportActions.Clear();
             _teleportActions.Clear();
+        }
+
+        private void CreateTeleportSequence(LevelObjectBase teleportedObject, LevelGridCell destination)
+        {
+            var sequence = _mover.TeleportObject(teleportedObject, destination);
+            sequence.AppendCallback(() => destination.AddObject(teleportedObject, true));
+            sequence.OnComplete(() => _onTeleportActions[teleportedObject].Invoke());
+            _objectTeleportSequences.Add(sequence.Play().AsyncWaitForCompletion());
         }
     }
 }

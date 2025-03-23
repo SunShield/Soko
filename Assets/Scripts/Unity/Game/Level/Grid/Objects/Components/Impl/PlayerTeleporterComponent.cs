@@ -28,7 +28,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .First();
 
             if (boundTeleporter == null) return;
-            _moveManager.RegisterObjectToTeleport(enteringObject, boundTeleporter.Cell);
+            _moveManager.RegisterObjectToTeleport(enteringObject, boundTeleporter.Cell, OnTeleport);
         }
+
+        private void OnTeleport() => _soundsManager.PlaySfx(GameSfx.Teleporter);
     }
 }
