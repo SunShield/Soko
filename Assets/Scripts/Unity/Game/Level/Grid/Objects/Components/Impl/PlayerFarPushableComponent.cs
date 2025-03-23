@@ -7,7 +7,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     {
         [Inject] private SoundsManager _soundsManager;
         
-        public override void OnPreMoved() => _soundsManager.PlaySfx(GameSfx.SlideableBoxPush);
-        public override void OnPostMoved() => _soundsManager.PlaySfx(GameSfx.SlideableBoxPushEnd);
+        public override void OnMoveStarted() => _soundsManager.PlaySfx(GameSfx.SlideableBoxPush);
+        public override void OnMoveFinished() => _soundsManager.PlaySfx(GameSfx.SlideableBoxPushEnd);
     }
 }

@@ -28,6 +28,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             return isPLayerMovable ? new List<LevelObjectBase> { possibleObject } : null;
         }
 
-        public override void OnPreMoved() => _soundsManager.PlaySfx(GameSfx.PlayerMove);
+        public override void OnMoveStarted() => _soundsManager.PlaySfx(GameSfx.PlayerMove);
     }
 }

@@ -108,8 +108,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             return true;
         }
 
-        public void OnPreMoved() => _movementRulesComponent.OnPreMoved();
-        public void OnPostMoved() => _movementRulesComponent.OnPostMoved();
+        public void OnMoveStarted() => _movementRulesComponent.OnMoveStarted();
+        public void OnMoveFinished() => _movementRulesComponent.OnMoveFinished();
         
         public List<LevelObjectBase> GetSubsequentObjects(Direction direction, MoveAction moveAction)
             => _movementRulesComponent.GetSubsequentObjects(direction, moveAction);

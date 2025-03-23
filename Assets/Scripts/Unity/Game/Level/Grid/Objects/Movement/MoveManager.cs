@@ -83,7 +83,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             movedObjects = SortBoundObjects(movedObjects, direction);
 
             var continueMovement = true;
-            var playerMoved = false;
             do
             {
                 foreach (var levelObject in movedObjects)
@@ -197,11 +196,31 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     subsequentObjectSetData.objects.ForEach(o => _moveActions[o].Interrupted = true);    
                 }
                 _subsequentObjectsSets.Clear();
+                
+                foreach (var movedObject in movedObjects)
+                {
+                    var moveAction = _moveActions[movedObject];
+                    if (!moveAction.Started && !moveAction.Interrupted)
+                    {
+                        moveAction.Started = true;
+                        movedObject.OnMoveStarted();
+                    }
+                }
 
                 foreach (var movedObject in movedObjects)
                 {
                     var moveAction = _moveActions[movedObject];
-                    if (moveAction.Interrupted) continue;
+                    if (!moveAction.Finished && moveAction.Interrupted)
+                    {
+                        moveAction.Finished = true;
+                        if (moveAction.Path.Count > 1) movedObject.OnMoveFinished();
+                    }
+                }
+
+                foreach (var movedObject in movedObjects)
+                {
+                    var moveAction = _moveActions[movedObject];
+                    if (moveAction.Finished) continue;
                     
                     var targetCell = movedObject.GetTargetCell(direction, moveAction);
                     CreateObjectMoveSequence(movedObject, targetCell);
@@ -211,7 +230,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 await Task.WhenAll(_objectMovementSequences);
                 _objectMovementSequences.Clear();
                 
-                playerMoved = true;
                 continueMovement = _moveActions.Values.All(v => v.Interrupted);
                 
             } while (!continueMovement);
@@ -228,10 +246,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void CreateObjectMoveSequence(LevelObjectBase movedObject, LevelGridCell targetCell)
         {
             var sequence = DOTween.Sequence();
-            sequence.AppendCallback(movedObject.OnPreMoved);
             sequence.Append(_mover.MoveObject(movedObject, targetCell));
             sequence.AppendCallback(() => targetCell.AddObject(movedObject));
-            sequence.OnComplete(movedObject.OnPostMoved);
             
             _objectMovementSequences.Add(sequence.Play().AsyncWaitForCompletion());
         }

@@ -25,6 +25,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .All(entry => !entry.Value.Interrupted);
         }
 
-        public override void OnPreMoved() => _soundsManager.PlaySfx(GameSfx.BoxPush);
+        public override void OnMoveStarted() => _soundsManager.PlaySfx(GameSfx.BoxPush);
     }
 }
