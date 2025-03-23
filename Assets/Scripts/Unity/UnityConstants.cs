@@ -12,5 +12,10 @@
         {
             public const string MainMenuMusic = "MainMenu";
         }
+        
+        public class Level
+        {
+            public const int NoBindingGroup = -1;
+        }
     }
 }

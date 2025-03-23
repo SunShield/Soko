@@ -23,7 +23,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects
         private GroupComponent _groupComponent;
         
         public LevelGridCell Cell { get; private set; }
-        public int Group => _groupComponent != null ? _groupComponent.Group : -1;
+        public int Group => _groupComponent != null ? _groupComponent.Group : UnityConstants.Level.NoBindingGroup;
         public GridCoords Position => Cell.Coords;
 
         public void Initialize(LevelGridCell cell)

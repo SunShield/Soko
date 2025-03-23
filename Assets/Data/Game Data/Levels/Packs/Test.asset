@@ -128,7 +128,7 @@ MonoBehaviour:
       Data: 0
     - Name: Group
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -407,7 +407,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 1
       Data: b
@@ -416,7 +416,7 @@ MonoBehaviour:
       Data: 0
     - Name: Group
       Entry: 3
-      Data: 1
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -536,7 +536,7 @@ MonoBehaviour:
       Data: 0
     - Name: Group
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: 
       Entry: 8
       Data: 

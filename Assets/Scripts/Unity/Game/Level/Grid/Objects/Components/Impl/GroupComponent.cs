@@ -8,8 +8,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
     public class GroupComponent : LevelObjectComponent
     {
-        public const int NoGroup = -1; 
-        
         [SerializeField] private GameObject _groupInfoBlock;
         [SerializeField] private SpriteRenderer _groupSprite;
 
@@ -22,9 +20,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         public void SetGroup(int group)
         {
             Group = group;
-            _groupInfoBlock.SetActive(group != NoGroup);
+            _groupInfoBlock.SetActive(group != UnityConstants.Level.NoBindingGroup);
             
-            if (group == NoGroup) return;
+            if (group == UnityConstants.Level.NoBindingGroup) return;
             
             _groupSprite.sprite = _groupSpritesSo.GroupSprites[group];
         }

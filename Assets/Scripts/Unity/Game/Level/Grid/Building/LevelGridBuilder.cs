@@ -139,7 +139,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             foreach (var levelObject in grid.LevelObjects)
             {
                 if (!levelObject.TryGetObjectComponent<GroupComponent>(out var groupComponent)) continue;
-                if (groupComponent.Group == -1) continue;
+                if (groupComponent.Group == UnityConstants.Level.NoBindingGroup) continue;
                 
                 if (!groupedObjects.ContainsKey(groupComponent.Group))
                     groupedObjects.Add(groupComponent.Group, new());

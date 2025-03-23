@@ -71,7 +71,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void RegisterBindingGroupIfNeeded(LevelObjectBase objectToMove)
         {
             var group = objectToMove.Group; 
-            if (group == -1) return;
+            if (group == UnityConstants.Level.NoBindingGroup) return;
             
             _bindingGroups.AddOrReplace(group, new () { objectToMove });
             _bindingGroups[group].AddRange(objectToMove.GetObjectBindingGroup());
@@ -197,7 +197,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 
         private bool CheckBoundObjectsAllowObjectToMove(LevelObjectBase levelObject, MoveAction moveAction)
         {
-            if (levelObject.Group == -1) return true;
+            if (levelObject.Group == UnityConstants.Level.NoBindingGroup) return true;
             
             var boundObjects = _bindingGroups[levelObject.Group];
             var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
