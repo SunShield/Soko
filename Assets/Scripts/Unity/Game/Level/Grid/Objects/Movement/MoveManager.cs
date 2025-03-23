@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
+using Soko.Core.Extensions;
 using Soko.Unity.Game.Level.Grid.Enums;
 using VContainer;
 
@@ -12,8 +13,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
     {
         [Inject] private LevelObjectMover _mover;
         
-        // todo: after movements triggered while other movements are active will be introduced,
-        // a need for a separate binding groups list can appear
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
         private readonly Dictionary<LevelObjectBase, (List<LevelObjectBase> objects, bool moved)> 
@@ -33,27 +32,25 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             if (!IsExecuting)
             {
                 RegisterObjectToMoveInternal(objectToMove, direction);
-                var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
-                if (subsequentObjects == null) return;
-            
-                foreach (var subsequentObject in subsequentObjects)
-                    RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
+                RegisterSubsequentObjectsIfNeeded(objectToMove, direction);
             }
             else
-            {
                 _delayedMoveObjects.Add(objectToMove);
-            }
+        }
+
+        private void RegisterSubsequentObjectsIfNeeded(LevelObjectBase objectToMove, Direction direction)
+        {
+            var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
+            if (subsequentObjects == null) return;
+            
+            foreach (var subsequentObject in subsequentObjects)
+                RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
         }
 
         public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target, Action onTeleport)
         {
-            if (_teleportActions.ContainsKey(objectToTeleport)) _teleportActions.Remove(objectToTeleport);
-            
-            var teleportMoveAction = CreateMoveAction(objectToTeleport, Direction.None);
-            teleportMoveAction.Path.Add(target);
-            teleportMoveAction.IsTeleport = true;
-            _teleportActions.Add(objectToTeleport, teleportMoveAction);
-            _onTeleportActions.Add(objectToTeleport, onTeleport);
+            _teleportActions.AddOrReplace(objectToTeleport, CreateTeleportAction(objectToTeleport, target));
+            _onTeleportActions.AddOrReplace(objectToTeleport, onTeleport);
         }
 
         private void RegisterObjectToMoveInternal(LevelObjectBase objectToMove, Direction direction, 
@@ -61,25 +58,21 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         {
             var objectsToMove = objectToMove.GetObjectBindingGroup();
             objectsToMove.Add(objectToMove);
-            objectsToMove.ForEach(obj =>
-            {
-                if (_moveActions.ContainsKey(obj)) _moveActions.Remove(obj);
-                
-                _moveActions.Add(obj, CreateMoveAction(obj, direction));
-            });
+            objectsToMove.ForEach(obj => AddMovementAction(direction, obj));
             
             RegisterBindingGroupIfNeeded(objectToMove);
             if (mainObject != null) RegisterSubsequentObjectsSet(mainObject, objectsToMove);
         }
 
+        private void AddMovementAction(Direction direction, LevelObjectBase obj)
+            => _moveActions.AddOrReplace(obj, CreateMoveAction(obj, direction));
+
         private void RegisterBindingGroupIfNeeded(LevelObjectBase objectToMove)
         {
             var group = objectToMove.Group; 
             if (group == -1) return;
-            if (_bindingGroups.ContainsKey(group))
-                _bindingGroups.Remove(group);
             
-            _bindingGroups.Add(group, new () { objectToMove });
+            _bindingGroups.AddOrReplace(group, new () { objectToMove });
             _bindingGroups[group].AddRange(objectToMove.GetObjectBindingGroup());
         }
 
@@ -269,6 +262,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             var moveAction = new MoveAction() { StartingDirection = direction };
             moveAction.Path.Add(objectToMove.Cell);
             return moveAction;
+        }
+        
+        private MoveAction CreateTeleportAction(LevelObjectBase objectToTeleport, LevelGridCell destination)
+        {
+            var teleportMoveAction = CreateMoveAction(objectToTeleport, Direction.None);
+            teleportMoveAction.Path.Add(destination);
+            teleportMoveAction.IsTeleport = true;
+            return teleportMoveAction;
         }
         
         private List<LevelObjectBase> SortBoundObjects(List<LevelObjectBase> objects, Direction direction)
