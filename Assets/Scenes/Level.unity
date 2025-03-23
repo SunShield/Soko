@@ -353,6 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991062877}
   - component: {fileID: 991062876}
+  - component: {fileID: 991062878}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -390,6 +391,18 @@ Transform:
   - {fileID: 833026632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991062878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991062875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361b17aabcec4f9b98b72f41c4e08a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1390779579
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +452,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _levelPlayCycleManager: {fileID: 991062876}
+  _userMovementManager: {fileID: 991062878}
   _levelObjectsSo: {fileID: 11400000, guid: c94de471907abfb4cb61c54549f7c2e1, type: 2}
   _colorDataSo: {fileID: 11400000, guid: f0eebb13ec7f0964c9bf3ceb0465ad3e, type: 2}
 --- !u!1660057539 &9223372036854775807

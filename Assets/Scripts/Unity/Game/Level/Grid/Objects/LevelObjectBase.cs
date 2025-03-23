@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Soko.Unity.Game.Level.Grid.Objects
 {
@@ -111,6 +107,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects
 
             return true;
         }
+
+        public void OnPreMoved() => _movementRulesComponent.OnPreMoved();
+        public void OnPostMoved() => _movementRulesComponent.OnPostMoved();
         
         public List<LevelObjectBase> GetSubsequentObjects(Direction direction, MoveAction moveAction)
             => _movementRulesComponent.GetSubsequentObjects(direction, moveAction);

@@ -1,9 +1,9 @@
 ﻿using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Building;
-using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Level.Management;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,6 +13,7 @@ namespace Soko.Unity.Game.DI
     public class LevelScope : LifetimeScope
     {
         [SerializeField] private LevelPlayCycleManager _levelPlayCycleManager;
+        [SerializeField] private UserMovementManager _userMovementManager;
         [SerializeField] private LevelObjectsSo _levelObjectsSo;
         [SerializeField] private ColorDataSo _colorDataSo;
         
@@ -20,6 +21,7 @@ namespace Soko.Unity.Game.DI
         {
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
             builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+            builder.RegisterComponent(_userMovementManager).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();

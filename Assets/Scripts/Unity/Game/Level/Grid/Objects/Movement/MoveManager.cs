@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Soko.Unity.Game.Level.Grid.Enums;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
-using Soko.Unity.Game.Level.Grid.Objects.Helpers;
-using UnityEngine;
 using VContainer;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Movement
@@ -21,8 +18,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             = new ();
         private readonly List<LevelObjectBase> _delayedMoveObjects = new();
         
+        public bool IsExecuting { get; private set; }
+        
         public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
         {
+            if (IsExecuting) return;
+            
             RegisterObjectToMoveInternal(objectToMove, direction);
             var subsequentObjects = objectToMove.GetSubsequentObjects(direction, _moveActions[objectToMove]);
             if (subsequentObjects == null) return;
@@ -33,6 +34,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 
         public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target)
         {
+            if (IsExecuting) return;
             if (_teleportActions.ContainsKey(objectToTeleport)) _teleportActions.Remove(objectToTeleport);
             
             var teleportAction = CreateMoveAction(objectToTeleport, Direction.None);
@@ -71,8 +73,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void RegisterSubsequentObjectsSet(LevelObjectBase mainObject, List<LevelObjectBase> subsequentObjects)
             => _subsequentObjectsSets.Add(mainObject, (subsequentObjects, false));
         
-        public void ExecuteObjectsMovement(Direction direction)
+        public async void ExecuteObjectsMovement(Direction direction)
         {
+            if (IsExecuting) return;
+            IsExecuting = true;
+            
             var movedObjects = _moveActions.Keys.ToList();
             movedObjects = SortBoundObjects(movedObjects, direction);
 
@@ -198,7 +203,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                     if (moveAction.Interrupted) continue;
                     
                     var targetCell = movedObject.GetTargetCell(direction, moveAction);
-                    _mover.MoveObject(movedObject, targetCell);
+                    movedObject.OnPreMoved();
+                    await _mover.MoveObject(movedObject, targetCell);
+                    movedObject.OnPostMoved();
                     moveAction.Path.Add(targetCell);
                 }
                 
@@ -212,6 +219,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _bindingGroups.Clear();
             _moveActions.Clear();
             _subsequentObjectsSets.Clear();
+            
+            IsExecuting = false;
         }
 
         private MoveAction CreateMoveAction(LevelObjectBase objectToMove, Direction direction)

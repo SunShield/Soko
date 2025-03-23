@@ -1,6 +1,4 @@
 ﻿using Soko.Unity.Game.Level.Cycle;
-using Soko.Unity.Game.Level.Grid.Objects.Components.Impl.Movement;
-using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using UnityEngine;
 using VContainer;
 

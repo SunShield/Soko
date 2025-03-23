@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Soko.Unity.Game.Level.Grid.Enums;
-using Soko.Unity.Game.Level.Grid.Objects.Helpers;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Sounds;
 using VContainer;
@@ -25,5 +24,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 .Where(entry => entry.Key.HasComponent<PlayerSimplePushableComponent>())
                 .All(entry => !entry.Value.Interrupted);
         }
+
+        public override void OnPreMoved() => _soundsManager.PlaySfx(GameSfx.BoxPush);
     }
 }
