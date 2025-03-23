@@ -47,12 +47,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 RegisterObjectToMoveInternal(subsequentObject, direction, objectToMove);
         }
 
-        public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target, Action onTeleport)
-        {
-            _teleportActions.AddOrReplace(objectToTeleport, CreateTeleportAction(objectToTeleport, target));
-            _onTeleportActions.AddOrReplace(objectToTeleport, onTeleport);
-        }
-
         private void RegisterObjectToMoveInternal(LevelObjectBase objectToMove, Direction direction, 
             LevelObjectBase mainObject = null)
         {
@@ -67,6 +61,13 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void AddMovementAction(Direction direction, LevelObjectBase obj)
             => _moveActions.AddOrReplace(obj, CreateMoveAction(obj, direction));
 
+        private MoveAction CreateMoveAction(LevelObjectBase objectToMove, Direction direction)
+        {
+            var moveAction = new MoveAction() { StartingDirection = direction };
+            moveAction.Path.Add(objectToMove.Cell);
+            return moveAction;
+        }
+
         private void RegisterBindingGroupIfNeeded(LevelObjectBase objectToMove)
         {
             var group = objectToMove.Group; 
@@ -79,173 +80,195 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private void RegisterSubsequentObjectsSet(LevelObjectBase mainObject, List<LevelObjectBase> subsequentObjects)
             => _subsequentObjectsSets.Add(mainObject, (subsequentObjects, false));
         
+        public void RegisterObjectToTeleport(LevelObjectBase objectToTeleport, LevelGridCell target, Action onTeleport)
+        {
+            _teleportActions.AddOrReplace(objectToTeleport, CreateTeleportAction(objectToTeleport, target));
+            _onTeleportActions.AddOrReplace(objectToTeleport, onTeleport);
+        }
+        
+        private MoveAction CreateTeleportAction(LevelObjectBase objectToTeleport, LevelGridCell destination)
+        {
+            var teleportMoveAction = CreateMoveAction(objectToTeleport, Direction.None);
+            teleportMoveAction.Path.Add(destination);
+            teleportMoveAction.IsTeleport = true;
+            return teleportMoveAction;
+        }
+        
         public async void ExecuteObjectsMovement(Direction direction)
         {
             if (IsExecuting) return;
             IsExecuting = true;
             
-            var movedObjects = _moveActions.Keys.ToList();
-            movedObjects = SortBoundObjects(movedObjects, direction);
-
-            var continueMovement = true;
+            var movedObjects = GetSortedMoveObjects(direction);
             do
             {
-                foreach (var levelObject in movedObjects)
-                {
-                    var moveAction = _moveActions[levelObject];
-                    var canMove = levelObject.CanMove(direction, moveAction);
-                    if (!canMove)
-                    {
-                        moveAction.Interrupted = true;
-                        continue;
-                    }
-
-                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
-                    if (!targetCell)
-                    {
-                        moveAction.Interrupted = true;
-                        continue;
-                    }
-
-                    var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
-                    if (!canEnterCell)
-                    {
-                        moveAction.Interrupted = true;
-                        continue;
-                    }
-                }
-
-                foreach (var levelObject in movedObjects)
-                {
-                    var moveAction = _moveActions[levelObject];
-
-                    if (levelObject.Group != -1)
-                    {
-                        var boundObjects = _bindingGroups[levelObject.Group];
-                        var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
-                        
-                        if (!levelObject.CheckBoundObjectsAllowMove(moveActions))
-                        {
-                            moveAction.Interrupted = true;
-                            continue;
-                        }
-                    }
-                    
-                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
-                    if (targetCell != null)
-                    {
-                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
-                        if (!canEnterCell)
-                        {
-                            moveAction.Interrupted = true;
-                            continue;
-                        }
-                    }
-                }
+                CheckObjectsMovement(direction, movedObjects);
+                await PerformMovement(direction, movedObjects);
                 
-                foreach (var levelObject in movedObjects)
-                {
-                    var moveAction = _moveActions[levelObject];
-
-                    if (levelObject.Group != -1)
-                    {
-                        var boundObjects = _bindingGroups[levelObject.Group];
-                        var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
-                        
-                        if (!levelObject.CheckBoundObjectsAllowMove(moveActions))
-                        {
-                            moveAction.Interrupted = true;
-                            continue;
-                        }
-                    }
-                    
-                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
-                    if (targetCell != null)
-                    {
-                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
-                        if (!canEnterCell)
-                        {
-                            moveAction.Interrupted = true;
-                            continue;
-                        }
-                    }
-                }
-
-                foreach (var levelObject in movedObjects)
-                {
-                    var moveAction = _moveActions[levelObject];
-                    
-                    var targetCell = levelObject.GetTargetCell(direction, moveAction);
-                    if (targetCell != null)
-                    {
-                        var canEnterCell = targetCell.CheckObjectEnter(levelObject, _moveActions);
-                        if (!canEnterCell)
-                        {
-                            moveAction.Interrupted = true;
-                            continue;
-                        }
-                    }
-                }
-
-                // Subsequent objects movement is stopped in their main object was failed to move once
-                // The most typical example of this logic is a situation when player fails to move and all subsequent
-                // objects movement is interrupted
-                foreach (var mainObject in _subsequentObjectsSets.Keys)
-                {
-                    var subsequentObjectSetData = _subsequentObjectsSets[mainObject];
-                    if (subsequentObjectSetData.moved) continue;
-                    
-                    var moveAction = _moveActions[mainObject];
-                    if (!moveAction.Interrupted) continue;
-                    
-                    subsequentObjectSetData.objects.ForEach(o => _moveActions[o].Interrupted = true);    
-                }
-                _subsequentObjectsSets.Clear();
-                
-                foreach (var movedObject in movedObjects)
-                {
-                    var moveAction = _moveActions[movedObject];
-                    if (!moveAction.Started && !moveAction.Interrupted)
-                    {
-                        moveAction.Started = true;
-                        movedObject.OnMoveStarted();
-                    }
-                }
-
-                foreach (var movedObject in movedObjects)
-                {
-                    var moveAction = _moveActions[movedObject];
-                    if (!moveAction.Finished && moveAction.Interrupted)
-                    {
-                        moveAction.Finished = true;
-                        if (moveAction.Path.Count > 1) movedObject.OnMoveFinished();
-                    }
-                }
-
-                foreach (var movedObject in movedObjects)
-                {
-                    var moveAction = _moveActions[movedObject];
-                    if (moveAction.Finished) continue;
-                    
-                    var targetCell = movedObject.GetTargetCell(direction, moveAction);
-                    CreateObjectMoveSequence(movedObject, targetCell);
-                    moveAction.Path.Add(targetCell);
-                }
-
-                await Task.WhenAll(_objectMovementSequences);
-                _objectMovementSequences.Clear();
-                
-                continueMovement = _moveActions.Values.All(v => v.Interrupted);
-                
-            } while (!continueMovement);
+            } while (!CheckContinueMovement());
 
             await ExecuteObjectsTeleportation();
-            
-            _bindingGroups.Clear();
-            _moveActions.Clear();
-            _subsequentObjectsSets.Clear();
-            
+            ClearMovementState();
+
             IsExecuting = false;
+        }
+
+        private List<LevelObjectBase> GetSortedMoveObjects(Direction direction)
+            => SortObjects(_moveActions.Keys.ToList(), direction);
+        
+        private List<LevelObjectBase> SortObjects(List<LevelObjectBase> objects, Direction direction)
+        => direction switch
+        {
+            Direction.Up    => objects.OrderByDescending(o => -o.Position.Rows).ThenBy(o => o.Position.Columns).ToList(),
+            Direction.Down  => objects.OrderByDescending(o =>  o.Position.Rows).ThenBy(o => o.Position.Columns).ToList(),
+            Direction.Left  => objects.OrderByDescending(o => -o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
+            Direction.Right => objects.OrderByDescending(o =>  o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
+        };
+
+        /// <summary>
+        /// A lot of repetitive checks inside this are required to create a consistent movement 
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="movedObjects"></param>
+        private void CheckObjectsMovement(Direction direction, List<LevelObjectBase> movedObjects)
+        {
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+                    
+                if (!CheckObjectCanMove(direction, movedObject, moveAction)) continue;
+                if (!CheckObjectHasTargetCell(direction, movedObject, moveAction, out var targetCell)) continue;
+                CheckObjectCanEnterCell(targetCell, movedObject, moveAction, _moveActions);
+            }
+
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+
+                if (!CheckBoundObjectsAllowObjectToMove(movedObject, moveAction)) continue;
+                if (!CheckObjectHasTargetCell(direction, movedObject, moveAction, out var targetCell)) continue;
+                CheckObjectCanEnterCell(targetCell, movedObject, moveAction, _moveActions);
+            }
+                
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+
+                if (!CheckBoundObjectsAllowObjectToMove(movedObject, moveAction)) continue;
+                if (!CheckObjectHasTargetCell(direction, movedObject, moveAction, out var targetCell)) continue;
+                CheckObjectCanEnterCell(targetCell, movedObject, moveAction, _moveActions);
+            }
+
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+                    
+                if (!CheckObjectHasTargetCell(direction, movedObject, moveAction, out var targetCell)) continue;
+                CheckObjectCanEnterCell(targetCell, movedObject, moveAction, _moveActions);
+            }
+            
+            InterruptSubsequentObjectMovementIfNeeded();
+        }
+
+        private bool CheckObjectCanMove(Direction direction, LevelObjectBase movedObject, MoveAction moveAction)
+        {
+            var canMove = movedObject.CanMove(direction, moveAction);
+            if (!canMove) moveAction.Interrupted = true;
+
+            return !moveAction.Interrupted;
+        }
+
+        private bool CheckObjectHasTargetCell(Direction direction, LevelObjectBase movedObject, MoveAction moveAction,
+            out LevelGridCell targetCell)
+        {
+            targetCell = movedObject.GetTargetCell(direction, moveAction);
+            if (!targetCell) moveAction.Interrupted = true;
+
+            return !moveAction.Interrupted;
+        }
+
+        private void CheckObjectCanEnterCell(LevelGridCell targetCell, LevelObjectBase movedObject,
+            MoveAction moveAction, Dictionary<LevelObjectBase, MoveAction> moveActions)
+        {
+            if (targetCell.CheckObjectEnter(movedObject, moveActions)) return;
+            
+            moveAction.Interrupted = true;
+        }
+
+        private bool CheckBoundObjectsAllowObjectToMove(LevelObjectBase levelObject, MoveAction moveAction)
+        {
+            if (levelObject.Group == -1) return true;
+            
+            var boundObjects = _bindingGroups[levelObject.Group];
+            var moveActions = boundObjects.ToDictionary(obj => obj, obj => _moveActions[obj]);
+
+            if (!levelObject.CheckBoundObjectsAllowMove(moveActions)) moveAction.Interrupted = true;
+            return !moveAction.Interrupted;
+        }
+
+        private void InterruptSubsequentObjectMovementIfNeeded()
+        {
+            foreach (var mainObject in _subsequentObjectsSets.Keys)
+            {
+                var subsequentObjectSetData = _subsequentObjectsSets[mainObject];
+                if (subsequentObjectSetData.moved) continue;
+                    
+                var moveAction = _moveActions[mainObject];
+                if (!moveAction.Interrupted) continue;
+                    
+                subsequentObjectSetData.objects.ForEach(o => _moveActions[o].Interrupted = true);    
+            }
+
+            _subsequentObjectsSets.Clear();
+        }
+
+        private async Task PerformMovement(Direction direction, List<LevelObjectBase> movedObjects)
+        {
+            OnMoveStarted(movedObjects);
+            OnMoveFinishedForPreviouslyMovedObjects(movedObjects); // for already moved objects
+
+            MoveObjectsIfNeeded(direction, movedObjects);
+
+            await WaitForMovementToFinish();
+        }
+
+        private void OnMoveStarted(List<LevelObjectBase> movedObjects)
+        {
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+                if (!moveAction.Started && !moveAction.Interrupted)
+                {
+                    moveAction.Started = true;
+                    movedObject.OnMoveStarted();
+                }
+            }
+        }
+
+        private void OnMoveFinishedForPreviouslyMovedObjects(List<LevelObjectBase> movedObjects)
+        {
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+                if (!moveAction.Finished && moveAction.Interrupted)
+                {
+                    moveAction.Finished = true;
+                    if (moveAction.Path.Count > 1) movedObject.OnMoveFinished();
+                }
+            }
+        }
+
+        private void MoveObjectsIfNeeded(Direction direction, List<LevelObjectBase> movedObjects)
+        {
+            foreach (var movedObject in movedObjects)
+            {
+                var moveAction = _moveActions[movedObject];
+                if (moveAction.Finished) continue;
+                    
+                var targetCell = movedObject.GetTargetCell(direction, moveAction);
+                CreateObjectMoveSequence(movedObject, targetCell);
+                moveAction.Path.Add(targetCell);
+            }
         }
 
         private void CreateObjectMoveSequence(LevelObjectBase movedObject, LevelGridCell targetCell)
@@ -257,34 +280,21 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _objectMovementSequences.Add(sequence.Play().AsyncWaitForCompletion());
         }
 
-        private MoveAction CreateMoveAction(LevelObjectBase objectToMove, Direction direction)
+        private async Task WaitForMovementToFinish()
         {
-            var moveAction = new MoveAction() { StartingDirection = direction };
-            moveAction.Path.Add(objectToMove.Cell);
-            return moveAction;
+            await Task.WhenAll(_objectMovementSequences);
+            _objectMovementSequences.Clear();
         }
-        
-        private MoveAction CreateTeleportAction(LevelObjectBase objectToTeleport, LevelGridCell destination)
-        {
-            var teleportMoveAction = CreateMoveAction(objectToTeleport, Direction.None);
-            teleportMoveAction.Path.Add(destination);
-            teleportMoveAction.IsTeleport = true;
-            return teleportMoveAction;
-        }
-        
-        private List<LevelObjectBase> SortBoundObjects(List<LevelObjectBase> objects, Direction direction)
-            => direction switch
-            {
-                Direction.Up    => objects.OrderByDescending(o => -o.Position.Rows).ThenBy(o => o.Position.Columns).ToList(),
-                Direction.Down  => objects.OrderByDescending(o =>  o.Position.Rows).ThenBy(o => o.Position.Columns).ToList(),
-                Direction.Left  => objects.OrderByDescending(o => -o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
-                Direction.Right => objects.OrderByDescending(o =>  o.Position.Columns).ThenBy(o => -o.Position.Rows).ToList(),
-            };
 
-        /// <summary>
-        /// Teleportations occur STRICTLY after movement caused them. So after all object's final positions are
-        /// determined, we can check if teleportation is possible
-        /// </summary>
+        private bool CheckContinueMovement() => _moveActions.Values.All(v => v.Interrupted);
+
+        private void ClearMovementState()
+        {
+            _bindingGroups.Clear();
+            _moveActions.Clear();
+            _subsequentObjectsSets.Clear();
+        }
+
         private async Task ExecuteObjectsTeleportation()
         {
             var teleportedObjects = _teleportActions.Keys.ToList();
@@ -292,15 +302,19 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             foreach (var teleportedObject in teleportedObjects)
             {
                 var teleportAction = _teleportActions[teleportedObject];
-
                 var teleportTarget = teleportAction.Destination;
-                if (!teleportTarget.CheckObjectEnter(teleportedObject, _teleportActions))
-                {
-                    teleportAction.Interrupted = true;
-                    continue;
-                }
+                
+                CheckObjectCanEnterCell(teleportTarget, teleportedObject, teleportAction, _teleportActions);
             }
 
+            TeleportObjectsIfNeeded(teleportedObjects);
+
+            await FinishTeleportation();
+            ClearTeleportationState();
+        }
+
+        private void TeleportObjectsIfNeeded(List<LevelObjectBase> teleportedObjects)
+        {
             foreach (var teleportedObject in teleportedObjects)
             {
                 var teleportAction = _teleportActions[teleportedObject];
@@ -308,12 +322,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 
                 CreateTeleportSequence(teleportedObject, teleportAction.Destination);
             }
-
-            await Task.WhenAll(_objectTeleportSequences);
-            _objectTeleportSequences.Clear();
-            
-            _onTeleportActions.Clear();
-            _teleportActions.Clear();
         }
 
         private void CreateTeleportSequence(LevelObjectBase teleportedObject, LevelGridCell destination)
@@ -322,6 +330,18 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             sequence.AppendCallback(() => destination.AddObject(teleportedObject, true));
             sequence.OnComplete(() => _onTeleportActions[teleportedObject].Invoke());
             _objectTeleportSequences.Add(sequence.Play().AsyncWaitForCompletion());
+        }
+
+        private async Task FinishTeleportation()
+        {
+            await Task.WhenAll(_objectTeleportSequences);
+            _objectTeleportSequences.Clear();
+        }
+
+        private void ClearTeleportationState()
+        {
+            _onTeleportActions.Clear();
+            _teleportActions.Clear();
         }
     }
 }
