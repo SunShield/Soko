@@ -93,6 +93,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
 
         private void DrawGrid()
         {
+            GUI.color = new Color(1f, 1f, 1f, 1f);
             for (int y = 0; y < LevelData.Cells.GetLength(1); y++)
             {
                 GUILayout.BeginHorizontal();
@@ -111,7 +112,6 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
                     var groundTexture = GetCellTexture(cell.GroundObjectKey, true);
                     if (groundTexture != null)
                     {
-                        GUI.color = new Color(1f, 1f, 1f, 1f);
                         GUI.DrawTexture(cellRect, groundTexture, ScaleMode.ScaleToFit, true);
                     }
                     
