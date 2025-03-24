@@ -10,12 +10,10 @@ namespace Soko.Core.Models.Levels
         public string GroundObjectKey;
         public ObjectColor GroundColor;
         public int GroundGroup = -1;
-        public Direction GroundDirection = Direction.None;
         
         public string ObjectKey;
         public ObjectColor Color;
         public int Group = -1;
-        public Direction Direction = Direction.None;
 
         public void SetObjectKey(string key, ObjectLayer layer)
         {
@@ -33,12 +31,6 @@ namespace Soko.Core.Models.Levels
         {
             if (layer == ObjectLayer.Ground) GroundGroup = group;
             else                             Group = group;
-        }
-
-        public void SetDirection(Direction direction, ObjectLayer layer)
-        {
-            if (layer == ObjectLayer.Ground) GroundDirection = direction;
-            else                             Direction = direction;
         }
     }
 }
