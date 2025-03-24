@@ -30,6 +30,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
 
         private bool _expanded;
         private LevelDataTabsDrawer _tabsDrawer;
+        private ObjectsDrawer _objectsDrawer;
         private Vector2Int _newSize;
         private ObjectLayer _selectedLayer;
 
@@ -44,6 +45,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
         protected override void Initialize()
         {
             _tabsDrawer = new();
+            _objectsDrawer = new(LevelObjectsSo);
         }
 
         protected override void DrawPropertyLayout(GUIContent label)
@@ -139,13 +141,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
         }
         
         private void DrawCellGroundObject(CellData cell, Rect cellRect)
-        {
-            var groundTexture = GetCellTexture(cell.GroundObjectKey, true);
-            if (groundTexture != null)
-            {
-                GUI.DrawTexture(cellRect, groundTexture, ScaleMode.ScaleToFit, true);
-            }
-        }
+            => _objectsDrawer.DrawGroundObject(cell.GroundObjectKey, cellRect);
 
         private void DrawCellColorIfNeeded(bool hasObject, CellData cell, Rect rect, ObjectLayer layer)
         {
@@ -161,12 +157,11 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
 
         private void DrawSolidObject(CellData cell, Rect buttonRect)
         {
-            var solidTexture = GetCellTexture(cell.ObjectKey, false);
-            if (GUI.Button(buttonRect, solidTexture, GUIStyle.none))
+            _objectsDrawer.DrawSolidObject(cell.ObjectKey, buttonRect, () =>
             {
                 var isRightClick = Event.current.type == EventType.Used && Event.current.button == 1;
                 HandleCellClick(cell, isRightClick);
-            }
+            });
         }
 
         private void DrawGroupNumberIfNeeded(bool hasObject, CellData cell, Rect cellRect, ObjectLayer layer)
@@ -192,21 +187,6 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
 
         private Texture2D GetBgTexture() =>
             LevelObjectsSo.Empty.GetComponentInChildren<SpriteRenderer>().sprite.texture;
-
-        private Texture2D GetCellTexture(string objectKey, bool isGround)
-        {
-            Texture2D texture = null;
-            if (string.IsNullOrEmpty(objectKey)) return texture;
-
-            if (LevelObjectsSo.LevelObjects.TryGetValue(objectKey, out var obj))
-            {
-                var prefab = obj.gameObject;
-                if (prefab != null)
-                    texture = prefab.GetComponentInChildren<SpriteRenderer>().sprite.texture;
-            }
-
-            return texture;
-        }
 
         private void HandleCellClick(CellData cell, bool isRightClick)
         {

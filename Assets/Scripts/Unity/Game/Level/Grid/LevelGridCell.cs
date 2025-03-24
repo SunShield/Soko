@@ -31,12 +31,14 @@ namespace Soko.Unity.Game.Level.Grid
             objectBase.SetCell(this);
             Objects.Add(objectBase.Layer, objectBase);
             if (!suppressEnterEvent) objectBase.Cell.OnObjectEntered(objectBase);
+            objectBase.transform.parent = transform;
         }
 
         public void RemoveObject(LevelObjectBase objectBase)
         {
             OnObjectLeft(objectBase);
             Objects.Remove(objectBase.Layer);
+            objectBase.transform.parent = null;
         }
 
         public void OnStartWithObject(LevelObjectBase objectBase)

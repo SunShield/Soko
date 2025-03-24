@@ -24,7 +24,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         private readonly List<Task> _objectTeleportSequences = new ();
         
         private readonly HashSet<LevelObjectBase> _delayedMoveObjects = new();
-        
+        private Direction _delayedMoveDirection = Direction.None;
+
+        private bool HasDelayedObjects => _delayedMoveObjects.Count > 0;
         public bool IsExecuting { get; private set; }
         
         public void RegisterObjectToMove(LevelObjectBase objectToMove, Direction direction)
@@ -35,7 +37,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
                 RegisterSubsequentObjectsIfNeeded(objectToMove, direction);
             }
             else
+            {
+                if (_delayedMoveDirection == Direction.None) _delayedMoveDirection = direction;
+                // should never happen; just double-check that delayed moved objects always have one direction
+                else if (_delayedMoveDirection != direction) return;
+                
+                _delayedMoveDirection = direction;
                 _delayedMoveObjects.Add(objectToMove);
+            }
         }
 
         private void RegisterSubsequentObjectsIfNeeded(LevelObjectBase objectToMove, Direction direction)
@@ -109,8 +118,10 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
 
             await ExecuteObjectsTeleportation();
             ClearMovementState();
-
+            
             IsExecuting = false;
+            
+            if (HasDelayedObjects) ExecuteDelayedObjectsMovement();
         }
 
         private List<LevelObjectBase> GetSortedMoveObjects(Direction direction)
@@ -342,6 +353,26 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
         {
             _onTeleportActions.Clear();
             _teleportActions.Clear();
+        }
+
+        private void ExecuteDelayedObjectsMovement()
+        {
+            foreach (var delayedObject in _delayedMoveObjects)
+            {
+                RegisterObjectToMoveInternal(delayedObject, _delayedMoveDirection);
+                RegisterSubsequentObjectsIfNeeded(delayedObject, _delayedMoveDirection);
+            }
+
+            var dir = ClearDelayedObjectsState();
+            ExecuteObjectsMovement(dir);
+        }
+
+        private Direction ClearDelayedObjectsState()
+        {
+            var dir = _delayedMoveDirection;
+            _delayedMoveDirection = Direction.None;
+            _delayedMoveObjects.Clear();
+            return dir;
         }
     }
 }

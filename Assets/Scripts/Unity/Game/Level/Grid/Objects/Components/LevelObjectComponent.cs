@@ -9,7 +9,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components
         [Inject] protected LevelPlayCycleManager LevelPlayCycleManager;
         
         public LevelObjectBase Object { get; private set; }
-        protected GridCoords Position => Object.Position;
         
         public void Initialize(LevelObjectBase objectBase)
         {
