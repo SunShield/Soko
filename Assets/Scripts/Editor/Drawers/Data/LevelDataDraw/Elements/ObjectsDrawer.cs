@@ -3,6 +3,7 @@ using System.Linq;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;
+using UnityEditor;
 using UnityEngine;
 
 namespace Soko.Editor.Drawers.Data.LevelDataDraw.Elements
@@ -22,10 +23,16 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw.Elements
             if (hasObject)
             {
                 var cpb = levelObject.Components.FirstOrDefault(c => c is ColorPushButtonComponent);
+                var tg = levelObject.Components.FirstOrDefault(c => c is TogglableGateComponent);
                 if (cpb != null)
                 {
                     var typedCpb = (ColorPushButtonComponent)cpb;
                     DrawColorPushButton(texture, rect, typedCpb.Direction);
+                }
+                else if (tg != null)
+                {
+                    var typedTg = (TogglableGateComponent)tg;
+                    DrawToggleableGate(texture, rect, typedTg.Locked);
                 }
                 else
                     DrawGroundDefault(texture, rect);
@@ -49,6 +56,18 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw.Elements
             GUIUtility.RotateAroundPivot(rotation, pivot);
             GUI.DrawTexture(rect, texture, ScaleMode.ScaleToFit, true);
             GUIUtility.RotateAroundPivot(-rotation, pivot);
+        }
+
+        private void DrawToggleableGate(Texture2D mainTexture, Rect rect, bool locked)
+        {
+            var secondaryTexture = AssetDatabase.LoadAssetAtPath<Sprite>
+                (@"Assets\Graphics\Sprites\Level\TogglableGateDecorSpikes.png").texture;
+            var lockedTexture = AssetDatabase.LoadAssetAtPath<Sprite>
+                (@"Assets\Graphics\Sprites\Level\TogglableGateClosedState.png").texture;
+            GUI.DrawTexture(rect, mainTexture, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(rect, secondaryTexture, ScaleMode.ScaleToFit, true);
+            if (locked)
+                GUI.DrawTexture(rect, lockedTexture, ScaleMode.ScaleToFit, true);
         }
 
         private void DrawGroundDefault(Texture2D texture, Rect rect)

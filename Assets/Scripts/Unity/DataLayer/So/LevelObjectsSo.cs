@@ -10,6 +10,7 @@ namespace Soko.Unity.DataLayer.So
     public class LevelObjectsSo : SerializedScriptableObject
     {
         [field: SerializeField] public GameObject Empty { get; private set; }
+        [ListDrawerSettings(ShowPaging = false)]
         [field: SerializeField] public List<LevelObjectBase> LevelObjectsList { get; private set; }
         
         private Dictionary<string, LevelObjectBase> _levelObjects;

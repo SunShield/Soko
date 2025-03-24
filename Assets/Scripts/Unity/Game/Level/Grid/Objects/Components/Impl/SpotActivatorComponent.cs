@@ -2,6 +2,6 @@
 {
     public class SpotActivatorComponent : LevelObjectComponent
     {
-        
+
     }
 }

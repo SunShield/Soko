@@ -25,6 +25,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             var levelGrid = SpawnLevelGridObject(root, levelData);
             SpawnLevelGridCells(levelGrid);
             SpawnLevelObjects(levelGrid, levelData);
+            OnLevelCreated(levelGrid);
             return levelGrid;
         }
 
@@ -150,6 +151,11 @@ namespace Soko.Unity.Game.Level.Grid.Building
                 foreach (var groupComponent in groupComponents)
                     foreach (var groupComponent2 in groupComponents)
                         groupComponent.AddObject(groupComponent2.Object);
+        }
+
+        private void OnLevelCreated(LevelGrid levelGrid)
+        {
+            levelGrid.LevelObjects.ForEach(lo => lo.OnLevelCreated());
         }
     }
 }
