@@ -2,6 +2,7 @@
 using System.Linq;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
+using Soko.Unity.Game.Sounds;
 using UnityEngine;
 using VContainer;
 
@@ -10,7 +11,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class ColorPushButtonComponent : LevelObjectComponent
     {
         [field: SerializeField] public Direction Direction { get; private set; }
-        
+
+        [Inject] private SoundsManager _soundsManager;
         [Inject] private MoveManager _moveManager;
 
         public override void OnObjectEntered(LevelObjectBase enteringObject)
@@ -31,6 +33,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 coloredMovableObjects.Add(levelObject);
             }
             
+            _soundsManager.PlaySfx(GameSfx.ClickLevelButton);
             coloredMovableObjects.ForEach(co => _moveManager.RegisterObjectToMove(co, Direction));
             _moveManager.ExecuteObjectsMovement(Direction);
         }

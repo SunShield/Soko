@@ -26,7 +26,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             _lockedGraphics.SetActive(Locked);
         }
 
-        public override bool CheckObjectEnter(LevelObjectBase enteringObject) => !_reallyLocked;
+        public override bool CheckObjectEnter(LevelObjectBase enteringObject) => !Locked;
         public override void OnObjectEntered(LevelObjectBase enteringObject) => _hasObjectOn = true;
 
         public override void OnObjectLeft(LevelObjectBase enteringObject)

@@ -53,8 +53,6 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             => _groupComponent = Components.OfType<GroupComponent>().FirstOrDefault();
 
         public void SetCell(LevelGridCell cell) => Cell = cell;
-        
-        public void SetCanMove(bool canMove) => MovementRulesComponent.SetCanMove(canMove);
 
         public void OnLevelCreated()
         {
@@ -79,29 +77,11 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             foreach (var component in _componentsList)
                 component.OnObjectLeft(leftObject);
         }
-        
-        public bool HasComponent<TComponent>()
-            where TComponent : LevelObjectComponent
-            => _componentTypes.Contains(typeof(TComponent));
 
         public List<LevelObjectBase> GetObjectBindingGroup()
             => _groupComponent == null 
                 ? new() 
                 : _groupComponent.GroupObjects.Except(new List<LevelObjectBase>() { this }).ToList();
-
-        public bool CanMove(Direction direction, MoveAction moveAction) 
-            => MovementRulesComponent.CheckCanMove(direction, moveAction); 
-        public LevelGridCell GetTargetCell(Direction direction, MoveAction moveAction)
-            => MovementRulesComponent.GetTargetCell(direction, moveAction);
-
-        public bool CheckBoundObjectsAllowMove(Dictionary<LevelObjectBase, MoveAction> bindingGroup)
-        {
-            var boundObjectsExceptThisObject = bindingGroup
-                .Where(kv => kv.Key != this)
-                .ToDictionary(kv => kv.Key, kv => kv.Value);
-
-            return MovementRulesComponent.CheckBoundObjectsAllowMove(boundObjectsExceptThisObject);
-        }
 
         public bool CheckObjectEnter(LevelObjectBase enteringObject)
         {
@@ -114,11 +94,26 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             return true;
         }
 
+        public void SetCanMove(bool canMove) => MovementRulesComponent.SetCanMove(canMove);
+        public bool CanMove(Direction direction, MoveAction moveAction) 
+            => MovementRulesComponent.CheckCanMove(direction, moveAction); 
+        public LevelGridCell GetTargetCell(Direction direction, MoveAction moveAction)
+            => MovementRulesComponent.GetTargetCell(direction, moveAction);
+
         public void OnMoveStarted() => MovementRulesComponent.OnMoveStarted();
         public void OnMoveFinished() => MovementRulesComponent.OnMoveFinished();
         
         public List<LevelObjectBase> GetSubsequentObjects(Direction direction, MoveAction moveAction)
             => MovementRulesComponent.GetSubsequentObjects(direction, moveAction);
+        
+        public bool CheckBoundObjectsAllowMove(Dictionary<LevelObjectBase, MoveAction> bindingGroup)
+        {
+            var boundObjectsExceptThisObject = bindingGroup
+                .Where(kv => kv.Key != this)
+                .ToDictionary(kv => kv.Key, kv => kv.Value);
+
+            return MovementRulesComponent.CheckBoundObjectsAllowMove(boundObjectsExceptThisObject);
+        }
         
         public bool TryGetObjectComponent<TComponent>(out TComponent component)
             where TComponent : LevelObjectComponent
@@ -128,5 +123,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects
             component = (TComponent)_componentsList.Find(component => component.GetType() == typeof(TComponent));
             return true;
         }
+        
+        public bool HasComponent<TComponent>()
+            where TComponent : LevelObjectComponent
+            => _componentTypes.Contains(typeof(TComponent));
     }
 }

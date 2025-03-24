@@ -9,6 +9,7 @@
         SlideableBoxPushEnd,
         Teleporter,
         SpotEnter,
+        ClickLevelButton,
         
         WinLevel = 100,
     }
