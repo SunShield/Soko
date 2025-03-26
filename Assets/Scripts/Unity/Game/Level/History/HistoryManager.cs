@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
@@ -20,18 +21,26 @@ namespace Soko.Unity.Game.Level.History
         private readonly HashSet<LevelObjectBase> _imprintableObjects = new();
         private readonly List<TurnImprint> _turnImprints = new ();
 
+        private bool _movementIsExecuted;
+
         public void Initialize()
         {
-            _eventBus.GetEvent<MovementStatedEvent>().SubscribeForGlobal(CreateZeroTurnImprintIfNeeded);
-            _eventBus.GetEvent<MovementFinishedEvent>().SubscribeForGlobal(CreateTurnImprint);
+            _eventBus.GetEvent<MovementStartedEvent>().SubscribeForGlobal(OnMovementStarted);
+            _eventBus.GetEvent<MovementFinishedEvent>().SubscribeForGlobal(OnMovementFinished);
         }
 
-        private void CreateZeroTurnImprintIfNeeded(EmptyArgs args)
+        private void OnMovementStarted(EmptyArgs args)
+        {
+            CreateZeroTurnImprintIfNeeded();
+            _movementIsExecuted = true;
+        }
+
+        private void CreateZeroTurnImprintIfNeeded()
         {
             if (_turnImprints.Count > 0) return;
             
             GatherImprintableObjects();
-            CreateTurnImprint(null);
+            CreateTurnImprint();
         }
 
         private void GatherImprintableObjects()
@@ -44,7 +53,13 @@ namespace Soko.Unity.Game.Level.History
             }
         }
 
-        private void CreateTurnImprint(EmptyArgs args)
+        private void OnMovementFinished(EmptyArgs args)
+        {
+            CreateTurnImprint();
+            _movementIsExecuted = false;
+        }
+
+        private void CreateTurnImprint()
         {
             var turnImprint = new TurnImprint();
             var grid = _cycleManager.LevelGrid;
@@ -89,7 +104,8 @@ namespace Soko.Unity.Game.Level.History
         }
 
         public void RevertTurn()
-        {   
+        {
+            if (_movementIsExecuted) return;
             if (_turnImprints.Count <= 1) return;
             
             var currentTurnImprint = _turnImprints[^1];

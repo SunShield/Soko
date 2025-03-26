@@ -2,7 +2,7 @@
 
 namespace Soko.Core.Events.Impl.Events
 {
-    public class MovementStatedEvent : GameEvent<EmptyArgs>
+    public class MovementStartedEvent : GameEvent<EmptyArgs>
     {
         
     }

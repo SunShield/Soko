@@ -111,7 +111,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             if (IsExecuting) return;
             IsExecuting = true;
             
-            if (!isSecondary) _eventBus.GetEvent<MovementStatedEvent>().InvokeForGlobal(new());
+            if (!isSecondary) _eventBus.GetEvent<MovementStartedEvent>().InvokeForGlobal(new());
             
             var movedObjects = GetSortedMoveObjects(direction);
             do
