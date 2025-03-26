@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using Soko.Core.Events;
+using Soko.Core.Events.Impl.Args;
+using Soko.Core.Events.Impl.Events;
 using Soko.Core.Extensions;
-using Soko.Unity.Game.Events;
-using Soko.Unity.Game.Events.Impl.Args;
-using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Components.Impl;

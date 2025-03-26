@@ -1,4 +1,4 @@
-﻿namespace Soko.Unity.Game.Events
+﻿namespace Soko.Core.Events
 {
     public interface IGameEvent
     {

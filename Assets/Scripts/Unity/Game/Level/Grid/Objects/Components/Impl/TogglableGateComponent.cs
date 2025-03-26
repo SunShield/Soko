@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using Soko.Unity.Game.Level.History.Imprints;
+using Soko.Unity.Game.Level.History.Imprints.Impl;
+using Soko.Unity.Game.Level.History.Interfaces;
+using UnityEngine;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
-    public class TogglableGateComponent : LevelObjectComponent
+    public class TogglableGateComponent : LevelObjectComponent, IImprintableComponent
     {
         [SerializeField] private GameObject _lockedGraphics;
         [field: SerializeField] public bool Locked { get; set; }
@@ -33,6 +36,27 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         {
             _hasObjectOn = false;
             if (_reallyLocked && !Locked) ToggleLockedState();
+        }
+
+        public ComponentImprint CreateComponentImprint()
+        {
+            var imprint = new TogglableGateComponentImprint
+            {
+                ReallyLocked = _reallyLocked,
+                HasObjectOn = _hasObjectOn
+            };
+            return imprint;
+        }
+
+        public void RestoreFromImprint(ComponentImprint imprint)
+        {
+            var imprintTyped = imprint as TogglableGateComponentImprint;
+            _reallyLocked = imprintTyped.ReallyLocked;
+            _hasObjectOn = imprintTyped.HasObjectOn;
+            
+            Locked = _reallyLocked;
+            if (_hasObjectOn) Locked = false;
+            _lockedGraphics.SetActive(Locked);
         }
     }
 }

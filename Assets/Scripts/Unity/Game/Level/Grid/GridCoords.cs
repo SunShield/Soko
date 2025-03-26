@@ -10,5 +10,11 @@
             Rows = rows;
             Columns = columns;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not GridCoords gc) return false;
+            return Rows.Equals(gc.Rows) && Columns.Equals(gc.Columns);
+        }
     }
 }

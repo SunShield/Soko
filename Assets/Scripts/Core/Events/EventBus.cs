@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Soko.Unity.Game.Events
+namespace Soko.Core.Events
 {
     public class EventBus
     {

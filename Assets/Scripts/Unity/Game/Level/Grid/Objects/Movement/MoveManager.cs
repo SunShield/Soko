@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
+using Soko.Core.Events;
+using Soko.Core.Events.Impl.Events;
 using Soko.Core.Extensions;
 using Soko.Unity.Game.Level.Grid.Enums;
 using VContainer;
@@ -12,6 +14,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
     public class MoveManager
     {
         [Inject] private LevelObjectMover _mover;
+        [Inject] private EventBus _eventBus;
         
         private readonly Dictionary<LevelObjectBase, MoveAction> _moveActions = new ();
         private readonly Dictionary<int, List<LevelObjectBase>> _bindingGroups = new ();
@@ -103,10 +106,12 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             return teleportMoveAction;
         }
         
-        public async void ExecuteObjectsMovement(Direction direction)
+        public async void ExecuteObjectsMovement(Direction direction, bool isSecondary = false)
         {
             if (IsExecuting) return;
             IsExecuting = true;
+            
+            if (!isSecondary) _eventBus.GetEvent<MovementStatedEvent>().InvokeForGlobal(new());
             
             var movedObjects = GetSortedMoveObjects(direction);
             do
@@ -122,6 +127,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             IsExecuting = false;
             
             if (HasDelayedObjects) ExecuteDelayedObjectsMovement();
+            
+            if (!isSecondary) _eventBus.GetEvent<MovementFinishedEvent>().InvokeForGlobal(new());
         }
 
         private List<LevelObjectBase> GetSortedMoveObjects(Direction direction)
@@ -275,10 +282,13 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             {
                 var moveAction = _moveActions[movedObject];
                 if (moveAction.Finished) continue;
-                    
+
+                var startCell = movedObject.Cell;
                 var targetCell = movedObject.GetTargetCell(direction, moveAction);
                 CreateObjectMoveSequence(movedObject, targetCell);
                 moveAction.Path.Add(targetCell);
+
+                _eventBus.GetEvent<ObjectMovedEvent>().InvokeForGlobal(new (startCell, movedObject));
             }
         }
 

@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using Soko.Unity.Game.Level.Grid.Enums;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
+using Soko.Unity.Game.Level.History.Imprints;
+using Soko.Unity.Game.Level.History.Imprints.Impl;
+using Soko.Unity.Game.Level.History.Interfaces;
 
 namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
 {
     /// <summary>
     /// Only ONE of those is allowed on object simultaneously
     /// </summary>
-    public class MovementRulesComponent : LevelObjectComponent
+    public class MovementRulesComponent : LevelObjectComponent, IImprintableComponent
     {
         public bool CanMove { get; private set; } = true;
         
@@ -23,5 +26,23 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
         public virtual List<LevelObjectBase> GetSubsequentObjects(Direction direction, MoveAction moveAction) => null;
         public virtual void OnMoveStarted() { }
         public virtual void OnMoveFinished() { }
+        
+        public ComponentImprint CreateComponentImprint()
+        {
+            var imprint = CreateComponentImprintInternal();
+            imprint.CanMove = CanMove;
+            return imprint;
+        }
+
+        protected virtual MovementRulesComponentImprint CreateComponentImprintInternal() => new();
+
+        public void RestoreFromImprint(ComponentImprint imprint)
+        {
+            var imprintTyped = imprint as MovementRulesComponentImprint;
+            CanMove = imprintTyped.CanMove;
+            RestoreFromImprintInternal(imprintTyped);
+        }
+
+        protected virtual void RestoreFromImprintInternal(MovementRulesComponentImprint imprint) { }
     }
 }

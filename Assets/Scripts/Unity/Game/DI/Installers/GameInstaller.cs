@@ -1,4 +1,4 @@
-﻿using Soko.Unity.Game.Events;
+﻿using Soko.Core.Events;
 using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Sounds;
 using UnityEngine;

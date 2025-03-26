@@ -31,5 +31,6 @@ namespace Soko.Unity.Game.Level.Grid
         }
 
         public LevelGridCell this[int row, int column] => _cells[row, column];
+        public LevelGridCell this[GridCoords coords] => _cells[coords.Rows, coords.Columns];
     }
 }

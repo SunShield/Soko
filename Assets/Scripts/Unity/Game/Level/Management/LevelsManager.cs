@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Soko.Core.Events;
+using Soko.Core.Events.Impl.Events;
 using Soko.Core.Models.Levels;
 using Soko.Unity.DataLayer.So;
-using Soko.Unity.Game.Events;
-using Soko.Unity.Game.Events.Impl.Events;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;

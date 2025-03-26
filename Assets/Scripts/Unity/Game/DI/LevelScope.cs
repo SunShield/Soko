@@ -2,6 +2,7 @@
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
+using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,13 +21,14 @@ namespace Soko.Unity.Game.DI
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
-            builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+            builder.Register<LevelInputManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_userMovementManager).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
             builder.RegisterEntryPoint<LevelObjectMover>().AsSelf();
             builder.RegisterEntryPoint<MoveManager>().AsSelf();
+            builder.Register<HistoryManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
         }
     }
 }

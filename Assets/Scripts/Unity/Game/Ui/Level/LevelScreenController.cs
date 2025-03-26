@@ -1,8 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Soko.Unity.Game.Events;
-using Soko.Unity.Game.Events.Impl.Args;
-using Soko.Unity.Game.Events.Impl.Events;
+using Soko.Core.Events;
+using Soko.Core.Events.Impl.Events;
 using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management;

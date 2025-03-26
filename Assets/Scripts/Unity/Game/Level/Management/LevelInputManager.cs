@@ -1,6 +1,6 @@
-﻿using Soko.Unity.Game.Events;
-using Soko.Unity.Game.Events.Impl.Args;
-using Soko.Unity.Game.Events.Impl.Events;
+﻿using Soko.Core.Events;
+using Soko.Core.Events.Impl.Args;
+using Soko.Core.Events.Impl.Events;
 using VContainer;
 using VContainer.Unity;
 
