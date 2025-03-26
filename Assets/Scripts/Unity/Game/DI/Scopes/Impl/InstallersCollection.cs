@@ -4,7 +4,7 @@ using Sirenix.Serialization;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Soko.Unity.Game.DI
+namespace Soko.Unity.Game.DI.Scopes.Impl
 {
     [CreateAssetMenu(menuName = "DI/Installers", fileName = "Installers")]
     public class InstallersCollection : SerializedScriptableObject

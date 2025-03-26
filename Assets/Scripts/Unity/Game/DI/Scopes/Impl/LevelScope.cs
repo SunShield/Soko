@@ -1,30 +1,25 @@
 ﻿using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.DI.Scopes.Base;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
-using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Soko.Unity.Game.DI
+namespace Soko.Unity.Game.DI.Scopes.Impl
 {
-    public class LevelScope : LifetimeScope
+    public class LevelScope : LocalScope
     {
         [SerializeField] private LevelPlayCycleManager _levelPlayCycleManager;
         [SerializeField] private UserMovementManager _userMovementManager;
         [SerializeField] private LevelObjectsSo _levelObjectsSo;
         [SerializeField] private ColorDataSo _colorDataSo;
         
-        protected override void Configure(IContainerBuilder builder)
+        protected override void ConfigureInternal(IContainerBuilder builder)
         {
-            builder.RegisterBuildCallback(container =>
-            {
-                ScopeContext.CurrentScope = container;
-            });
-            
             builder.Register<HistoryManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
             builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();

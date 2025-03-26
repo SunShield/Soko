@@ -2,7 +2,7 @@
 using VContainer;
 using VContainer.Unity;
 
-namespace Soko.Unity.Game.DI
+namespace Soko.Unity.Game.DI.Scopes.Impl
 {
     public class GameScope : LifetimeScope
     {
@@ -10,11 +10,6 @@ namespace Soko.Unity.Game.DI
         
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterBuildCallback(container =>
-            {
-                ScopeContext.CurrentScope = container;
-            });
-            
             DontDestroyOnLoad(gameObject);
             _installersCollection.Installers.ForEach(installer => installer.Install(builder));
         }
