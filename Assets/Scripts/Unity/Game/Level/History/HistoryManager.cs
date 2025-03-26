@@ -20,14 +20,34 @@ namespace Soko.Unity.Game.Level.History
         [Inject] private EventBus _eventBus;
         
         private readonly HashSet<GridCoords> _affectedCells = new ();
-        private readonly Stack<TurnImprint> _turnImprints = new ();
+        private readonly List<TurnImprint> _turnImprints = new ();
         
         public int TurnsPassed => _turnImprints.Count - 1;
 
         public void Initialize()
         {
+            _eventBus.GetEvent<MovementStatedEvent>().SubscribeForGlobal(CreateZeroTurnImprintIfNeeded);
             _eventBus.GetEvent<ObjectMovedEvent>().SubscribeForGlobal(RecordObjectMovement);
             _eventBus.GetEvent<MovementFinishedEvent>().SubscribeForGlobal(CreateTurnImprint);
+        }
+
+        private void CreateZeroTurnImprintIfNeeded(EmptyArgs args)
+        {
+            if (_turnImprints.Count > 0) return;
+            
+            var turnImprint = new TurnImprint();
+            var grid = _cycleManager.LevelGrid;
+            for (int y = 0; y < grid.Rows; y++)
+            {
+                for (int x = 0; x < grid.Columns; x++)
+                {
+                    var cell = grid[y, x];
+                    var cellImprint = CreateCellImprint(cell);
+                    turnImprint.CellImprints.Add(cell.Coords, cellImprint);
+                }
+            }
+            
+            _turnImprints.Add(turnImprint);
         }
 
         private void RecordObjectMovement(ObjectMoveArgs args)
@@ -45,7 +65,7 @@ namespace Soko.Unity.Game.Level.History
                 var cell = grid[affectedCellCoords];
                 turnImprint.CellImprints.Add(affectedCellCoords, CreateCellImprint(cell));
             }
-            _turnImprints.Push(turnImprint);
+            _turnImprints.Add(turnImprint);
             _affectedCells.Clear();
         }
 
@@ -56,7 +76,23 @@ namespace Soko.Unity.Game.Level.History
                 GroundObjectImprint = CreateObjectImprint(cell, ObjectLayer.Ground),
                 SolidObjectImprint = CreateObjectImprint(cell, ObjectLayer.Solid)
             };
+            var previousCellImprint = GetPreviousCellImprint(cell.Coords);
+            imprint.PreviousImprint = previousCellImprint;
             return imprint;
+        }
+
+        private CellImprint GetPreviousCellImprint(GridCoords gridCoords)
+        {
+            var index = _turnImprints.Count - 1;
+            while (index >= 0)
+            {
+                var turnImprint = _turnImprints[index];
+                if (turnImprint.CellImprints.TryGetValue(gridCoords, out var previousCellImprint)) 
+                    return previousCellImprint;
+                index--;
+            }
+
+            return null;
         }
 
         private ObjectImprint CreateObjectImprint(LevelGridCell cell, ObjectLayer layer)
@@ -89,12 +125,13 @@ namespace Soko.Unity.Game.Level.History
 
         public void RevertTime()
         {   
-            _turnImprints.Pop();
-            var turnImprint = _turnImprints.Peek();
-            ApplyTurnImprint(turnImprint);
+            var currentTurnImprint = _turnImprints[^1];
+            _turnImprints.Remove(currentTurnImprint);
+            var previousImprint = _turnImprints[^1];
+            RevertTurnImprint(currentTurnImprint, previousImprint);
         }
 
-        private void ApplyTurnImprint(TurnImprint turnImprint)
+        private void RevertTurnImprint(TurnImprint currentTurnImprint, TurnImprint previousTurnImprint)
         {
             
         }
