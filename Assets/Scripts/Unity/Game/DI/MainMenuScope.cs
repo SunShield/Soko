@@ -11,6 +11,11 @@ namespace Soko.Unity.Game.DI
         
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterBuildCallback(container =>
+            {
+                ScopeContext.CurrentScope = container;
+            });
+            
             builder.RegisterComponent(_mainMenuSceneInitializer).AsSelf().AsImplementedInterfaces();
         }
     }

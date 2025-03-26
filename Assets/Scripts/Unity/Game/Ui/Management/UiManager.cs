@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Soko.Unity.DataLayer.So;
+using Soko.Unity.Game.DI;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
@@ -57,7 +58,8 @@ namespace Soko.Unity.Game.Ui.Management
         {
             var elementPrefab = _uiDataSo.UiElements[element];
             var newUiElement = Instantiate(elementPrefab, _activeUiRoot);
-            _objectResolver.InjectGameObject(newUiElement.gameObject);
+            ScopeContext.CurrentScope.InjectGameObject(newUiElement.gameObject);
+            //_objectResolver.InjectGameObject(newUiElement.gameObject);
             newUiElement.SetKey(element);
             newUiElement.gameObject.SetActive(false);
             _inactiveUiElements.Add(element, newUiElement);

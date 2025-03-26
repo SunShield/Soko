@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Events;
+using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management;
@@ -20,10 +21,12 @@ namespace Soko.Unity.Game.Ui.Level
         [Inject] private LevelsManager _levelsManager;
         [Inject] private UiManager _uiManager;
         [Inject] private EventBus _eventBus;
+        [Inject] private HistoryManager _historyManager;
 
         protected override void PostConstruct()
         {
             _view.OnBackClicked += EndLevel;
+            _view.OnRevertTurnClicked += RevertTurn;
             _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(args => DeactivateLevelMetrics());
         }
 
@@ -32,6 +35,8 @@ namespace Soko.Unity.Game.Ui.Level
             _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.EndCurrentLevel();
         }
+
+        private void RevertTurn() => _historyManager.RevertTurn();
 
         protected override async UniTask OnEnabledAndConstructed()
             => _levelTurnsCounterController.Initialize(_levelsManager);

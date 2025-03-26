@@ -5,6 +5,6 @@ namespace Soko.Unity.Game.Level.History.Imprints
 {
     public class TurnImprint
     {
-        public Dictionary<GridCoords, CellImprint> CellImprints { get; private set; } = new();
+        public List<ObjectImprint> ObjectImprints { get; private set; } = new();
     }
 }

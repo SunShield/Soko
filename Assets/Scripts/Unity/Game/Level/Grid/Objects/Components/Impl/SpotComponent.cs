@@ -1,4 +1,7 @@
 ﻿using Soko.Unity.Game.Level.Grid.Enums;
+using Soko.Unity.Game.Level.History.Imprints;
+using Soko.Unity.Game.Level.History.Imprints.Impl;
+using Soko.Unity.Game.Level.History.Interfaces;
 using Soko.Unity.Game.Sounds;
 using UnityEngine;
 using VContainer;
@@ -10,7 +13,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     /// White spot can be activated with any colored spot activator.
     /// Colored spot cat be activated with spot activators of the same color.
     /// </summary>
-    public class SpotComponent : LevelObjectComponent
+    public class SpotComponent : LevelObjectComponent, IImprintableComponent
     {
         [SerializeField] private GameObject _activeGraphics;
         [SerializeField] private GameObject _inactiveGraphics;
@@ -71,6 +74,17 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             
             _soundsManager.PlaySfx(GameSfx.SpotEnter);
             if (!isStart) LevelPlayCycleManager.CheckWin();
+        }
+
+        public ComponentImprint CreateComponentImprint()
+        {
+            return new SpotComponentImprint() { Activated = Activated };
+        }
+
+        public void RestoreFromImprint(ComponentImprint imprint)
+        {
+            var componentTyped = imprint as SpotComponentImprint;
+            SetActivated(componentTyped.Activated);
         }
     }
 }

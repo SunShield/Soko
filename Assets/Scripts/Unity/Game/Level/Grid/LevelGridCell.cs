@@ -20,9 +20,16 @@ namespace Soko.Unity.Game.Level.Grid
 
         public void AddObjectOnStart(LevelObjectBase objectBase)
         {
+            BaseAddObject(objectBase);
+            objectBase.Cell.OnStartWithObject(objectBase);
+        }
+
+        public void BaseAddObject(LevelObjectBase objectBase)
+        {
             objectBase.SetCell(this);
             Objects.Add(objectBase.Layer, objectBase);
-            objectBase.Cell.OnStartWithObject(objectBase);
+            objectBase.transform.parent = transform;
+            objectBase.transform.localPosition = Vector3.zero;
         }
 
         public void AddObject(LevelObjectBase objectBase, bool suppressEnterEvent = false)
@@ -37,6 +44,11 @@ namespace Soko.Unity.Game.Level.Grid
         public void RemoveObject(LevelObjectBase objectBase)
         {
             OnObjectLeft(objectBase);
+            BaseRemoveObject(objectBase);
+        }
+
+        public void BaseRemoveObject(LevelObjectBase objectBase)
+        {
             Objects.Remove(objectBase.Layer);
             objectBase.transform.parent = null;
         }
