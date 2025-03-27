@@ -1,4 +1,5 @@
-﻿using Soko.Core.Events;
+﻿using System;
+using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
 using Soko.Core.Events.Impl.Events;
 using VContainer;
@@ -6,7 +7,7 @@ using VContainer.Unity;
 
 namespace Soko.Unity.Game.Level.Management
 {
-    public class LevelInputManager : IInitializable
+    public class LevelInputManager : IInitializable, IDisposable
     {
         [Inject] private UserMovementManager _userMovementManager;
         [Inject] private EventBus _eventBus;
@@ -26,6 +27,11 @@ namespace Soko.Unity.Game.Level.Management
         {
             _playerInputActions.Disable();
             _playerInputActions = null;
+        }
+
+        public void Dispose()
+        {
+            _eventBus.GetEvent<LevelWinEvent>().UnsubscribeFromGlobal(OnLevelWin);
         }
     }
 }

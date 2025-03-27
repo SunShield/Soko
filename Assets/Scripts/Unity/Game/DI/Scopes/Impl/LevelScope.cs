@@ -23,7 +23,7 @@ namespace Soko.Unity.Game.DI.Scopes.Impl
         {
             builder.Register<HistoryManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
-            builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+            builder.Register<LevelInputManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_userMovementManager).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
 using Soko.Core.Events.Impl.Events;
@@ -82,5 +83,10 @@ namespace Soko.Unity.Game.Level.Management
         
         private void AdvanceTimer() => _moveDelayTimer = Mathf.Clamp(_moveDelayTimer - Time.deltaTime, 0f, MoveDelay);
         private void RestoreTimer() => _moveDelayTimer = MoveDelay;
+
+        private void OnDisable()
+        {
+            _eventBus.GetEvent<LevelWinEvent>().UnsubscribeFromGlobal(DisableMovement);
+        }
     }
 }
