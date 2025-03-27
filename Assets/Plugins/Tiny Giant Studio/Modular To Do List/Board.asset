@@ -758,7 +758,7 @@ MonoBehaviour:
       addedReference: 0
       references:
       - {fileID: 21300000, guid: f49d4507cfdfb814e8d41e77c70d06f2, type: 3}
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -787,12 +787,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 27
+        dayOfTheWeek: Thursday
+        minute: 4
+        hour: 14
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -832,7 +832,7 @@ MonoBehaviour:
       myDescription: Description
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -861,12 +861,12 @@ MonoBehaviour:
           hour: 2
           format: 1
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 3
+        day: 27
+        dayOfTheWeek: Thursday
+        minute: 4
+        hour: 14
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -1786,7 +1786,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 1
-      heightTakenInEditor: 190
+      heightTakenInEditor: 150
     - myName: Fast Movement
       hideMyDetails: 0
       addedDescription: 1
@@ -2258,7 +2258,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 5
-      heightTakenInEditor: 69
+      heightTakenInEditor: 56
     - myName: Lock Spots
       hideMyDetails: 0
       addedDescription: 1
