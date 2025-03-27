@@ -39,7 +39,7 @@ namespace Soko.Unity.Game.Ui.Level
         private void RevertTurn() => _historyManager.RevertTurn();
 
         protected override async UniTask OnEnabledAndConstructed()
-            => _levelTurnsCounterController.Initialize(_levelsManager);
+            => _levelTurnsCounterController.Initialize();
         
         private void DeactivateLevelMetrics() => _levelTimerController.SetActive(false);
     }

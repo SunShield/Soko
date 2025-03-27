@@ -7,6 +7,6 @@ namespace Soko.Unity.Game.Ui.Level
     {
         [SerializeField] private TextMeshProUGUI _text;
         
-        public void SetTurns(int turns) => _text.text =  $"Turns: {turns}";
+        public void SetTurns(int turns) => _text.text =  $"{turns}";
     }
 }

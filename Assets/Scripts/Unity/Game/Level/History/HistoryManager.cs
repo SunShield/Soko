@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
@@ -112,6 +111,8 @@ namespace Soko.Unity.Game.Level.History
             _turnImprints.Remove(currentTurnImprint);
             var previousImprint = _turnImprints[^1];
             RevertTurnImprint(currentTurnImprint, previousImprint);
+            
+            _eventBus.GetEvent<TurnRevertedEvent>().InvokeForGlobal(new());
         }
 
         private void RevertTurnImprint(TurnImprint currentTurnImprint, TurnImprint previousTurnImprint)

@@ -1,16 +1,19 @@
-﻿using Soko.Unity.Game.Level.Management;
+﻿using Soko.Unity.Game.Level.Metrics;
 using UnityEngine;
+using VContainer;
 
 namespace Soko.Unity.Game.Ui.Level
 {
     public class LevelTurnsCounterController : MonoBehaviour
     {
         [SerializeField] private LevelTurnsCounterView _view;
+        
+        [Inject] private LevelTurnsCountTracker _turnsCountTracker;
 
-        public void Initialize(LevelsManager levelManager)
+        public void Initialize()
         {
             _view.SetTurns(0);
-            levelManager.PlayCycleManager.OnTurnCountChanged += _view.SetTurns;
+            _turnsCountTracker.OnTurnCountChanged += _view.SetTurns;
         }
     }
 }

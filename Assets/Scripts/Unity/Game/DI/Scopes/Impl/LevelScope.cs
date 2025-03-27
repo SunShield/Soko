@@ -5,6 +5,7 @@ using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Grid.Objects.Movement;
 using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
+using Soko.Unity.Game.Level.Metrics;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -29,6 +30,7 @@ namespace Soko.Unity.Game.DI.Scopes.Impl
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
             builder.RegisterEntryPoint<LevelObjectMover>().AsSelf();
             builder.RegisterEntryPoint<MoveManager>().AsSelf();
+            builder.Register<LevelTurnsCountTracker>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
         }
     }
 }

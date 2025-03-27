@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Soko.Unity.Game.Level.Grid;
 
 namespace Soko.Unity.Game.Level.History.Imprints
 {

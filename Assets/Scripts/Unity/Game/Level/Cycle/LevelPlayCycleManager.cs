@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Soko.Core.Events;
 using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
 using Soko.Unity.Game.Level.Management;
+using Soko.Unity.Game.Level.Metrics;
 using Soko.Unity.Game.Level.Visuals;
 using Soko.Unity.Game.Sounds;
 using Soko.Unity.Game.Ui.Enums;
@@ -24,10 +25,11 @@ namespace Soko.Unity.Game.Level.Cycle
         [Inject] private LevelsManager _levelsManager;
         [Inject] private UiManager _uiManager;
         [Inject] private SoundsManager _soundsManager;
+        [Inject] private EventBus _eventBus;
+        [Inject] private LevelTurnsCountTracker _turnsCountTracker;
         
         public LevelData LevelData { get; private set; }
         public LevelGrid LevelGrid { get; private set; }
-        public int TurnCount { get; private set; }
 
         public void Initialize()
         {
@@ -43,12 +45,6 @@ namespace Soko.Unity.Game.Level.Cycle
             _soundsManager.PlayMusic(_levelsManager.CurrentLevelPack.MusicKey);
             _levelBackgroundManager.SetBackground(_levelsManager.CurrentLevelPack.LevelBackground);
         }
-        
-        public void AdvanceTurnCount()
-        {
-            TurnCount++;
-            OnTurnCountChanged?.Invoke(TurnCount);
-        }
 
         public void CheckWin()
         {
@@ -59,16 +55,13 @@ namespace Soko.Unity.Game.Level.Cycle
             ShowWinLevelPopup();
         }
 
-        private void ConfirmWin()
-        {
-            _levelsManager.WinCurrentLevel(TurnCount);
-        }
+        private void ConfirmWin() => _levelsManager.WinCurrentLevel(_turnsCountTracker.TurnCount);
 
         private void ShowWinLevelPopup()
         {
             var levelWinScreen = _uiManager.OpenUiElement(UiElements.LevelWinScreen, 2) as LevelWinScreenController;
             levelWinScreen.OnClosed += LeaveLevel;
-            levelWinScreen.SetLevelWinResults(LevelData.Name, TurnCount);
+            levelWinScreen.SetLevelWinResults(LevelData.Name, _turnsCountTracker.TurnCount);
         }
 
         private void LeaveLevel()
@@ -79,7 +72,5 @@ namespace Soko.Unity.Game.Level.Cycle
             _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.EndCurrentLevel();
         }
-        
-        public event Action<int> OnTurnCountChanged;
     }
 }
