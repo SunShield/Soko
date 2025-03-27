@@ -15,5 +15,10 @@ namespace Soko.Unity.Game.Ui.Level
             _view.SetTurns(0);
             _turnsCountTracker.OnTurnCountChanged += _view.SetTurns;
         }
+
+        private void OnDisable()
+        {
+            _turnsCountTracker.OnTurnCountChanged -= _view.SetTurns;
+        }
     }
 }

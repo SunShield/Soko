@@ -26,6 +26,7 @@ namespace Soko.Unity.Game.Level.History
         {
             _eventBus.GetEvent<MovementStartedEvent>().SubscribeForGlobal(OnMovementStarted);
             _eventBus.GetEvent<MovementFinishedEvent>().SubscribeForGlobal(OnMovementFinished);
+            _eventBus.GetEvent<LevelPreLeaveEvent>().SubscribeForGlobal(args => ClearState());
         }
 
         private void OnMovementStarted(EmptyArgs args)
@@ -136,6 +137,12 @@ namespace Soko.Unity.Game.Level.History
                     componentImprint.Component.RestoreFromImprint(componentImprint);
                 }
             }
+        }
+
+        private void ClearState()
+        {
+            _imprintableObjects.Clear();
+            _turnImprints.Clear();
         }
     }
 }

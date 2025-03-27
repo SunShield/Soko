@@ -117,6 +117,7 @@ namespace Soko.Unity.Game.Level.Management
 
         public async void EndCurrentLevel()
         {
+            _eventBus.GetEvent<LevelPreLeaveEvent>().InvokeForGlobal(new());
             PlayCycleManager = null;
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
             if (_uiManager.GetUiElementState(UiElements.MainMenuScreen) != UiElementState.Active)

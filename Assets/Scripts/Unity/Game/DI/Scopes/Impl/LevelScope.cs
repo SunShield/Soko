@@ -21,7 +21,7 @@ namespace Soko.Unity.Game.DI.Scopes.Impl
         
         protected override void ConfigureInternal(IContainerBuilder builder)
         {
-            builder.Register<HistoryManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+            builder.Register<HistoryManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
             builder.Register<LevelInputManager>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_userMovementManager).AsSelf().AsImplementedInterfaces();

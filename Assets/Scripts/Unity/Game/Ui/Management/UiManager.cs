@@ -57,7 +57,7 @@ namespace Soko.Unity.Game.Ui.Management
         {
             var elementPrefab = _uiDataSo.UiElements[element];
             var newUiElement = Instantiate(elementPrefab, _activeUiRoot);
-            CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(newUiElement.gameObject);
+            //CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(newUiElement.gameObject);
             newUiElement.SetKey(element);
             newUiElement.gameObject.SetActive(false);
             _inactiveUiElements.Add(element, newUiElement);
@@ -67,6 +67,7 @@ namespace Soko.Unity.Game.Ui.Management
         {
             if (!_inactiveUiElements.TryGetValue(element, out var uiElement)) return;
             
+            CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(uiElement.gameObject);
             uiElement.transform.SetParent(container.transform, false);
             uiElement.Initialize(container);
             uiElement.gameObject.SetActive(true);
