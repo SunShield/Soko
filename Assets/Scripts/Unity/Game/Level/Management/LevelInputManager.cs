@@ -20,18 +20,13 @@ namespace Soko.Unity.Game.Level.Management
             _playerInputActions.Enable();
             _playerInputActions.Player.Move.performed += _userMovementManager.PerformMove;
             _playerInputActions.Player.Move.canceled += _userMovementManager.CancelMove;
-            _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(OnLevelWin);
-        }
-
-        private void OnLevelWin(EmptyArgs args)
-        {
-            _playerInputActions.Disable();
-            _playerInputActions = null;
         }
 
         public void Dispose()
         {
-            _eventBus.GetEvent<LevelWinEvent>().UnsubscribeFromGlobal(OnLevelWin);
+            _playerInputActions.Disable();
+            _playerInputActions.Dispose();
+            _playerInputActions = null;
         }
     }
 }
