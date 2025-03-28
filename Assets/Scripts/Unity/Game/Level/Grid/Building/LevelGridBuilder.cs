@@ -105,6 +105,9 @@ namespace Soko.Unity.Game.Level.Grid.Building
                 ProcessColoredObject(solidObject, cellData.Color);
                 ProcessGroupedObject(solidObject, cellData.Group);
             }
+
+            var cell = grid[y, x];
+            cell.OnCellObjectsSpawned();
         }
 
         private LevelObjectBase CreateGridObject(LevelGrid grid, string key, int y, int x)
@@ -115,7 +118,7 @@ namespace Soko.Unity.Game.Level.Grid.Building
             _objectResolver.InjectGameObject(gridObject.gameObject);
             gridObject.transform.localPosition = Vector3.zero;
             gridObject.Initialize(cell);
-            cell.AddObjectOnStart(gridObject);
+            cell.BaseAddObject(gridObject);
             grid.RegisterObject(gridObject);
             return gridObject;
         }

@@ -47,7 +47,9 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                     checkedColor = colorComponent.Color;
                 
                 if (currentColorComponent.Color == ObjectColor.White && checkedColor != ObjectColor.None ||
-                    currentColorComponent.Color != ObjectColor.White && checkedColor == currentColorComponent.Color)
+                    currentColorComponent.Color != ObjectColor.White && 
+                        (checkedColor == currentColorComponent.Color || 
+                         checkedColor == ObjectColor.White))
                     SetActivated(true, isStart);
             }
             else

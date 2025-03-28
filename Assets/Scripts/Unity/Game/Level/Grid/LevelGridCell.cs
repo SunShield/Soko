@@ -18,12 +18,6 @@ namespace Soko.Unity.Game.Level.Grid
             Coords = coords;
         }
 
-        public void AddObjectOnStart(LevelObjectBase objectBase)
-        {
-            BaseAddObject(objectBase);
-            objectBase.Cell.OnStartWithObject(objectBase);
-        }
-
         public void BaseAddObject(LevelObjectBase objectBase)
         {
             objectBase.SetCell(this);
@@ -53,11 +47,12 @@ namespace Soko.Unity.Game.Level.Grid
             objectBase.transform.parent = null;
         }
 
-        public void OnStartWithObject(LevelObjectBase objectBase)
+        public void OnCellObjectsSpawned()
         {
-            var objects = new List<LevelObjectBase>(Objects.Values);
-            foreach (var levelObject in objects)
-                levelObject.OnStartWithObject(objectBase);
+            if (Objects.Count < 2) return;
+            
+            Objects[ObjectLayer.Ground].OnStartWithObject(Objects[ObjectLayer.Solid]);
+            Objects[ObjectLayer.Solid].OnStartWithObject(Objects[ObjectLayer.Ground]);
         }
 
         public void OnObjectEntered(LevelObjectBase objectBase)
