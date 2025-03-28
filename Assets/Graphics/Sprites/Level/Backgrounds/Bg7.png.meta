@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: babd013bd553da144b2f53f00c70a92a
+guid: 2fa716cf19858374088fbd05664ad95f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1338708116752676169
-    second: LevelPack5_Logo_0
-  - first:
-      213: 2689869826708409906
-    second: LevelPack5_Logo_1
-  - first:
-      213: 1282543872197053752
-    second: LevelPack5_Logo_2
+      213: -5940087775198043031
+    second: game_background_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LevelPack5_Logo_0
+      name: game_background_2_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 137
-        width: 130
-        height: 130
+        x: 0
+        y: 0
+        width: 610
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 945b9fc70fb049210800000000000000
-      internalID: 1338708116752676169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelPack5_Logo_1
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 3
-        width: 130
-        height: 130
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 23e0ff81b56545520800000000000000
-      internalID: 2689869826708409906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelPack5_Logo_2
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 3
-        width: 130
-        height: 130
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83dc8274bd28cc110800000000000000
-      internalID: 1282543872197053752
+      spriteID: 9642ea0f3a1909da0800000000000000
+      internalID: -5940087775198043031
       vertices: []
       indices: 
       edges: []
@@ -185,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LevelPack5_Logo_0: 1338708116752676169
-      LevelPack5_Logo_1: 2689869826708409906
-      LevelPack5_Logo_2: 1282543872197053752
+      game_background_2_0: -5940087775198043031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

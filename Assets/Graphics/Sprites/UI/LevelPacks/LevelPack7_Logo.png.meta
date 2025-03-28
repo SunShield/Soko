@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: babd013bd553da144b2f53f00c70a92a
+guid: e590f0f1c99d3cb48bb8fa693946daee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1338708116752676169
-    second: LevelPack5_Logo_0
+      213: -4752671172036264219
+    second: LevelPack7_Logo_0
   - first:
-      213: 2689869826708409906
-    second: LevelPack5_Logo_1
+      213: -1754292488232601792
+    second: LevelPack7_Logo_1
   - first:
-      213: 1282543872197053752
-    second: LevelPack5_Logo_2
+      213: 227127095635380491
+    second: LevelPack7_Logo_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LevelPack5_Logo_0
+      name: LevelPack7_Logo_0
       rect:
         serializedVersion: 2
         x: 3
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 945b9fc70fb049210800000000000000
-      internalID: 1338708116752676169
+      spriteID: 5eef980ffbe1b0eb0800000000000000
+      internalID: -4752671172036264219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LevelPack5_Logo_1
+      name: LevelPack7_Logo_1
       rect:
         serializedVersion: 2
         x: 3
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23e0ff81b56545520800000000000000
-      internalID: 2689869826708409906
+      spriteID: 04772cec64087a7e0800000000000000
+      internalID: -1754292488232601792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LevelPack5_Logo_2
+      name: LevelPack7_Logo_2
       rect:
         serializedVersion: 2
         x: 137
@@ -165,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 83dc8274bd28cc110800000000000000
-      internalID: 1282543872197053752
+      spriteID: b09863ed3eae62300800000000000000
+      internalID: 227127095635380491
       vertices: []
       indices: 
       edges: []
@@ -185,9 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LevelPack5_Logo_0: 1338708116752676169
-      LevelPack5_Logo_1: 2689869826708409906
-      LevelPack5_Logo_2: 1282543872197053752
+      LevelPack7_Logo_0: -4752671172036264219
+      LevelPack7_Logo_1: -1754292488232601792
+      LevelPack7_Logo_2: 227127095635380491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
