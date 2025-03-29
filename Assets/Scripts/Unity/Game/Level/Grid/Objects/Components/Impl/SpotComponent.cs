@@ -45,12 +45,14 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
                 var checkedColor = ObjectColor.None;
                 if (enteringObject.TryGetObjectComponent<ColorComponent>(out var colorComponent))
                     checkedColor = colorComponent.Color;
-                
+
                 if (currentColorComponent.Color == ObjectColor.White && checkedColor != ObjectColor.None ||
-                    currentColorComponent.Color != ObjectColor.White && 
-                        (checkedColor == currentColorComponent.Color || 
-                         checkedColor == ObjectColor.White))
+                    currentColorComponent.Color != ObjectColor.White &&
+                    (checkedColor == currentColorComponent.Color || checkedColor == ObjectColor.White))
+                {
                     SetActivated(true, isStart);
+                    if (_lockObject) enteringObject.SetCanMove(false);
+                }
             }
             else
             {
