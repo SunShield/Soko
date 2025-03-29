@@ -14,7 +14,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw.Elements
         public const string ObjectsTabName = "Obects";
         public const string ColorsTabName = "Colors";
         public const string GroupsTabName = "Groups";
-        private readonly string[] Groups = { "-1", "0", "1", "2", "3" };
+        private readonly string[] Groups = { "-1", "0", "1", "2", "3", "4" };
         
         private readonly TabsGroupDrawer _tabsGroupDrawer;
         
