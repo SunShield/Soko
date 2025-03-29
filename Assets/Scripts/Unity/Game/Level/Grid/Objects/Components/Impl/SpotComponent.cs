@@ -66,7 +66,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             SetActivated(false);
         }
         
-        private void SetActivated(bool activated, bool isStart = false)
+        private void SetActivated(bool activated, bool skipWinCheck = false)
         {
             Activated = activated;
             _activeGraphics.SetActive(activated);
@@ -75,18 +75,18 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
             if (!Activated) return;
             
             _soundsManager.PlaySfx(GameSfx.SpotEnter);
-            if (!isStart) LevelPlayCycleManager.CheckWin();
+            if (!skipWinCheck) LevelPlayCycleManager.CheckWin();
         }
 
         public ComponentImprint CreateComponentImprint()
         {
-            return new SpotComponentImprint() { Activated = Activated };
+            return new SpotComponentImprint() { Activated = this.Activated };
         }
 
         public void RestoreFromImprint(ComponentImprint imprint)
         {
             var componentTyped = imprint as SpotComponentImprint;
-            SetActivated(componentTyped.Activated);
+            SetActivated(componentTyped.Activated, true);
         }
     }
 }

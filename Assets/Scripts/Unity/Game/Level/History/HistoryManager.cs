@@ -119,23 +119,17 @@ namespace Soko.Unity.Game.Level.History
         private void RevertTurnImprint(TurnImprint currentTurnImprint, TurnImprint previousTurnImprint)
         {
             foreach (var objectImprint in currentTurnImprint.ObjectImprints)
-            {
                 objectImprint.Object.Cell.BaseRemoveObject(objectImprint.Object);
-            }
 
             foreach (var objectImprint in previousTurnImprint.ObjectImprints)
-            {
                 objectImprint.Cell.BaseAddObject(objectImprint.Object);
-            }
 
             foreach (var objectImprint in previousTurnImprint.ObjectImprints)
             {
                 var levelObject = objectImprint.Object;
                 var componentImprints = objectImprint.ComponentImprints;
                 foreach (var componentImprint in componentImprints)
-                {
                     componentImprint.Component.RestoreFromImprint(componentImprint);
-                }
             }
         }
 
