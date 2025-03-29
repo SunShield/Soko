@@ -180,7 +180,7 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = fontSize,
                 fontStyle = FontStyle.Bold,
-                normal = { textColor = Color.white }
+                normal = { textColor = Color.black }
             };
             GUI.Label(groupTextRect, groupGetter().ToString(), groupStyle);
         }
