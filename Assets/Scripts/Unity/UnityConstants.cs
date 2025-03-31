@@ -10,6 +10,12 @@
         
         public class Audio
         {
+            public class Params
+            {
+                public const string MusicVolumeFloatKey = "MusicVolume";
+                public const string SfxVolumeFloatKey = "SfxVolume";
+            }
+            
             public const string MainMenuMusic = "MainMenu";
         }
         
