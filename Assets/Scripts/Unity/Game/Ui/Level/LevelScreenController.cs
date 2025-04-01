@@ -22,22 +22,24 @@ namespace Soko.Unity.Game.Ui.Level
         [Inject] private LevelsManager _levelsManager;
         [Inject] private UiManager _uiManager;
         [Inject] private EventBus _eventBus;
-        [Inject] private HistoryManager _historyManager;
+        [Inject] private ContinuousTurnReverter _continuousTurnReverter;
 
         protected override void PostConstruct()
         {
             _view.OnBackClicked += EndLevel;
-            _view.OnRevertTurnClicked += RevertTurn;
+            _view.OnRevertTurnClickStarted += StartReverting;
+            _view.OnRevertTurnClickReleased += EndReverting;
             _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(OnLevelWin);
         }
-
+        
         private void EndLevel()
         {
             _uiManager.CloseUiElement(UiElements.LevelMainScreen);
             _levelsManager.EndCurrentLevel();
         }
 
-        private void RevertTurn() => _historyManager.RevertTurn();
+        private void StartReverting() => _continuousTurnReverter.StartReverting();
+        private void EndReverting() => _continuousTurnReverter.EndReverting();
 
         protected override async UniTask OnEnabledAndConstructed()
             => _levelTurnsCounterController.Initialize();
@@ -49,7 +51,8 @@ namespace Soko.Unity.Game.Ui.Level
         private void OnDisable()
         {
             _view.OnBackClicked -= EndLevel;
-            _view.OnRevertTurnClicked -= RevertTurn;
+            _view.OnRevertTurnClickStarted -= StartReverting;
+            _view.OnRevertTurnClickReleased -= EndReverting;
             _eventBus.GetEvent<LevelWinEvent>().UnsubscribeFromGlobal(OnLevelWin);
         }
     }

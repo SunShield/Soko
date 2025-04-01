@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3399518233229178190}
   - component: {fileID: 7932751016963737619}
   - component: {fileID: 8849062980916894007}
-  - component: {fileID: 5479445070027260224}
+  - component: {fileID: 831967110667990540}
   - component: {fileID: 1046848344986780163}
   m_Layer: 0
   m_Name: RevertButton
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5479445070027260224
+--- !u!114 &831967110667990540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 393511268116339173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e06764f69e4f52a24a3b11ec13d50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -143,7 +143,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _button: {fileID: 5479445070027260224}
+  _button: {fileID: 831967110667990540}
   _gameSfx: 0
 --- !u!1 &1204949297648141742
 GameObject:
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 4161748555268317398}
-  _revertTurnBiButton: {fileID: 5479445070027260224}
+  _revertTurnButton: {fileID: 831967110667990540}
 --- !u!1 &1925458058794976294
 GameObject:
   m_ObjectHideFlags: 0

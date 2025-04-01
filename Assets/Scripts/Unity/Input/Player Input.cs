@@ -101,6 +101,15 @@ namespace Soko
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Revert"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a5becdd-89d5-4d07-8d9f-81256d0303e9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,17 @@ namespace Soko
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dbe8296-bc42-457b-b84b-25a27bc58c54"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Revert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -167,6 +187,7 @@ namespace Soko
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_Revert = m_Player.FindAction("Revert", throwIfNotFound: true);
         }
 
         ~@PlayerInputActions()
@@ -248,6 +269,7 @@ namespace Soko
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_Revert;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -263,6 +285,10 @@ namespace Soko
             /// Provides access to the underlying input action "Player/Move".
             /// </summary>
             public InputAction @Move => m_Wrapper.m_Player_Move;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Revert".
+            /// </summary>
+            public InputAction @Revert => m_Wrapper.m_Player_Revert;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -292,6 +318,9 @@ namespace Soko
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Revert.started += instance.OnRevert;
+                @Revert.performed += instance.OnRevert;
+                @Revert.canceled += instance.OnRevert;
             }
 
             /// <summary>
@@ -306,6 +335,9 @@ namespace Soko
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Revert.started -= instance.OnRevert;
+                @Revert.performed -= instance.OnRevert;
+                @Revert.canceled -= instance.OnRevert;
             }
 
             /// <summary>
@@ -353,6 +385,13 @@ namespace Soko
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnMove(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Revert" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnRevert(InputAction.CallbackContext context);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Soko.Unity.Game.DI.Scopes.Impl
     {
         [SerializeField] private LevelPlayCycleManager _levelPlayCycleManager;
         [SerializeField] private UserMovementManager _userMovementManager;
+        [SerializeField] private ContinuousTurnReverter _continuousTurnReverter;
         [SerializeField] private LevelObjectsSo _levelObjectsSo;
         [SerializeField] private ColorDataSo _colorDataSo;
         
@@ -25,6 +26,7 @@ namespace Soko.Unity.Game.DI.Scopes.Impl
             builder.RegisterComponent(_levelPlayCycleManager).AsSelf().AsImplementedInterfaces();
             builder.Register<LevelInputManager>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             builder.RegisterComponent(_userMovementManager).AsSelf().AsImplementedInterfaces();
+            builder.RegisterComponent(_continuousTurnReverter).AsSelf();
             builder.RegisterComponent(_levelObjectsSo).AsSelf();
             builder.RegisterInstance(_colorDataSo);
             builder.RegisterEntryPoint<LevelGridBuilder>().AsSelf();
