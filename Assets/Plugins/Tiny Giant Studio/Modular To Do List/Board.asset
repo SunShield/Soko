@@ -2886,7 +2886,7 @@ MonoBehaviour:
       _hourInTweleveHourFormat:
         hour: 0
         format: 0
-    opened: 1
+    opened: 0
     searchingFor: 
   showPendingItems: 1
   showCompletedItems: 1
