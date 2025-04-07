@@ -6,6 +6,8 @@ namespace Soko.Unity.Game.Save.Impl.LevelsData
     [Serializable]
     public class LevelsProgressSaveData : AbstractSaveData
     {
-        public List<LevelPackSaveData> PackSaveDatas = new();
+        public string LastPackKey;
+        public string LastLevelKey;
+        public Dictionary<string, LevelPackSaveData> PackSaveDatas = new();
     }
 }

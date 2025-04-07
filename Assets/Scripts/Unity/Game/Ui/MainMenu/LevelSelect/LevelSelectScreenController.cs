@@ -25,10 +25,9 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         private int _levelIndex;
         private LevelPack CurrentLevelPack => _levelPacksSo.LevelPacks[_levelPackIndex].LevelPack;
         private LevelData CurrentLevelData => _levelPacksSo.LevelPacks[_levelPackIndex].LevelPack.Levels[_levelIndex];
-        private List<LevelPackSaveData> PackSaveDatas => _progressSaveDataManager.SaveData.PackSaveDatas;
-        private LevelPackSaveData CurrentPackSaveData 
-            => PackSaveDatas.Count - 1 >= _levelPackIndex ? PackSaveDatas[_levelPackIndex] : null;
-        private LevelSaveData CurrentLevelSaveData => CurrentPackSaveData?.Levels[_levelIndex];
+        private Dictionary<string, LevelPackSaveData> PackSaveDatas => _progressSaveDataManager.SaveData.PackSaveDatas;
+        private LevelPackSaveData CurrentPackSaveData => PackSaveDatas[_levelsManager.LevelPackKey];
+        private LevelSaveData CurrentLevelSaveData => CurrentPackSaveData?.Levels[_levelsManager.LevelKey];
 
         private void Awake()
         {
@@ -41,20 +40,47 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
 
         protected override async UniTask OnEnabledAndConstructed()
         {
-            SetLevelPack(_levelsManager.LevelPackIndex, _levelsManager.LevelIndex);
+            _levelPackIndex = GetLevelPackIndex();
+            _levelIndex = GetLevelIndex(_levelPackIndex);
+            SetLevelPack(_levelPackIndex, _levelIndex);
+        }
+
+        private int GetLevelPackIndex()
+        {
+            for (int i = 0; i < _levelPacksSo.LevelPacks.Count; i++)
+            {
+                var levelPack = _levelPacksSo.LevelPacks[i].LevelPack;
+                if (levelPack.Key != _levelsManager.LevelPackKey) continue;
+                return i;
+            }
+
+            return -1;
+        }
+
+        private int GetLevelIndex(int packIndex)
+        {
+            var levelPack = _levelPacksSo.LevelPacks[packIndex].LevelPack;
+            for (int i = 0; i < levelPack.Levels.Count; i++)
+            {
+                var level = levelPack.Levels[i];
+                if (level.Key != _levelsManager.LevelKey) continue;
+                return i;
+            }
+            
+            return -1;
         }
 
         private void SelectPreviousLevelPack() => SetLevelPack(_levelPackIndex - 1);
         private void SelectNextLevelPack() => SetLevelPack(_levelPackIndex + 1);
         private void OnLevelBoxClicked(int levelIndex) => SetLevel(levelIndex);
-        private void StartLevel() => _levelsManager.StartCurrentLevel(_levelPackIndex, _levelIndex);
+        private void StartLevel() => _levelsManager.StartCurrentLevel(CurrentLevelPack.Key, CurrentLevelData.Key);
 
         private void SetLevelPack(int levelPackIndex, int levelIndex = 0)
         {
             _levelPackIndex = levelPackIndex;
             _view.SetLevelPackButtonsState(_levelPackIndex == 0, _levelPackIndex == _levelPacksSo.LevelPacks.Count - 1);
             _levelPackInfo.SetLevelPackInfo(CurrentLevelPack, CurrentPackSaveData);
-            _levelPackDrawer.SetLevelPack(_levelPackIndex, levelIndex, CurrentLevelPack);
+            _levelPackDrawer.SetLevelPack(CurrentLevelPack.Key, levelIndex, CurrentLevelPack);
             SetLevel(levelIndex);
         }
 
@@ -70,7 +96,9 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
             if (Input.GetKeyDown(KeyCode.W))
             {
                 _levelsManager.WinCurrentLevel(10);
-                SetLevelPack(_levelsManager.LevelPackIndex);
+                _levelPackIndex = GetLevelPackIndex();
+                _levelIndex = GetLevelIndex(_levelPackIndex);
+                SetLevelPack(_levelPackIndex, _levelIndex);
             }
         }
 #endif

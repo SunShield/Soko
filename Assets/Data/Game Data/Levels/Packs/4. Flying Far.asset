@@ -26,6 +26,9 @@ MonoBehaviour:
     - Name: LevelPack
       Entry: 7
       Data: 0|Soko.Core.Models.Levels.LevelPack, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 1908e242-89f0-4f37-81d9-949a5ec4368f
     - Name: Name
       Entry: 1
       Data: Flying Far

@@ -26,6 +26,9 @@ MonoBehaviour:
     - Name: LevelPack
       Entry: 7
       Data: 0|Soko.Core.Models.Levels.LevelPack, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 898b41e1-01ea-4929-b18b-62c6720e2dfb
     - Name: Name
       Entry: 1
       Data: Unbound Technology

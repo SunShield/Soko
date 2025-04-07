@@ -26,6 +26,9 @@ MonoBehaviour:
     - Name: LevelPack
       Entry: 7
       Data: 0|Soko.Core.Models.Levels.LevelPack, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 97d53297-150d-4ec6-b6c1-3e9f5f296e11
     - Name: Name
       Entry: 1
       Data: Watch Where You Move

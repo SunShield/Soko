@@ -6,6 +6,6 @@ namespace Soko.Unity.Game.Save.Impl.LevelsData
     [Serializable]
     public class LevelPackSaveData
     {
-        public List<LevelSaveData> Levels = new();
+        public Dictionary<string, LevelSaveData> Levels = new();
     }
 }

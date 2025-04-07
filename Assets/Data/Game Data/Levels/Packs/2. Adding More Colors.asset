@@ -26,6 +26,9 @@ MonoBehaviour:
     - Name: LevelPack
       Entry: 7
       Data: 0|Soko.Core.Models.Levels.LevelPack, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: ef6904b3-c7c4-4355-be47-505d05fc3007
     - Name: Name
       Entry: 1
       Data: Adding More Colors

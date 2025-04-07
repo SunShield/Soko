@@ -21,7 +21,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         
         private LevelBoxController CurrentLevelBoxController => _levelBoxControllers[_selectedLevelIndex];
 
-        public void SetLevelPack(int packIndex, int selectedLevelIndex, LevelPack levelPack)
+        public void SetLevelPack(string packKey, int selectedLevelIndex, LevelPack levelPack)
         {
             ClearLevelBoxes();
 
@@ -31,7 +31,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
                 var levelBox = Instantiate(_levelBoxPrefab, transform);
                 _objectResolver.InjectGameObject(levelBox.gameObject);
                 _levelBoxControllers.Add(levelBox);
-                var levelState = _levelsManager.CheckLevelState(packIndex, i);
+                var levelState = _levelsManager.CheckLevelState(packKey, levelData.Key);
                 levelBox.Setup(i, levelState);
                 levelBox.OnClicked += LevelBoxClickHandler;
                 _view.AddLevelBox(levelBox.View);
