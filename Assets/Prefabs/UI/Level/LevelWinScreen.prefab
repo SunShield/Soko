@@ -196,6 +196,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  <Key>k__BackingField: 4
   _view: {fileID: 1006351536264202062}
 --- !u!114 &1006351536264202062
 MonoBehaviour:

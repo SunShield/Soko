@@ -11,6 +11,8 @@ namespace Soko.Unity.Game.Ui.Management
 {
     public class UiManager : MonoBehaviour
     {
+        private const int UseDefaultOrder = -1;
+        
         [SerializeField] private UiContainer _containerPrefab;
         [SerializeField] private Transform _activeUiRoot;
         [SerializeField] private Transform _inactiveUiRoot;
@@ -28,11 +30,14 @@ namespace Soko.Unity.Game.Ui.Management
             gameObject.SetActive(true);
         }
 
-        public UiElement OpenUiElement(UiElements element, int order)
+        public UiElement OpenUiElement(UiElements element, int order = UseDefaultOrder)
         {
-            var uiContainer = GetOrCreateUiContainer(order);
+            var elementData = _uiDataSo.UiElements[element];
+            var elementOrder = order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
+            
+            var uiContainer = GetOrCreateUiContainer(elementOrder);
             var elementState = GetUiElementState(element);
-            if (elementState == UiElementState.NotInstantiated) CreateUiElement(element);
+            if (elementState == UiElementState.NotInstantiated) CreateUiElement(elementData);
             ActivateUiElement(element, uiContainer);
             return GetUiElement(element);
         }
@@ -53,14 +58,11 @@ namespace Soko.Unity.Game.Ui.Management
             return _containers[order];
         }
 
-        private void CreateUiElement(UiElements element)
+        private void CreateUiElement(UiElementData data)
         {
-            var elementPrefab = _uiDataSo.UiElements[element];
-            var newUiElement = Instantiate(elementPrefab, _activeUiRoot);
-            //CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(newUiElement.gameObject);
-            newUiElement.SetKey(element);
+            var newUiElement = Instantiate(data.Prefab, _activeUiRoot);
             newUiElement.gameObject.SetActive(false);
-            _inactiveUiElements.Add(element, newUiElement);
+            _inactiveUiElements.Add(data.Prefab.Key, newUiElement);
         }
 
         private void ActivateUiElement(UiElements element, UiContainer container)

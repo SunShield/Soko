@@ -24,8 +24,8 @@ namespace Soko.Unity.Game.Ui.MainMenu
 
         protected override async UniTask OnEnabledAndConstructed()
             => _soundsManager.PlayMusic(UnityConstants.Audio.MainMenuMusic);
-        private void GoToLevelSelect() => _uiManager.OpenUiElement(UiElements.LevelSelectScreen, 2);
-        private void OpenSettings() => _uiManager.OpenUiElement(UiElements.SettingsPopup, 2);
+        private void GoToLevelSelect() => _uiManager.OpenUiElement(UiElements.LevelSelectScreen);
+        private void OpenSettings() => _uiManager.OpenUiElement(UiElements.SettingsPopup);
         private void ExitGame() => Application.Quit();
     }
 }

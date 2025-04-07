@@ -123,7 +123,7 @@ namespace Soko.Unity.Game.Level.Management
             if (_uiManager.GetUiElementState(UiElements.MainMenuScreen) != UiElementState.Active)
                 await UniTask.WaitUntil(() => 
                     _uiManager.GetUiElementState(UiElements.MainMenuScreen) == UiElementState.Active);
-            _uiManager.OpenUiElement(UiElements.LevelSelectScreen, 2);
+            _uiManager.OpenUiElement(UiElements.LevelSelectScreen);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Soko.Unity.Game.Level.Cycle
         public void Initialize()
         {
             _levelsManager.SetCycleManager(this);
-            _uiManager.OpenUiElement(UiElements.LevelMainScreen, 1);
+            _uiManager.OpenUiElement(UiElements.LevelMainScreen);
             StartLevel();
         }
 
@@ -60,7 +60,7 @@ namespace Soko.Unity.Game.Level.Cycle
 
         private void ShowWinLevelPopup()
         {
-            var levelWinScreen = _uiManager.OpenUiElement(UiElements.LevelWinScreen, 2) as LevelWinScreenController;
+            var levelWinScreen = _uiManager.OpenUiElement(UiElements.LevelWinScreen) as LevelWinScreenController;
             levelWinScreen.OnClosed += LeaveLevel;
             levelWinScreen.SetLevelWinResults(LevelData.Name, _turnsCountTracker.TurnCount);
         }

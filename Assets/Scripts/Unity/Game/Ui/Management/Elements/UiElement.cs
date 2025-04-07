@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Soko.Unity.Game.Ui.Enums;
+using UnityEngine;
 using VContainer;
 
 namespace Soko.Unity.Game.Ui.Management.Elements
 {
     public class UiElement : SerializedMonoBehaviour
     {
+        [field: SerializeField] public UiElements Key { get; private set; }
+        
         [Inject] protected UiManager UiManager;
         
         private UiContainer _container;
-        private UiElements _key;
         
         public bool IsConstructed { get; private set; }
 
@@ -33,13 +34,12 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         
         protected virtual async UniTask OnEnabledAndConstructed() { }
         
-        public void SetKey(UiElements key) => _key = key;
         public void Initialize(UiContainer container) => _container = container;
 
         public void Close()
         {
             OnPreClose();
-            UiManager.CloseUiElement(_key);
+            UiManager.CloseUiElement(Key);
             OnClosed?.Invoke();
         }
         
