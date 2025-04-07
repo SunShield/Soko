@@ -48,6 +48,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 2|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 82dd4215-702b-40b9-b396-31385f257644
     - Name: Name
       Entry: 1
       Data: Star
@@ -936,6 +939,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 40|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 53d80e40-e7d9-4537-a8c7-e596f537bf03
     - Name: Name
       Entry: 1
       Data: Box of Colors
@@ -2496,6 +2502,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 106|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 708437fc-2127-4f42-9f0c-cb7168fa9124
     - Name: Name
       Entry: 1
       Data: Metal Cage
@@ -4056,6 +4065,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 172|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 9b677135-befc-46db-b1df-0fe34b28841f
     - Name: Name
       Entry: 1
       Data: Traffic Jam
@@ -5232,6 +5244,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 222|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: c2aab639-a45a-44a4-b358-9ad5169b6ced
     - Name: Name
       Entry: 1
       Data: Scheme
@@ -7200,6 +7215,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 305|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: f9904c49-5607-4592-9ca3-67c3a8dc0b44
     - Name: Name
       Entry: 1
       Data: Ladder

@@ -48,6 +48,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 2|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 122698c3-a055-470d-bd10-a40e213442f6
     - Name: Name
       Entry: 1
       Data: RGB
@@ -936,6 +939,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 40|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 110bddc0-0861-4336-8320-67d4e77a90c6
     - Name: Name
       Entry: 1
       Data: Geode
@@ -1824,6 +1830,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 78|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 25c9945f-9681-4af9-b202-508b44e66d01
     - Name: Name
       Entry: 1
       Data: Snowflake
@@ -3024,6 +3033,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 129|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 2a004a1a-3b44-4058-b2be-5630a41aea15
     - Name: Name
       Entry: 1
       Data: Light and Magic
@@ -4224,6 +4236,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 180|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 1cba3a74-4c32-4f8f-8696-7d99b8b58077
     - Name: Name
       Entry: 1
       Data: Armies
@@ -5256,6 +5271,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 224|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 53e4ba7d-11c9-4a9f-814b-023464e5891a
     - Name: Name
       Entry: 1
       Data: Shiny Stick

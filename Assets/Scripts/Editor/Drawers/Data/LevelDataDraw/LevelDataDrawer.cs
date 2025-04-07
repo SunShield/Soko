@@ -16,9 +16,13 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
 {
     public class LevelDataDrawer : OdinValueDrawer<LevelData>
     {
+        private const string KeyLabel = "Key";
+        private const int KeyLabelWidth = 40;
+        private const string GenerateKeyButtonLabel = "Generate Key";
         private const string NameLabel = "Name";
         private const string LevelSizeLabel = "Size";
         private const string ResizeButtonLabel = "Resize";
+        private const int GenerateKeyButtonWidth = 100;
         private const int CellSize = 50;
         private const int SolidLayerShift = 6;
 
@@ -53,12 +57,37 @@ namespace Soko.Editor.Drawers.Data.LevelDataDraw
             _expanded = SirenixEditorGUI.Foldout(_expanded, LevelData.Name);
             if (!_expanded) return;
             
+            DrawLevelKeyBlock();
             DrawLevelName();
             InitGridCellsIfNeeded();
             DrawGrid();
             DrawLayerSelector();
             _tabsDrawer.DrawTabs();
             DrawResizeControls();
+        }
+
+        private void DrawLevelKeyBlock()
+        {
+            GUILayout.BeginHorizontal();
+            DrawKeyLabel();
+            DrawGenerateKeyButton();
+            GUILayout.EndHorizontal();
+        }
+
+        private void DrawKeyLabel()
+        {
+            var originalLabelWidth = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = KeyLabelWidth;
+            GUI.enabled = false;
+            LevelData.Key = EditorGUILayout.TextField(KeyLabel, LevelData.Key);
+            GUI.enabled = true;
+            EditorGUIUtility.labelWidth = originalLabelWidth;
+        }
+
+        private void DrawGenerateKeyButton()
+        {
+            if (GUILayout.Button(GenerateKeyButtonLabel, GUILayout.Width(GenerateKeyButtonWidth))) 
+                LevelData.Key = Guid.NewGuid().ToString();
         }
 
         private void DrawLevelName()

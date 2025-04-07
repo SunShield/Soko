@@ -48,6 +48,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 2|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 04ee3912-4ce7-48e9-9076-f316eb35dc2d
     - Name: Name
       Entry: 1
       Data: Excess Connections
@@ -1224,6 +1227,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 52|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: c1152e72-0b44-449b-9208-292725d3fe01
     - Name: Name
       Entry: 1
       Data: Remote Control
@@ -3744,6 +3750,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 158|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: c1d51ce1-a840-4c29-a74f-54660c035d9f
     - Name: Name
       Entry: 1
       Data: Two Worlds
@@ -5304,6 +5313,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 224|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 30207122-f33d-4cfe-bc1f-5402d6eeb4a1
     - Name: Name
       Entry: 1
       Data: Squared
@@ -6864,6 +6876,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 290|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: a75529ef-5f9a-4adc-ac66-a90cf3e0f0a5
     - Name: Name
       Entry: 1
       Data: Lockpick
@@ -8232,6 +8247,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 348|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 057ad53c-7d13-47bd-89ca-de0bdccbb55b
     - Name: Name
       Entry: 1
       Data: Harmony

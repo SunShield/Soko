@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Soko.Core.Models.Levels;
+using UnityEditor;
 using UnityEngine;
 
 namespace Soko.Unity.DataLayer.So
@@ -11,5 +12,14 @@ namespace Soko.Unity.DataLayer.So
     {
         [InlineProperty] [HideLabel] [HideReferenceObjectPicker]
         [NonSerialized][OdinSerialize] public LevelPack LevelPack;
+        
+#if UNITY_EDITOR
+        [Button] private void Save()
+        {
+            EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+#endif
     }
 }

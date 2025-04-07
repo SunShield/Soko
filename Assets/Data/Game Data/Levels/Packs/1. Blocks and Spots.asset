@@ -48,6 +48,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 2|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 6a28e935-922f-40c4-9f19-4332943c5956
     - Name: Name
       Entry: 1
       Data: Buenos Dias
@@ -1080,6 +1083,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 46|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: a6f9a190-ed1d-4c7c-8260-799c15da6994
     - Name: Name
       Entry: 1
       Data: Southern Cross
@@ -2280,6 +2286,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 97|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: a09ebda6-0478-4f61-8e92-eb7ce6725745
     - Name: Name
       Entry: 1
       Data: Diagon
@@ -3312,6 +3321,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 141|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: d108e27c-616d-449f-b62d-040c3c520234
     - Name: Name
       Entry: 1
       Data: Poodle
@@ -4200,6 +4212,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 179|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: 14491a92-333e-4ca4-b50b-8e58ab2aefba
     - Name: Name
       Entry: 1
       Data: Fractured Diamond
@@ -5952,6 +5967,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 253|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: ff1ed307-f5ab-4a4c-8cf1-76e6b209abea
     - Name: Name
       Entry: 1
       Data: Blaster
