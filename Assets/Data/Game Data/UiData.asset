@@ -21,6 +21,7 @@ MonoBehaviour:
     - {fileID: 2841999576304806790, guid: 8ecd2a01917e74b4eaffe2051092a8bd, type: 3}
     - {fileID: 8430180193956323045, guid: 83423e0bdd98a3947a044b2da495e46a, type: 3}
     - {fileID: 6170084686534007736, guid: 99a382dddd333b440b1c2aa5d7d93ccd, type: 3}
+    - {fileID: 1422793113234500869, guid: fce6d277513f5b04a85d77e73a25aac1, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -46,7 +47,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -143,6 +144,27 @@ MonoBehaviour:
     - Name: Prefab
       Entry: 10
       Data: 4
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 7|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 5
     - Name: DefaultSortingOrder
       Entry: 3
       Data: 2

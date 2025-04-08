@@ -34,7 +34,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         
         protected virtual async UniTask OnEnabledAndConstructed() { }
         
-        public void Initialize(UiContainer container) => Container = container;
+        public void SetContainer(UiContainer container) => Container = container;
 
         public void Close()
         {

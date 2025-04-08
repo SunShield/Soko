@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.DI.Scopes.Base;
 using Soko.Unity.Game.Ui.Enums;
@@ -30,7 +31,23 @@ namespace Soko.Unity.Game.Ui.Management
             gameObject.SetActive(true);
         }
 
-        public UiElement OpenUiElement(UiElements element, int order = UseDefaultOrder)
+        public async UniTask<TResult> OpenUiElementWithResult<TResult>(UiElements element, 
+            int order = UseDefaultOrder)
+        {
+            var uiElement = OpenUiElement(element, order);
+            if (uiElement is not AwaitableUiElement<TResult> awaitableUiElement) return default;
+
+            return await awaitableUiElement.AwaitForResult();
+        }
+
+        public TElement OpenUiElement<TElement>(UiElements element, int order = UseDefaultOrder)
+        {
+            var uiElement = OpenUiElement(element, order);
+            return uiElement is not TElement elementTyped ? default : elementTyped;
+        }
+
+        public UiElement OpenUiElement(UiElements element, 
+            int order = UseDefaultOrder)
         {
             var elementData = _uiDataSo.UiElements[element];
             var elementOrder = order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
@@ -71,7 +88,7 @@ namespace Soko.Unity.Game.Ui.Management
             
             CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(uiElement.gameObject);
             uiElement.transform.SetParent(container.transform, false);
-            uiElement.Initialize(container);
+            uiElement.SetContainer(container);
             uiElement.gameObject.SetActive(true);
             _activeUiElements.Add(element, uiElement);
             _inactiveUiElements.Remove(element);
@@ -82,7 +99,7 @@ namespace Soko.Unity.Game.Ui.Management
             if (!_activeUiElements.TryGetValue(element, out var uiElement)) return;
             
             uiElement.transform.SetParent(_inactiveUiRoot, false);
-            uiElement.Initialize(null);
+            uiElement.SetContainer(null);
             uiElement.gameObject.SetActive(false);
             _inactiveUiElements.Add(element, uiElement);
             _activeUiElements.Remove(element);

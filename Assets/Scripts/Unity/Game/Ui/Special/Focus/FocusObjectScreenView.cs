@@ -12,7 +12,7 @@ namespace Soko.Unity.Game.Ui.Special.Focus
 
         public void FocusPoint(Vector3 pointToFocus, int focusSize)
         {
-            _focusGraphics.position = pointToFocus;
+            _focusGraphics.localPosition = pointToFocus;
             _focusGraphics.sizeDelta = new Vector2(DefaultFocusSize, DefaultFocusSize);
             _focusGraphics.DOSizeDelta(new Vector2(focusSize, focusSize), DefaultFocusTime);
         }
