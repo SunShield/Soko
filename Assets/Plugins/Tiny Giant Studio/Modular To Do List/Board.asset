@@ -2903,7 +2903,7 @@ MonoBehaviour:
         being passed should be deternimed by having an ID in savedata.'
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -2936,8 +2936,8 @@ MonoBehaviour:
         month: 4
         day: 7
         dayOfTheWeek: Monday
-        minute: 44
-        hour: 8
+        minute: 16
+        hour: 12
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -2970,7 +2970,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 1
-      heightTakenInEditor: 65
+      heightTakenInEditor: 78
     - myName: Simple tutorial manager
       hideMyDetails: 0
       addedDescription: 1
@@ -3051,7 +3051,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 2
-      heightTakenInEditor: 83
+      heightTakenInEditor: 96
     - myName: Change save system
       hideMyDetails: 0
       addedDescription: 1
@@ -3126,7 +3126,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 3
-      heightTakenInEditor: 47
+      heightTakenInEditor: 56
     - myName: Ui window parenting
       hideMyDetails: 0
       addedDescription: 1
