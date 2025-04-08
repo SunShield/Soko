@@ -13,7 +13,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         
         [Inject] protected UiManager UiManager;
         
-        private UiContainer _container;
+        public UiContainer Container { get; private set; }
         
         public bool IsConstructed { get; private set; }
 
@@ -34,7 +34,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         
         protected virtual async UniTask OnEnabledAndConstructed() { }
         
-        public void Initialize(UiContainer container) => _container = container;
+        public void Initialize(UiContainer container) => Container = container;
 
         public void Close()
         {

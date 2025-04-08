@@ -3051,7 +3051,7 @@ MonoBehaviour:
       tags: []
       editing: 0
       visibilityIndex: 2
-      heightTakenInEditor: 96
+      heightTakenInEditor: 83
     - myName: Change save system
       hideMyDetails: 0
       addedDescription: 1
