@@ -54,7 +54,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
                 return i;
             }
 
-            return -1;
+            return 0;
         }
 
         private int GetLevelIndex(int packIndex)
@@ -67,7 +67,7 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
                 return i;
             }
             
-            return -1;
+            return 0;
         }
 
         private void SelectPreviousLevelPack() => SetLevelPack(_levelPackIndex - 1);

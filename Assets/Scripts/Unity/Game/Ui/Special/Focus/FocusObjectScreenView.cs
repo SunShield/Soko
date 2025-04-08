@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.Special.Focus
@@ -10,11 +11,13 @@ namespace Soko.Unity.Game.Ui.Special.Focus
         
         [SerializeField] private RectTransform _focusGraphics;
 
-        public void FocusPoint(Vector3 pointToFocus, int focusSize)
+        public async UniTask FocusPoint(Vector3 pointToFocus, int focusSize)
         {
             _focusGraphics.localPosition = pointToFocus;
             _focusGraphics.sizeDelta = new Vector2(DefaultFocusSize, DefaultFocusSize);
-            _focusGraphics.DOSizeDelta(new Vector2(focusSize, focusSize), DefaultFocusTime);
+            await _focusGraphics
+                .DOSizeDelta(new Vector2(focusSize, focusSize), DefaultFocusTime)
+                .AsyncWaitForCompletion();
         }
     }
 }

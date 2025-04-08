@@ -255,6 +255,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <PrefabKey>k__BackingField: t
+  <Layer>k__BackingField: 0
 --- !u!114 &5903813635446082479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &924077982307274165
 Transform:
   m_ObjectHideFlags: 0

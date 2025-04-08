@@ -2,7 +2,7 @@
 {
     public enum LevelState
     {
-        Locked,
+        Missing,
         Playable,
         Passed
     }

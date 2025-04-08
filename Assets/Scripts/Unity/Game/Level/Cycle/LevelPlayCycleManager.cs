@@ -77,7 +77,6 @@ namespace Soko.Unity.Game.Level.Cycle
         }
         
 #if UNITY_EDITOR
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -87,7 +86,6 @@ namespace Soko.Unity.Game.Level.Cycle
                 focusScreen.Setup(player.gameObject, 150);
             }
         }
-        
 #endif
     }
 }

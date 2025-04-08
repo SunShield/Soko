@@ -20,8 +20,6 @@ namespace Soko.Unity.Game.Ui.MainMenu.LevelSelect
         public void SetState(LevelState state)
         {
             _passedGraphics.SetActive(state == LevelState.Passed);
-            _lockedGraphics.SetActive(state == LevelState.Locked);
-            _button.interactable = state != LevelState.Locked;
         }
         
         public void SetSelected(bool selected) => _selectedBg.SetActive(selected);

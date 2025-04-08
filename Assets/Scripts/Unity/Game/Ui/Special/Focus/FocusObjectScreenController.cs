@@ -1,4 +1,5 @@
-﻿using Soko.Unity.Game.Ui.Management.Elements;
+﻿using Cysharp.Threading.Tasks;
+using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.Special.Focus
@@ -7,7 +8,7 @@ namespace Soko.Unity.Game.Ui.Special.Focus
     {
         [SerializeField] private FocusObjectScreenView _view;
 
-        public void Setup(GameObject objectToFocus, int finalFocusSize)
+        public async UniTask Setup(GameObject objectToFocus, int finalFocusSize)
         {
             var canvas = Container.Canvas;
             var objectScreenPos = Camera.main.WorldToScreenPoint(objectToFocus.transform.position);
@@ -18,7 +19,7 @@ namespace Soko.Unity.Game.Ui.Special.Focus
                 out var uiPos
             );
             
-            _view.FocusPoint(uiPos, finalFocusSize);
+            await _view.FocusPoint(uiPos, finalFocusSize);
         }
     }
 }

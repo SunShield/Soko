@@ -80,14 +80,15 @@ namespace Soko.Unity.Game.Level.Management
         private void GetKeys()
         {
             string unpassedLevelKey = null;
-            if (string.IsNullOrEmpty(LevelPackKey))
+            if (string.IsNullOrEmpty(LevelPackKey) || !_levelPacks.ContainsKey(LevelPackKey))
             {
                 LevelPackKey = GetFirstLevelPackWithUnpassedLevelsKey(out unpassedLevelKey);
                 if (string.IsNullOrEmpty(LevelPackKey))
                     LevelPackKey = _levelPacksSo.LevelPacks[^1].LevelPack.Key;
             }
 
-            if (string.IsNullOrEmpty(SaveData.LastLevelKey) ||
+            if (string.IsNullOrEmpty(SaveData.LastLevelKey) || 
+                CurrentLevelPack.Levels.Select(lp => lp.Key).All(k => k != LevelKey) ||
                 CheckLevelState(LevelPackKey, LevelKey) == LevelState.Passed)
             {
                 LevelKey = unpassedLevelKey;
@@ -122,6 +123,10 @@ namespace Soko.Unity.Game.Level.Management
         
         public LevelState CheckLevelState(string packKey, string levelKey)
         {
+            if (!SaveData.PackSaveDatas.ContainsKey(packKey) || 
+                !SaveData.PackSaveDatas[packKey].Levels.ContainsKey(levelKey))
+                return LevelState.Missing;
+                
             var packData  = SaveData.PackSaveDatas[packKey];
             var levelData = packData.Levels[levelKey];
             return levelData.BestTurnsCount > 0 ? LevelState.Passed : LevelState.Playable;
