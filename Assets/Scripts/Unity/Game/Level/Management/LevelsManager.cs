@@ -8,6 +8,7 @@ using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;
+using Soko.Unity.Game.ScenesManagement;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.MainMenu;
 using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
@@ -25,6 +26,7 @@ namespace Soko.Unity.Game.Level.Management
         [Inject] private LevelsProgressSaveDataManager _progressSaveDataManager;
         [Inject] private UiManager _uiManager;
         [Inject] private EventBus _eventBus;
+        [Inject] private ScenesManager _scenesManager;
         
         private Dictionary<string, LevelPack> _levelPacks = new();
 
@@ -144,10 +146,8 @@ namespace Soko.Unity.Game.Level.Management
             LevelPackKey = packKey;
             LevelKey = levelKey;
             _progressSaveDataManager.Save();
-            _uiManager.CloseUiElement<LevelSelectScreenController>();
-            _uiManager.CloseUiElement<MainMenuScreenController>();
             // TODO: add ui elements parenting
-            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.Level);
+            await _scenesManager.LoadSceneAsync(UnityConstants.Scenes.Level);
         }
 
         public void WinCurrentLevel(int bestTurnCount)
@@ -178,7 +178,7 @@ namespace Soko.Unity.Game.Level.Management
         {
             _eventBus.GetEvent<LevelPreLeaveEvent>().InvokeForGlobal(new());
             PlayCycleManager = null;
-            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
+            await _scenesManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
             if (_uiManager.GetUiElementState<MainMenuScreenController>() != UiElementState.Active)
                 await UniTask.WaitUntil(() => 
                     _uiManager.GetUiElementState<MainMenuScreenController>() == UiElementState.Active);

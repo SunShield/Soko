@@ -4,7 +4,6 @@ using Soko.Core.Events.Impl.Args;
 using Soko.Core.Events.Impl.Events;
 using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
-using Soko.Unity.Game.Ui.MainMenu;
 using Soko.Unity.Game.Ui.Management;
 using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
@@ -31,12 +30,7 @@ namespace Soko.Unity.Game.Ui.Level
             _eventBus.GetEvent<LevelWinEvent>().SubscribeForGlobal(OnLevelWin);
         }
         
-        private void EndLevel()
-        {
-            _uiManager.CloseUiElement<MainMenuScreenController>();
-            _levelsManager.EndCurrentLevel();
-        }
-
+        private void EndLevel() => _levelsManager.EndCurrentLevel();
         private void StartReverting() => _continuousTurnReverter.StartReverting();
         private void EndReverting() => _continuousTurnReverter.EndReverting();
 

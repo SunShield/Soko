@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using Soko.Unity.Game.Ui.Management.Elements;
+﻿using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.Special.Focus

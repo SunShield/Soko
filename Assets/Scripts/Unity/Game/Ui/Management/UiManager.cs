@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Soko.Core.Events;
+using Soko.Core.Events.Impl.Args;
+using Soko.Core.Events.Impl.Events;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.DI.Scopes.Base;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management.Elements;
 using Soko.Unity.Game.Ui.Management.Wrapper;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 
@@ -22,8 +26,10 @@ namespace Soko.Unity.Game.Ui.Management
         
         [Inject] private IObjectResolver _objectResolver;
         [Inject] private UiDataSo _uiDataSo;
+        [Inject] private EventBus _eventBus;
         
         private Dictionary<Type, UiElementData> _uiElementDatas = new ();
+        private readonly Dictionary<string, HashSet<UiElement>> _elementsPerScene = new();
         private readonly Dictionary<int, UiContainer> _containers = new ();
         private readonly Dictionary<Type, UiElement> _activeUiElements = new ();
         private readonly Dictionary<Type, UiElement> _inactiveUiElements = new ();
@@ -34,6 +40,8 @@ namespace Soko.Unity.Game.Ui.Management
             
             gameObject.SetActive(true);
             CreateElementsDatasDictionaryIfNeeded();
+            
+            _eventBus.GetEvent<PreSceneLoadedEvent>().SubscribeForGlobal(OnScenePreLoad);
         }
 
         private void CreateElementsDatasDictionaryIfNeeded()
@@ -41,6 +49,16 @@ namespace Soko.Unity.Game.Ui.Management
             if (_uiElementDatas.Count != 0) return;
             
             _uiElementDatas = _uiDataSo.UiElements.ToDictionary(e => e.Prefab.GetType(), e => e);
+        }
+
+        private void OnScenePreLoad(EmptyArgs args)
+        {
+            var activeSceneName = SceneManager.GetActiveScene().name;
+            if (!_elementsPerScene.TryGetValue(activeSceneName, out var activeSceneElements)) return;
+
+            var elementsToRemove = activeSceneElements.ToList();
+            foreach (var activeSceneElement in elementsToRemove)
+                CloseUiElement(activeSceneElement);
         }
 
         public TElement SimpleOpenUiElement<TElement>(int order = UseDefaultOrder)
@@ -58,7 +76,7 @@ namespace Soko.Unity.Game.Ui.Management
             var elementOrder = GetElementOrder(order, elementData);
             var uiContainer = GetOrCreateUiContainer(elementOrder);
             var elementState = GetUiElementState<TElement>();
-            CreateUiElementIfNeeded<TElement>(elementState, elementData);
+            CreateUiElementIfNeeded(elementState, elementData);
             var element = GetUiElement<TElement>();
             SetElementContainer(element, uiContainer);
             var wrapper = new OpeningUiElementWrapper<TElement>(this, element);
@@ -68,8 +86,7 @@ namespace Soko.Unity.Game.Ui.Management
         private int GetElementOrder(int order, UiElementData elementData)
             => order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
 
-        private void CreateUiElementIfNeeded<TElement>(UiElementState elementState, UiElementData elementData)
-            where TElement : UiElement
+        private void CreateUiElementIfNeeded(UiElementState elementState, UiElementData elementData)
         {
             if (elementState != UiElementState.NotInstantiated) return;
             CreateUiElement(elementData);
@@ -120,13 +137,13 @@ namespace Soko.Unity.Game.Ui.Management
             uiElement.gameObject.SetActive(true);
             _activeUiElements.Add(type, uiElement);
             _inactiveUiElements.Remove(type);
+            AddElementToActiveScene(uiElement);
         }
 
-        private void DeactivateUiElement<TElement>()
-            where TElement : UiElement
+        private void AddElementToActiveScene(UiElement uiElement)
         {
-            var type = typeof(TElement);
-            DeactivateUiElement(type);
+            _elementsPerScene.TryAdd(SceneManager.GetActiveScene().name, new());
+            _elementsPerScene[SceneManager.GetActiveScene().name].Add(uiElement);
         }
         
         private void DeactivateUiElement(Type type)
@@ -138,7 +155,11 @@ namespace Soko.Unity.Game.Ui.Management
             uiElement.gameObject.SetActive(false);
             _inactiveUiElements.Add(type, uiElement);
             _activeUiElements.Remove(type);
+            RemoveElementFromActiveScene(uiElement);
         }
+        
+        private void RemoveElementFromActiveScene(UiElement uiElement)
+            => _elementsPerScene[SceneManager.GetActiveScene().name].Remove(uiElement);
 
         public UiElementState GetUiElementState<TElement>()
             where TElement : UiElement
