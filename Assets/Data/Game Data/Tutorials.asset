@@ -27,35 +27,72 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 11
     - Name: 
       Entry: 7
       Data: 1|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
     - Name: Key
       Entry: 1
       Data: Tutorial0
+    - Name: Conditions
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|Soko.Unity.Game.Service.Conditions.Impl.LevelEnteredCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: Actions
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+      Data: 4|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 3|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
-    - Name: _levelObjectKey
+      Data: 5|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 6|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 1
       Data: p
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+      Data: 7|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
     - Name: _uiElementType
       Entry: 7
-      Data: 5|System.RuntimeType, mscorlib
+      Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: Soko.Unity.Game.Ui.Tutorials.Tutorial0Popup, Assembly-CSharp
@@ -71,16 +108,1055 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial1
     - Name: Conditions
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+      Data: 10|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 7|Soko.Unity.Game.Service.Conditions.Impl.LevelEnteredCondition, Assembly-CSharp
+      Data: 11|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 12|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: b
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 13|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 14|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 15|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: b
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 16|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 17|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial1Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial2
+    - Name: Conditions
+      Entry: 7
+      Data: 19|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 20|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 21|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: Any
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: true
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 22|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 23|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 24|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: Any
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: true
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 25|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 26|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial2Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 27|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial3
+    - Name: Conditions
+      Entry: 7
+      Data: 28|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 29|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 30|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: Any
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 31|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 32|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 33|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: Any
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 34|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 35|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial3Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 36|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial4
+    - Name: Conditions
+      Entry: 7
+      Data: 37|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 38|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 39|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: sb
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 40|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 41|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 42|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: sb
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 43|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 44|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial4Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 45|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial5
+    - Name: Conditions
+      Entry: 7
+      Data: 46|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 47|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 48|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: f
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 49|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 50|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 51|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: f
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 52|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 53|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial5Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 54|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial6
+    - Name: Conditions
+      Entry: 7
+      Data: 55|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 56|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 57|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: wa
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 58|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 59|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 60|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: wa
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 61|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 62|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial6Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 63|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial7
+    - Name: Conditions
+      Entry: 7
+      Data: 64|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 65|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 66|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: ls
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 67|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 68|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 69|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: ls
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 70|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 71|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial7Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 72|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial8
+    - Name: Conditions
+      Entry: 7
+      Data: 73|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 74|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 75|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: t
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 76|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 77|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 78|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: t
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 79|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 80|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial8Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 81|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial9
+    - Name: Conditions
+      Entry: 7
+      Data: 82|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 83|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 84|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: gtb
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 85|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 86|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 87|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: gtb
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 88|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 89|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial9Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 90|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial10
+    - Name: Conditions
+      Entry: 7
+      Data: 91|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 92|Soko.Unity.Game.Service.Conditions.Impl.LevelObjectCondition, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 93|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 1
+      Data: cpb_d
+    - Name: 
+      Entry: 1
+      Data: cpb_l
+    - Name: 
+      Entry: 1
+      Data: cpb_r
+    - Name: 
+      Entry: 1
+      Data: cpb_u
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Actions
+      Entry: 7
+      Data: 94|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 95|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKeys
+      Entry: 7
+      Data: 96|System.Collections.Generic.HashSet`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 1
+      Data: cpb_d
+    - Name: 
+      Entry: 1
+      Data: cpb_l
+    - Name: 
+      Entry: 1
+      Data: cpb_r
+    - Name: 
+      Entry: 1
+      Data: cpb_u
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _requireColored
+      Entry: 5
+      Data: false
+    - Name: _requireGrouped
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 97|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 98|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial10Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

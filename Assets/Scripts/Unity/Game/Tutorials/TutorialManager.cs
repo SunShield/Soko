@@ -42,7 +42,7 @@ namespace Soko.Unity.Game.Tutorials
             foreach (var tutorial in Tutorials)
             {
                 if (SaveData.CompletedTutorials.Contains(tutorial.Key)) continue;
-                if (tutorial.Conditions.Any(c => !_conditionManager.CheckCondition(c))) return;
+                if (tutorial.Conditions.Any(c => !_conditionManager.CheckCondition(c))) continue;
 
                 await ExecuteTutorial(tutorial);
             }

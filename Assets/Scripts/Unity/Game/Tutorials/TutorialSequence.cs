@@ -10,7 +10,7 @@ namespace Soko.Unity.Game.Tutorials
     public class TutorialSequence
     {
         public string Key;
-        public List<TutorialAction> Actions = new();
-        public List<AbstractCondition> Conditions = new();
+        [GUIColor("#CCCCEE")] public List<AbstractCondition> Conditions = new();
+        [GUIColor("#EECCCC")] public List<TutorialAction> Actions = new();
     }
 }
