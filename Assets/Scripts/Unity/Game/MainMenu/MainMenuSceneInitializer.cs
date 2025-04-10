@@ -12,7 +12,7 @@ namespace Soko.Unity.Game.MainMenu
         
         public void Initialize()
         {
-            _uiManager.OpenUiElement<MainMenuScreenController>();
+            _uiManager.SimpleOpenUiElement<MainMenuScreenController>();
         }
     }
 }

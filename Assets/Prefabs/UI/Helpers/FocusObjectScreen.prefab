@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5991369342736077011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -135,7 +135,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <Key>k__BackingField: 5
   _view: {fileID: 5119670904512542266}
 --- !u!114 &5119670904512542266
 MonoBehaviour:

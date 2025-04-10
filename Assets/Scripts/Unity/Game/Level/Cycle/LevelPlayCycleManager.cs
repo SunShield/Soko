@@ -10,6 +10,7 @@ using Soko.Unity.Game.Level.Visuals;
 using Soko.Unity.Game.Sounds;
 using Soko.Unity.Game.Ui.Level;
 using Soko.Unity.Game.Ui.Management;
+using Soko.Unity.Game.Ui.Management.Wrapper;
 using Soko.Unity.Game.Ui.Special.Focus;
 using UnityEngine;
 using VContainer;
@@ -35,7 +36,7 @@ namespace Soko.Unity.Game.Level.Cycle
         public void Initialize()
         {
             _levelsManager.SetCycleManager(this);
-            _uiManager.OpenUiElement<LevelScreenController>();
+            _uiManager.SimpleOpenUiElement<LevelScreenController>();
             StartLevel();
         }
 
@@ -60,7 +61,7 @@ namespace Soko.Unity.Game.Level.Cycle
 
         private void ShowWinLevelPopup()
         {
-            var levelWinScreen = _uiManager.OpenUiElement<LevelWinScreenController>();
+            var levelWinScreen = _uiManager.SimpleOpenUiElement<LevelWinScreenController>();
             levelWinScreen.OnClosed += LeaveLevel;
             levelWinScreen.SetLevelWinResults(LevelData.Name, _turnsCountTracker.TurnCount);
         }
@@ -79,10 +80,18 @@ namespace Soko.Unity.Game.Level.Cycle
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                var focusScreen = _uiManager.OpenUiElement<FocusObjectScreenController>();
-                var player = LevelGrid.LevelObjects.First(o => o.HasComponent<PlayerComponent>());
-                focusScreen.Setup(player.gameObject, 150);
+                Test();
             }
+        }
+
+        private async void Test()
+        {
+            var player = LevelGrid.LevelObjects.First(o => o.HasComponent<PlayerComponent>());
+            await _uiManager.StartUiElementOpenProcess<FocusObjectScreenController>()
+                .ConfigureElement(new FocusData(player.gameObject, 150))
+                .FinishOpeningProcess()
+                .AwaitForResult();
+            Debug.Log("T");
         }
 #endif
     }

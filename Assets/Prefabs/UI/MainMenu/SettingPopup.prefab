@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5991369342736077011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <Key>k__BackingField: 2
   _view: {fileID: 539384031292663393}
 --- !u!114 &539384031292663393
 MonoBehaviour:
@@ -737,16 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c796620abb4bcab7c4bfc841afbe7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  <Key>k__BackingField: 0
   _button: {fileID: 7397532856899710921}
   _gameSfx: 0
 --- !u!1 &4834258683514945067

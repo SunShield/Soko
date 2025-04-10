@@ -12,6 +12,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         public UiContainer Container { get; private set; }
         
         public bool IsConstructed { get; private set; }
+        public bool IsFinished { get; private set; }
 
         [Inject]
         private void Construct()
@@ -22,13 +23,23 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         
         protected virtual void PostConstruct() { }
 
+        public void SetFinished() => IsFinished = true;
+        
         private async void OnEnable()
         {
+            NotifyIfNotFinished();
+            
             if (!IsConstructed) await UniTask.WaitUntil(() => IsConstructed);
             OnPreEnabledAndConstructed();
             await OnEnabledAndConstructed();
         }
-        
+
+        private void NotifyIfNotFinished()
+        {
+            if (!IsFinished) throw new Exception($"UiElement {GetType()} is not finished. " +
+                                                 $"Perhaps, FinishProcess call is missing?");
+        }
+
         protected virtual void OnPreEnabledAndConstructed() { }
         protected virtual async UniTask OnEnabledAndConstructed() { }
         
@@ -37,6 +48,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         public void Close()
         {
             OnPreClose();
+            IsFinished = false;
             UiManager.CloseUiElement(this);
             OnClosed?.Invoke();
         }

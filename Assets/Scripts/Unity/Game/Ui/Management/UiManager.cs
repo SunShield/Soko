@@ -5,6 +5,7 @@ using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.DI.Scopes.Base;
 using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Management.Elements;
+using Soko.Unity.Game.Ui.Management.Wrapper;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -42,27 +43,43 @@ namespace Soko.Unity.Game.Ui.Management
             _uiElementDatas = _uiDataSo.UiElements.ToDictionary(e => e.Prefab.GetType(), e => e);
         }
 
-        /*public async UniTask<TResult> OpenUiElementWithResult<TElement, TResult>(int order = UseDefaultOrder)
-            where TElement : AwaitableUiElement<TResult>
+        public TElement SimpleOpenUiElement<TElement>(int order = UseDefaultOrder)
+            where TElement : UiElement
         {
-            var uiElement = OpenUiElement(element, order);
-            if (uiElement is not AwaitableUiElement<TResult> awaitableUiElement) return default;
-
-            return await awaitableUiElement.AwaitForResult();
-        }*/
-
-        public TElement OpenUiElement<TElement>(int order = UseDefaultOrder)
+            var process = StartUiElementOpenProcess<TElement>();
+            return process.FinishOpeningProcess();
+        }
+        
+        public OpeningUiElementWrapper<TElement> StartUiElementOpenProcess<TElement>(int order = UseDefaultOrder)
             where TElement : UiElement
         {
             var type = typeof(TElement);
             var elementData =_uiElementDatas[type];
-            var elementOrder = order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
-            
+            var elementOrder = GetElementOrder(order, elementData);
             var uiContainer = GetOrCreateUiContainer(elementOrder);
             var elementState = GetUiElementState<TElement>();
-            if (elementState == UiElementState.NotInstantiated) CreateUiElement(elementData);
-            ActivateUiElement<TElement>(uiContainer);
-            return GetUiElement<TElement>();
+            CreateUiElementIfNeeded<TElement>(elementState, elementData);
+            var element = GetUiElement<TElement>();
+            SetElementContainer(element, uiContainer);
+            var wrapper = new OpeningUiElementWrapper<TElement>(this, element);
+            return wrapper;
+        }
+
+        private int GetElementOrder(int order, UiElementData elementData)
+            => order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
+
+        private void CreateUiElementIfNeeded<TElement>(UiElementState elementState, UiElementData elementData)
+            where TElement : UiElement
+        {
+            if (elementState != UiElementState.NotInstantiated) return;
+            CreateUiElement(elementData);
+        }
+
+        private void SetElementContainer<TElement>(TElement element, UiContainer uiContainer) 
+            where TElement : UiElement
+        {
+            element.transform.SetParent(uiContainer.transform, false);
+            element.SetContainer(uiContainer);
         }
 
         public void CloseUiElement<TElement>()
@@ -93,15 +110,13 @@ namespace Soko.Unity.Game.Ui.Management
             _inactiveUiElements.Add(data.Prefab.GetType(), newUiElement);
         }
 
-        private void ActivateUiElement<TElement>(UiContainer container)
+        public void ActivateUiElement<TElement>()
             where TElement : UiElement
         {
             var type = typeof(TElement);
             if (!_inactiveUiElements.TryGetValue(type, out var uiElement)) return;
             
             CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(uiElement.gameObject);
-            uiElement.transform.SetParent(container.transform, false);
-            uiElement.SetContainer(container);
             uiElement.gameObject.SetActive(true);
             _activeUiElements.Add(type, uiElement);
             _inactiveUiElements.Remove(type);
