@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
 using Soko.Core.Events.Impl.Events;

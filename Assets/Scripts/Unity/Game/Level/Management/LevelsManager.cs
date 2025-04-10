@@ -14,7 +14,6 @@ using Soko.Unity.Game.Ui.MainMenu;
 using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 

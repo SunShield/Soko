@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using Soko.Core.Events;
+using Soko.Core.Events.Impl.Events;
 using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
@@ -40,12 +42,14 @@ namespace Soko.Unity.Game.Level.Cycle
             StartLevel();
         }
 
-        private void StartLevel()
+        private async void StartLevel()
         {
             LevelData = _levelsManager.CurrentLevelData;
             LevelGrid = _levelGridBuilder.BuildLevelGrid(LevelRoot, LevelData);
             _soundsManager.PlayMusic(_levelsManager.CurrentLevelPack.MusicKey);
             _levelBackgroundManager.SetBackground(_levelsManager.CurrentLevelPack.LevelBackground);
+            await UniTask.WaitForEndOfFrame();
+            _eventBus.GetEvent<LevelFullyPreparedEvent>().InvokeForGlobal(new());
         }
 
         public void CheckWin()

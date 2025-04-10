@@ -10,8 +10,6 @@ namespace Soko.Unity.Game.ScenesManagement
     {
         [Inject] private EventBus _eventBus;
         
-        public Scene ActiveScene { get; private set; }
-        
         public void LoadScene(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
         {
             _eventBus.GetEvent<PreSceneLoadedEvent>().InvokeForGlobal(new());

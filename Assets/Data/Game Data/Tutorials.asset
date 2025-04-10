@@ -31,13 +31,40 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|Soko.Unity.Game.Tutorials.TutorialSequence, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: Tutorial0
     - Name: Actions
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Soko.Unity.Game.Tutorials.Actions.TutorialAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|Soko.Unity.Game.Tutorials.Actions.Impl.HighlightObjectAction, Assembly-CSharp
+    - Name: _levelObjectKey
+      Entry: 1
+      Data: p
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Soko.Unity.Game.Tutorials.Actions.Impl.OpenUiElementAction, Assembly-CSharp
+    - Name: _uiElementType
+      Entry: 7
+      Data: 5|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Soko.Unity.Game.Ui.Tutorials.Tutorial0Popup, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -46,11 +73,17 @@ MonoBehaviour:
       Data: 
     - Name: Conditions
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
+      Data: 6|System.Collections.Generic.List`1[[Soko.Unity.Game.Service.Conditions.AbstractCondition,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 7|Soko.Unity.Game.Service.Conditions.Impl.LevelEnteredCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

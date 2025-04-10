@@ -2,5 +2,5 @@
 
 namespace Soko.Unity.Game.Ui.Special.Focus
 {
-    public record FocusData(GameObject FocusedObject, int FinalFocusSize);
+    public record FocusData(GameObject FocusedObject, int FinalFocusSize, decimal AutoCloseTime = -1);
 }

@@ -9,6 +9,7 @@ namespace Soko.Unity.Game.Tutorials
     [Serializable][HideReferenceObjectPicker]
     public class TutorialSequence
     {
+        public string Key;
         public List<TutorialAction> Actions = new();
         public List<AbstractCondition> Conditions = new();
     }
