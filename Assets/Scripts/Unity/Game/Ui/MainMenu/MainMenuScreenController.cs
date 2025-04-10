@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Soko.Unity.Game.Sounds;
-using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
+using Soko.Unity.Game.Ui.MainMenu.Settings;
 using Soko.Unity.Game.Ui.Management;
 using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
@@ -24,8 +25,8 @@ namespace Soko.Unity.Game.Ui.MainMenu
 
         protected override async UniTask OnEnabledAndConstructed()
             => _soundsManager.PlayMusic(UnityConstants.Audio.MainMenuMusic);
-        private void GoToLevelSelect() => _uiManager.OpenUiElement(UiElements.LevelSelectScreen);
-        private void OpenSettings() => _uiManager.OpenUiElement(UiElements.SettingsPopup);
+        private void GoToLevelSelect() => _uiManager.OpenUiElement<LevelSelectScreenController>();
+        private void OpenSettings() => _uiManager.OpenUiElement<SettingsPopupController>();
         private void ExitGame() => Application.Quit();
     }
 }

@@ -10,6 +10,6 @@ namespace Soko.Unity.DataLayer.So
     [CreateAssetMenu(fileName = "UiData", menuName = "Fundamental/Ui Data")]
     public class UiDataSo : SerializedScriptableObject
     {
-        [field: OdinSerialize] public Dictionary<UiElements, UiElementData> UiElements { get; private set; }
+        [field: OdinSerialize] public List<UiElementData> UiElements { get; private set; }
     }
 }

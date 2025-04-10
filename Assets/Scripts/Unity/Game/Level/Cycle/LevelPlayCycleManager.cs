@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Soko.Core.Events;
-using Soko.Core.Events.Impl.Events;
 using Soko.Core.Models.Levels;
 using Soko.Unity.Game.Level.Grid;
 using Soko.Unity.Game.Level.Grid.Building;
@@ -9,7 +8,6 @@ using Soko.Unity.Game.Level.Management;
 using Soko.Unity.Game.Level.Metrics;
 using Soko.Unity.Game.Level.Visuals;
 using Soko.Unity.Game.Sounds;
-using Soko.Unity.Game.Ui.Enums;
 using Soko.Unity.Game.Ui.Level;
 using Soko.Unity.Game.Ui.Management;
 using Soko.Unity.Game.Ui.Special.Focus;
@@ -37,7 +35,7 @@ namespace Soko.Unity.Game.Level.Cycle
         public void Initialize()
         {
             _levelsManager.SetCycleManager(this);
-            _uiManager.OpenUiElement(UiElements.LevelMainScreen);
+            _uiManager.OpenUiElement<LevelScreenController>();
             StartLevel();
         }
 
@@ -62,17 +60,17 @@ namespace Soko.Unity.Game.Level.Cycle
 
         private void ShowWinLevelPopup()
         {
-            var levelWinScreen = _uiManager.OpenUiElement(UiElements.LevelWinScreen) as LevelWinScreenController;
+            var levelWinScreen = _uiManager.OpenUiElement<LevelWinScreenController>();
             levelWinScreen.OnClosed += LeaveLevel;
             levelWinScreen.SetLevelWinResults(LevelData.Name, _turnsCountTracker.TurnCount);
         }
 
         private void LeaveLevel()
         {
-            var levelMainScreen = _uiManager.GetUiElement(UiElements.LevelMainScreen);
+            var levelMainScreen = _uiManager.GetUiElement<LevelScreenController>();
             levelMainScreen.OnClosed -= LeaveLevel;
             
-            _uiManager.CloseUiElement(UiElements.LevelMainScreen);
+            _uiManager.CloseUiElement<LevelScreenController>();
             _levelsManager.EndCurrentLevel();
         }
         
@@ -81,7 +79,7 @@ namespace Soko.Unity.Game.Level.Cycle
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                var focusScreen = _uiManager.OpenUiElement<FocusObjectScreenController>(UiElements.FocusObjectScreen);
+                var focusScreen = _uiManager.OpenUiElement<FocusObjectScreenController>();
                 var player = LevelGrid.LevelObjects.First(o => o.HasComponent<PlayerComponent>());
                 focusScreen.Setup(player.gameObject, 150);
             }

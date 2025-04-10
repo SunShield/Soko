@@ -1,11 +1,10 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Soko.Core.Events;
 using Soko.Core.Events.Impl.Args;
 using Soko.Core.Events.Impl.Events;
 using Soko.Unity.Game.Level.History;
 using Soko.Unity.Game.Level.Management;
-using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.MainMenu;
 using Soko.Unity.Game.Ui.Management;
 using Soko.Unity.Game.Ui.Management.Elements;
 using UnityEngine;
@@ -34,7 +33,7 @@ namespace Soko.Unity.Game.Ui.Level
         
         private void EndLevel()
         {
-            _uiManager.CloseUiElement(UiElements.LevelMainScreen);
+            _uiManager.CloseUiElement<MainMenuScreenController>();
             _levelsManager.EndCurrentLevel();
         }
 

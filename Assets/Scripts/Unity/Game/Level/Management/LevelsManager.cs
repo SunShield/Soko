@@ -9,6 +9,8 @@ using Soko.Unity.Game.Level.Cycle;
 using Soko.Unity.Game.Level.Enums;
 using Soko.Unity.Game.Save.Impl.LevelsData;
 using Soko.Unity.Game.Ui.Enums;
+using Soko.Unity.Game.Ui.MainMenu;
+using Soko.Unity.Game.Ui.MainMenu.LevelSelect;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -142,8 +144,8 @@ namespace Soko.Unity.Game.Level.Management
             LevelPackKey = packKey;
             LevelKey = levelKey;
             _progressSaveDataManager.Save();
-            _uiManager.CloseUiElement(UiElements.LevelSelectScreen);
-            _uiManager.CloseUiElement(UiElements.MainMenuScreen);
+            _uiManager.CloseUiElement<LevelSelectScreenController>();
+            _uiManager.CloseUiElement<MainMenuScreenController>();
             // TODO: add ui elements parenting
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.Level);
         }
@@ -177,10 +179,10 @@ namespace Soko.Unity.Game.Level.Management
             _eventBus.GetEvent<LevelPreLeaveEvent>().InvokeForGlobal(new());
             PlayCycleManager = null;
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MainMenu);
-            if (_uiManager.GetUiElementState(UiElements.MainMenuScreen) != UiElementState.Active)
+            if (_uiManager.GetUiElementState<MainMenuScreenController>() != UiElementState.Active)
                 await UniTask.WaitUntil(() => 
-                    _uiManager.GetUiElementState(UiElements.MainMenuScreen) == UiElementState.Active);
-            _uiManager.OpenUiElement(UiElements.LevelSelectScreen);
+                    _uiManager.GetUiElementState<MainMenuScreenController>() == UiElementState.Active);
+            _uiManager.OpenUiElement<LevelSelectScreenController>();
         }
     }
 }

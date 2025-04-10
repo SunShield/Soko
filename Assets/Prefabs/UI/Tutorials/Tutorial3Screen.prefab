@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5991369342736077011}
-  - component: {fileID: 4854819111200622986}
+  - component: {fileID: 5717383401972519652}
   - component: {fileID: 5406748043216109174}
   m_Layer: 0
   m_Name: Tutorial3Screen
@@ -325,7 +325,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4854819111200622986
+--- !u!114 &5717383401972519652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1204949297648141742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06f59ef3e9d141a18c1a86fd826ca8bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bc80f00ba3f348938c8dc84ce92651e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -346,7 +346,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <Key>k__BackingField: 103
   _view: {fileID: 5406748043216109174}
 --- !u!114 &5406748043216109174
 MonoBehaviour:

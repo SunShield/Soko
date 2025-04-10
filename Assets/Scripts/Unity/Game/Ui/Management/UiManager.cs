@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Soko.Unity.DataLayer.So;
 using Soko.Unity.Game.DI.Scopes.Base;
 using Soko.Unity.Game.Ui.Enums;
@@ -21,54 +22,59 @@ namespace Soko.Unity.Game.Ui.Management
         [Inject] private IObjectResolver _objectResolver;
         [Inject] private UiDataSo _uiDataSo;
         
+        private Dictionary<Type, UiElementData> _uiElementDatas = new ();
         private readonly Dictionary<int, UiContainer> _containers = new ();
-        private readonly Dictionary<UiElements, UiElement> _activeUiElements = new ();
-        private readonly Dictionary<UiElements, UiElement> _inactiveUiElements = new ();
+        private readonly Dictionary<Type, UiElement> _activeUiElements = new ();
+        private readonly Dictionary<Type, UiElement> _inactiveUiElements = new ();
 
         [Inject] private void Construct()
         {
             DontDestroyOnLoad(gameObject);
+            
             gameObject.SetActive(true);
+            CreateElementsDatasDictionaryIfNeeded();
         }
 
-        public async UniTask<TResult> OpenUiElementWithResult<TResult>(UiElements element, 
-            int order = UseDefaultOrder)
+        private void CreateElementsDatasDictionaryIfNeeded()
+        {
+            if (_uiElementDatas.Count != 0) return;
+            
+            _uiElementDatas = _uiDataSo.UiElements.ToDictionary(e => e.Prefab.GetType(), e => e);
+        }
+
+        /*public async UniTask<TResult> OpenUiElementWithResult<TElement, TResult>(int order = UseDefaultOrder)
+            where TElement : AwaitableUiElement<TResult>
         {
             var uiElement = OpenUiElement(element, order);
             if (uiElement is not AwaitableUiElement<TResult> awaitableUiElement) return default;
 
             return await awaitableUiElement.AwaitForResult();
-        }
+        }*/
 
-        public TElement OpenUiElement<TElement>(UiElements element, int order = UseDefaultOrder)
+        public TElement OpenUiElement<TElement>(int order = UseDefaultOrder)
+            where TElement : UiElement
         {
-            var uiElement = OpenUiElement(element, order);
-            if (uiElement is not TElement elementTyped)
-            {
-                CloseUiElement(element);
-                return default;
-            }
-            return elementTyped;
-        }
-
-        public UiElement OpenUiElement(UiElements element, 
-            int order = UseDefaultOrder)
-        {
-            var elementData = _uiDataSo.UiElements[element];
+            var type = typeof(TElement);
+            var elementData =_uiElementDatas[type];
             var elementOrder = order == UseDefaultOrder ? elementData.DefaultSortingOrder : order;
             
             var uiContainer = GetOrCreateUiContainer(elementOrder);
-            var elementState = GetUiElementState(element);
+            var elementState = GetUiElementState<TElement>();
             if (elementState == UiElementState.NotInstantiated) CreateUiElement(elementData);
-            ActivateUiElement(element, uiContainer);
-            return GetUiElement(element);
+            ActivateUiElement<TElement>(uiContainer);
+            return GetUiElement<TElement>();
         }
 
-        public void CloseUiElement(UiElements element)
+        public void CloseUiElement<TElement>()
+            where TElement : UiElement
+            => CloseUiElement(typeof(TElement));
+
+        public void CloseUiElement(UiElement uiElement) => CloseUiElement(uiElement.GetType());
+        public void CloseUiElement(Type type)
         {
-            var elementState = GetUiElementState(element);
+            var elementState = GetUiElementState(type);
             if (elementState != UiElementState.Active) return;
-            DeactivateUiElement(element);
+            DeactivateUiElement(type);
         }
 
         private UiContainer GetOrCreateUiContainer(int order)
@@ -84,46 +90,61 @@ namespace Soko.Unity.Game.Ui.Management
         {
             var newUiElement = Instantiate(data.Prefab, _activeUiRoot);
             newUiElement.gameObject.SetActive(false);
-            _inactiveUiElements.Add(data.Prefab.Key, newUiElement);
+            _inactiveUiElements.Add(data.Prefab.GetType(), newUiElement);
         }
 
-        private void ActivateUiElement(UiElements element, UiContainer container)
+        private void ActivateUiElement<TElement>(UiContainer container)
+            where TElement : UiElement
         {
-            if (!_inactiveUiElements.TryGetValue(element, out var uiElement)) return;
+            var type = typeof(TElement);
+            if (!_inactiveUiElements.TryGetValue(type, out var uiElement)) return;
             
             CurrentScopeProvider.Instance.CurrentScope.InjectGameObject(uiElement.gameObject);
             uiElement.transform.SetParent(container.transform, false);
             uiElement.SetContainer(container);
             uiElement.gameObject.SetActive(true);
-            _activeUiElements.Add(element, uiElement);
-            _inactiveUiElements.Remove(element);
+            _activeUiElements.Add(type, uiElement);
+            _inactiveUiElements.Remove(type);
         }
 
-        private void DeactivateUiElement(UiElements element)
+        private void DeactivateUiElement<TElement>()
+            where TElement : UiElement
         {
-            if (!_activeUiElements.TryGetValue(element, out var uiElement)) return;
+            var type = typeof(TElement);
+            DeactivateUiElement(type);
+        }
+        
+        private void DeactivateUiElement(Type type)
+        {
+            if (!_activeUiElements.TryGetValue(type, out var uiElement)) return;
             
             uiElement.transform.SetParent(_inactiveUiRoot, false);
             uiElement.SetContainer(null);
             uiElement.gameObject.SetActive(false);
-            _inactiveUiElements.Add(element, uiElement);
-            _activeUiElements.Remove(element);
+            _inactiveUiElements.Add(type, uiElement);
+            _activeUiElements.Remove(type);
         }
 
-        public UiElementState GetUiElementState(UiElements element)
-        {
-            if (_activeUiElements.ContainsKey(element)) return UiElementState.Active;
-            if (_inactiveUiElements.ContainsKey(element)) return UiElementState.Inactive;
-            return UiElementState.NotInstantiated;
-        }
+        public UiElementState GetUiElementState<TElement>()
+            where TElement : UiElement
+            => GetUiElementState(typeof(TElement));
         
-        public UiElement GetUiElement(UiElements element)
+        public UiElementState GetUiElementState(Type type)
         {
-            var elementState = GetUiElementState(element);
+            if (_activeUiElements.ContainsKey(type)) return UiElementState.Active;
+            if (_inactiveUiElements.ContainsKey(type)) return UiElementState.Inactive;
+            return UiElementState.NotInstantiated;
+        } 
+        
+        public TElement GetUiElement<TElement>()
+            where TElement : UiElement
+        {
+            var type = typeof(TElement);
+            var elementState = GetUiElementState<TElement>();
             if (elementState == UiElementState.NotInstantiated) return null;
             return elementState == UiElementState.Active
-                ? _activeUiElements[element]
-                : _inactiveUiElements[element];
+                ? _activeUiElements[type] as TElement
+                : _inactiveUiElements[type] as TElement;
         }
     }
 }

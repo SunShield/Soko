@@ -1,4 +1,4 @@
-﻿using Soko.Unity.Game.Ui.Enums;
+﻿using Soko.Unity.Game.Ui.MainMenu;
 using Soko.Unity.Game.Ui.Management;
 using UnityEngine;
 using VContainer;
@@ -12,7 +12,7 @@ namespace Soko.Unity.Game.MainMenu
         
         public void Initialize()
         {
-            _uiManager.OpenUiElement(UiElements.MainMenuScreen);
+            _uiManager.OpenUiElement<MainMenuScreenController>();
         }
     }
 }
