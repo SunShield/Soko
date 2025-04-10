@@ -6,10 +6,7 @@ namespace Soko.Unity.Game.Ui.Management.Elements
     {
         protected UniTaskCompletionSource<TResult> CompletionSource { get; private set; } = new();
 
-        protected override async UniTask OnEnabledAndConstructed()
-        {
-            CompletionSource = new();
-        }
+        protected override void OnPreEnabledAndConstructed() => CompletionSource = new();
 
         public async UniTask<TResult> AwaitForResult()
         {

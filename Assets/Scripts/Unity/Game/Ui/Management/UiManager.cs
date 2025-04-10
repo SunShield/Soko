@@ -43,7 +43,12 @@ namespace Soko.Unity.Game.Ui.Management
         public TElement OpenUiElement<TElement>(UiElements element, int order = UseDefaultOrder)
         {
             var uiElement = OpenUiElement(element, order);
-            return uiElement is not TElement elementTyped ? default : elementTyped;
+            if (uiElement is not TElement elementTyped)
+            {
+                CloseUiElement(element);
+                return default;
+            }
+            return elementTyped;
         }
 
         public UiElement OpenUiElement(UiElements element, 

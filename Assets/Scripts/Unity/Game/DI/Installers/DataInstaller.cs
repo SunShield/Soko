@@ -11,6 +11,7 @@ namespace Soko.Unity.Game.DI.Installers
         [SerializeField] private UiDataSo _uiDataSo;
         [SerializeField] private GroupSpritesSo _groupSpritesSo;
         [SerializeField] private SoundSo _soundSo;
+        [SerializeField] private TutorialsDataSo _tutorialsDataSo;
         
         public void Install(IContainerBuilder builder)
         {
@@ -18,6 +19,7 @@ namespace Soko.Unity.Game.DI.Installers
             builder.RegisterInstance(_uiDataSo);
             builder.RegisterInstance(_groupSpritesSo);
             builder.RegisterInstance(_soundSo);
+            builder.RegisterInstance(_tutorialsDataSo);
         }
     }
 }

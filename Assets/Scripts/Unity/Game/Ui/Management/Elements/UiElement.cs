@@ -29,9 +29,11 @@ namespace Soko.Unity.Game.Ui.Management.Elements
         private async void OnEnable()
         {
             if (!IsConstructed) await UniTask.WaitUntil(() => IsConstructed);
+            OnPreEnabledAndConstructed();
             await OnEnabledAndConstructed();
         }
         
+        protected virtual void OnPreEnabledAndConstructed() { }
         protected virtual async UniTask OnEnabledAndConstructed() { }
         
         public void SetContainer(UiContainer container) => Container = container;

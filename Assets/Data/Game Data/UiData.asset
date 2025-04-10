@@ -23,6 +23,16 @@ MonoBehaviour:
     - {fileID: 6170084686534007736, guid: 99a382dddd333b440b1c2aa5d7d93ccd, type: 3}
     - {fileID: 1422793113234500869, guid: fce6d277513f5b04a85d77e73a25aac1, type: 3}
     - {fileID: 4854819111200622986, guid: 6f724bf529e4c6141bf8279b2b4b68b3, type: 3}
+    - {fileID: 4854819111200622986, guid: 7cd477da42966ad4686e5b7426f64a7f, type: 3}
+    - {fileID: 4854819111200622986, guid: 197515898093eb64e92a97cdb79f0d8d, type: 3}
+    - {fileID: 4854819111200622986, guid: 087a124992b97824d96f170b5cedfce5, type: 3}
+    - {fileID: 4854819111200622986, guid: ac4763f57046e8d45a9c9da2179e1c97, type: 3}
+    - {fileID: 4854819111200622986, guid: e89e9fecb9a0f6d47a3e8f78426aa22d, type: 3}
+    - {fileID: 4854819111200622986, guid: ee5010675e1293c4689765a68f18b8f5, type: 3}
+    - {fileID: 4854819111200622986, guid: 6c11d3bc4f0608248be2f4754d15e3f1, type: 3}
+    - {fileID: 4854819111200622986, guid: 6b2bcf30320e4ab4987285a633f8f588, type: 3}
+    - {fileID: 4854819111200622986, guid: 9eef80474f98f5d41a4f8c91283ce1d0, type: 3}
+    - {fileID: 4854819111200622986, guid: 68304fa1920047843ad982c773b18d80, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -48,7 +58,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 17
     - Name: 
       Entry: 7
       Data: 
@@ -187,6 +197,216 @@ MonoBehaviour:
     - Name: Prefab
       Entry: 10
       Data: 6
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 101
+    - Name: $v
+      Entry: 7
+      Data: 9|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 7
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 102
+    - Name: $v
+      Entry: 7
+      Data: 10|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 8
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 103
+    - Name: $v
+      Entry: 7
+      Data: 11|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 9
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 104
+    - Name: $v
+      Entry: 7
+      Data: 12|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 10
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 105
+    - Name: $v
+      Entry: 7
+      Data: 13|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 11
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 106
+    - Name: $v
+      Entry: 7
+      Data: 14|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 12
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 107
+    - Name: $v
+      Entry: 7
+      Data: 15|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 13
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 108
+    - Name: $v
+      Entry: 7
+      Data: 16|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 14
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 109
+    - Name: $v
+      Entry: 7
+      Data: 17|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 15
+    - Name: DefaultSortingOrder
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 110
+    - Name: $v
+      Entry: 7
+      Data: 18|Soko.Unity.Game.Ui.Management.UiElementData, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 16
     - Name: DefaultSortingOrder
       Entry: 3
       Data: 3

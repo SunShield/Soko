@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Soko.Unity.Game.Ui.Special.Focus
 {
-    public class FocusObjectScreenController : UiElement
+    public class FocusObjectScreenController : AwaitableUiElement<DefautResult>
     {
         [SerializeField] private FocusObjectScreenView _view;
 

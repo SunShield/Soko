@@ -6,7 +6,7 @@ using VContainer;
 
 namespace Soko.Unity.Game.Ui.Utils
 {
-    public class ButtonSoundPlayer : UiElement
+    public class ButtonSoundPlayer : MonoBehaviour
     {
         [SerializeField] private Button _button;
         [SerializeField] private GameSfx _gameSfx;

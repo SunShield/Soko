@@ -1,7 +1,7 @@
 ﻿using Soko.Unity.DataLayer.So;
 using UnityEditor;
 
-namespace Soko.Editor.Data
+namespace Soko.Unity.DataLayer
 {
     public class EditorDataProvider
     {
@@ -18,9 +18,11 @@ namespace Soko.Editor.Data
         public LevelObjectsSo LevelObjectsSo => _levelObjectsSo ??= GetLevelObjectsSo();
         public ColorDataSo ColorDataSo => _colorDataSo ??= GetColorDataSo();
         
+#if UNITY_EDITOR
         private LevelObjectsSo GetLevelObjectsSo()
             => AssetDatabase.LoadAssetAtPath<LevelObjectsSo>(LevelObjectsSoPath);
         private ColorDataSo GetColorDataSo()
             => AssetDatabase.LoadAssetAtPath<ColorDataSo>(ColorObjectsSoPath);
+#endif
     }
 }
