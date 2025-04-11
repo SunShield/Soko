@@ -2984,7 +2984,7 @@ MonoBehaviour:
         in level.'
       addedReference: 0
       references: []
-      completed: 0
+      completed: 1
       failed: 0
       ignored: 0
       creationTime:
@@ -3013,12 +3013,12 @@ MonoBehaviour:
           hour: 8
           format: 0
       completionTime:
-        year: 0
-        month: 0
-        day: 0
-        dayOfTheWeek: 
-        minute: 0
-        hour: 0
+        year: 2025
+        month: 4
+        day: 11
+        dayOfTheWeek: Friday
+        minute: 16
+        hour: 12
         hourBeforeCountingAMPM: 0
         timeIndex: 0
         _hourInTweleveHourFormat:
@@ -3216,7 +3216,7 @@ MonoBehaviour:
       _hourInTweleveHourFormat:
         hour: 0
         format: 0
-    opened: 1
+    opened: 0
     searchingFor: 
   showPendingItems: 1
   showCompletedItems: 1
