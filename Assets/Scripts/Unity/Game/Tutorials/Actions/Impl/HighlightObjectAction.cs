@@ -48,7 +48,9 @@ namespace Soko.Unity.Game.Tutorials.Actions.Impl
         
         private bool CheckObjectFulfilsCondition(LevelObjectBase lo)
         {
-            if (lo.PrefabKey != AnyObjectKey && !_levelObjectKeys.Contains(lo.PrefabKey)) return false;
+            if (!_levelObjectKeys.Contains(AnyObjectKey))
+                if (!_levelObjectKeys.Contains(lo.PrefabKey))
+                    return false;
 
             if (_requireColored)
             {
@@ -57,7 +59,7 @@ namespace Soko.Unity.Game.Tutorials.Actions.Impl
                 if (colorComponent.Color == ObjectColor.None) return false;
             }
 
-            if (_requireColored)
+            if (_requireGrouped)
             {
                 lo.TryGetObjectComponent<GroupComponent>(out var groupComponent);
                 if (groupComponent == null) return false;

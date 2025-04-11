@@ -61,8 +61,8 @@ namespace Soko.Unity.Game.Tutorials
 
         private void CompleteTutorial(TutorialSequence tutorialSequence)
         {
-            ///SaveData.CompletedTutorials.Add(tutorialSequence.Key);
-            //_tutorialSaveDataManager.Save();
+            SaveData.CompletedTutorials.Add(tutorialSequence.Key);
+            _tutorialSaveDataManager.Save();
         }
     }
 }
