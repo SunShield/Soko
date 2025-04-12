@@ -1625,10 +1625,10 @@ MonoBehaviour:
       Data: 69|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 48
+      Data: 81
     - Name: ranks
       Entry: 1
-      Data: 8|6
+      Data: 9|9
     - Name: 
       Entry: 7
       Data: 70|Soko.Core.Models.Levels.CellData, Assembly-CSharp
@@ -1657,14 +1657,14 @@ MonoBehaviour:
       Entry: 7
       Data: 71|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: t
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -1739,7 +1739,7 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: p
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -1753,14 +1753,14 @@ MonoBehaviour:
       Entry: 7
       Data: 75|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -1784,7 +1784,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -1808,7 +1808,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -1826,15 +1826,15 @@ MonoBehaviour:
       Data: 78|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
       Entry: 1
-      Data: s
+      Data: t
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
       Data: -1
     - Name: ObjectKey
-      Entry: 1
+      Entry: 6
       Data: 
     - Name: Color
       Entry: 3
@@ -1849,14 +1849,14 @@ MonoBehaviour:
       Entry: 7
       Data: 79|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: t
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -1883,10 +1883,10 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: sb
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
       Data: 0
@@ -1897,23 +1897,23 @@ MonoBehaviour:
       Entry: 7
       Data: 81|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -1945,17 +1945,17 @@ MonoBehaviour:
       Entry: 7
       Data: 83|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -1969,17 +1969,17 @@ MonoBehaviour:
       Entry: 7
       Data: 84|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: b
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2000,10 +2000,10 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: p
     - Name: Color
       Entry: 3
       Data: 0
@@ -2024,16 +2024,16 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: sb
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
     - Name: Group
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -2048,7 +2048,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -2065,14 +2065,14 @@ MonoBehaviour:
       Entry: 7
       Data: 88|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -2113,14 +2113,14 @@ MonoBehaviour:
       Entry: 7
       Data: 90|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
       Entry: 1
       Data: 
@@ -2137,23 +2137,23 @@ MonoBehaviour:
       Entry: 7
       Data: 91|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -2170,14 +2170,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -2194,7 +2194,7 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -2216,16 +2216,16 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -2240,9 +2240,9 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -2264,10 +2264,10 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: b
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2281,14 +2281,14 @@ MonoBehaviour:
       Entry: 7
       Data: 97|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -2305,16 +2305,16 @@ MonoBehaviour:
       Entry: 7
       Data: 98|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
-      Entry: 1
+      Entry: 6
       Data: 
     - Name: Color
       Entry: 3
@@ -2329,16 +2329,16 @@ MonoBehaviour:
       Entry: 7
       Data: 99|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -2353,14 +2353,14 @@ MonoBehaviour:
       Entry: 7
       Data: 100|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -2386,8 +2386,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2432,16 +2432,16 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -2449,16 +2449,16 @@ MonoBehaviour:
       Entry: 7
       Data: 104|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -2473,14 +2473,14 @@ MonoBehaviour:
       Entry: 7
       Data: 105|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -2506,8 +2506,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2530,8 +2530,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2554,14 +2554,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -2569,17 +2569,17 @@ MonoBehaviour:
       Entry: 7
       Data: 109|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2593,17 +2593,17 @@ MonoBehaviour:
       Entry: 7
       Data: 110|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2626,8 +2626,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2648,16 +2648,16 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -2672,10 +2672,10 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2696,10 +2696,10 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -2761,14 +2761,38 @@ MonoBehaviour:
       Entry: 7
       Data: 117|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
+    - Name: ObjectKey
+      Entry: 1
+      Data: b
+    - Name: Color
+      Entry: 3
+      Data: 1
+    - Name: Group
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 118|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
     - Name: ObjectKey
       Entry: 1
       Data: 
@@ -2782,32 +2806,29 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
+      Entry: 7
+      Data: 119|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
       Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 1
+      Data: w
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 118|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
-    - Name: Key
-      Entry: 1
-      Data: 0f16e041-b598-4cf3-a3db-c037be1c96e0
-    - Name: Name
-      Entry: 1
-      Data: Remote Control
-    - Name: Cells
-      Entry: 7
-      Data: 119|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 104
-    - Name: ranks
-      Entry: 1
-      Data: 8|13
     - Name: 
       Entry: 7
       Data: 120|Soko.Core.Models.Levels.CellData, Assembly-CSharp
@@ -2821,8 +2842,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2843,10 +2864,10 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2860,23 +2881,23 @@ MonoBehaviour:
       Entry: 7
       Data: 122|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -2884,17 +2905,17 @@ MonoBehaviour:
       Entry: 7
       Data: 123|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2917,8 +2938,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -2942,13 +2963,13 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -2965,14 +2986,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -3013,14 +3034,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -3037,14 +3058,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -3052,23 +3073,23 @@ MonoBehaviour:
       Entry: 7
       Data: 130|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: b
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -3076,14 +3097,14 @@ MonoBehaviour:
       Entry: 7
       Data: 131|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3100,14 +3121,14 @@ MonoBehaviour:
       Entry: 7
       Data: 132|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3133,8 +3154,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3157,8 +3178,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3181,8 +3202,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3196,17 +3217,17 @@ MonoBehaviour:
       Entry: 7
       Data: 136|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3244,17 +3265,17 @@ MonoBehaviour:
       Entry: 7
       Data: 138|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3268,14 +3289,14 @@ MonoBehaviour:
       Entry: 7
       Data: 139|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3292,23 +3313,23 @@ MonoBehaviour:
       Entry: 7
       Data: 140|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: sb
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Group
       Entry: 3
-      Data: 1
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -3316,14 +3337,14 @@ MonoBehaviour:
       Entry: 7
       Data: 141|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3340,17 +3361,17 @@ MonoBehaviour:
       Entry: 7
       Data: 142|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: t
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: b
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3371,7 +3392,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3395,7 +3416,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3412,14 +3433,14 @@ MonoBehaviour:
       Entry: 7
       Data: 145|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -3443,7 +3464,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
       Entry: 1
       Data: w
@@ -3460,17 +3481,17 @@ MonoBehaviour:
       Entry: 7
       Data: 147|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3484,17 +3505,17 @@ MonoBehaviour:
       Entry: 7
       Data: 148|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3508,17 +3529,17 @@ MonoBehaviour:
       Entry: 7
       Data: 149|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3532,74 +3553,53 @@ MonoBehaviour:
       Entry: 7
       Data: 150|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
     - Name: Group
       Entry: 3
       Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 151|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: GroundObjectKey
-      Entry: 6
-      Data: 
-    - Name: GroundColor
-      Entry: 3
-      Data: 0
-    - Name: GroundGroup
-      Entry: 3
-      Data: 0
-    - Name: ObjectKey
+      Data: 151|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
       Entry: 1
-      Data: w
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
+      Data: 0f16e041-b598-4cf3-a3db-c037be1c96e0
+    - Name: Name
+      Entry: 1
+      Data: Remote Control
+    - Name: Cells
       Entry: 7
-      Data: 152|Soko.Core.Models.Levels.CellData, Assembly-CSharp
-    - Name: GroundObjectKey
-      Entry: 6
-      Data: 
-    - Name: GroundColor
-      Entry: 3
-      Data: 0
-    - Name: GroundGroup
-      Entry: 3
-      Data: 0
-    - Name: ObjectKey
-      Entry: 6
-      Data: 
-    - Name: Color
-      Entry: 3
-      Data: 0
-    - Name: Group
-      Entry: 3
-      Data: -1
+      Data: 152|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
     - Name: 
-      Entry: 8
-      Data: 
+      Entry: 12
+      Data: 104
+    - Name: ranks
+      Entry: 1
+      Data: 8|13
     - Name: 
       Entry: 7
       Data: 153|Soko.Core.Models.Levels.CellData, Assembly-CSharp
@@ -3613,8 +3613,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3637,8 +3637,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3661,8 +3661,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3685,8 +3685,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3709,8 +3709,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3733,8 +3733,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3844,16 +3844,16 @@ MonoBehaviour:
       Entry: 7
       Data: 163|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
-      Entry: 1
+      Entry: 6
       Data: 
     - Name: Color
       Entry: 3
@@ -3877,8 +3877,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -3925,8 +3925,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3949,8 +3949,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3973,8 +3973,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -3997,8 +3997,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4021,8 +4021,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4045,8 +4045,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4094,13 +4094,13 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -4117,8 +4117,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4142,7 +4142,7 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: w
+      Data: b
     - Name: Color
       Entry: 3
       Data: 0
@@ -4156,16 +4156,16 @@ MonoBehaviour:
       Entry: 7
       Data: 176|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
-      Entry: 1
+      Entry: 6
       Data: 
     - Name: Color
       Entry: 3
@@ -4189,8 +4189,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4238,7 +4238,7 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: p
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4261,8 +4261,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4286,13 +4286,13 @@ MonoBehaviour:
       Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: sb
+      Data: w
     - Name: Color
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: Group
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -4309,8 +4309,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4333,8 +4333,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4357,8 +4357,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4405,14 +4405,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: sb
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: Group
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -4429,14 +4429,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: sb
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Group
       Entry: 3
-      Data: 1
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
@@ -4453,8 +4453,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4501,8 +4501,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4636,16 +4636,16 @@ MonoBehaviour:
       Entry: 7
       Data: 196|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -4669,8 +4669,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4765,8 +4765,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4813,8 +4813,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -4885,8 +4885,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4909,8 +4909,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4933,8 +4933,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -4948,16 +4948,16 @@ MonoBehaviour:
       Entry: 7
       Data: 209|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: s
     - Name: GroundColor
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: GroundGroup
       Entry: 3
-      Data: 0
+      Data: -1
     - Name: ObjectKey
-      Entry: 6
+      Entry: 1
       Data: 
     - Name: Color
       Entry: 3
@@ -4981,8 +4981,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -5029,8 +5029,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: p
     - Name: Color
       Entry: 3
       Data: 0
@@ -5077,14 +5077,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -5125,8 +5125,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
-      Entry: 1
-      Data: w
+      Entry: 6
+      Data: 
     - Name: Color
       Entry: 3
       Data: 0
@@ -5188,23 +5188,23 @@ MonoBehaviour:
       Entry: 7
       Data: 219|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: 
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -5212,23 +5212,23 @@ MonoBehaviour:
       Entry: 7
       Data: 220|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: 
+      Data: sb
     - Name: Color
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Group
       Entry: 3
-      Data: -1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -5236,17 +5236,17 @@ MonoBehaviour:
       Entry: 7
       Data: 221|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
-      Entry: 1
-      Data: s
+      Entry: 6
+      Data: 
     - Name: GroundColor
       Entry: 3
       Data: 0
     - Name: GroundGroup
       Entry: 3
-      Data: -1
+      Data: 0
     - Name: ObjectKey
       Entry: 1
-      Data: 
+      Data: w
     - Name: Color
       Entry: 3
       Data: 0
@@ -5293,6 +5293,30 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: ObjectKey
+      Entry: 1
+      Data: w
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 224|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
       Entry: 6
       Data: 
     - Name: Color
@@ -5305,32 +5329,29 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
+      Entry: 7
+      Data: 225|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
       Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 224|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
-    - Name: Key
-      Entry: 1
-      Data: 7106ca04-5b6e-4495-a4fa-8bf2cd46f9b2
-    - Name: Name
-      Entry: 1
-      Data: New Level
-    - Name: Cells
-      Entry: 7
-      Data: 225|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: ranks
-      Entry: 1
-      Data: 1|1
     - Name: 
       Entry: 7
       Data: 226|Soko.Core.Models.Levels.CellData, Assembly-CSharp
@@ -5342,7 +5363,727 @@ MonoBehaviour:
       Data: 0
     - Name: GroundGroup
       Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
       Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 227|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 228|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 229|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 230|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 231|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 232|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 233|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 234|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 1
+      Data: w
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 235|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 236|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 1
+      Data: w
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 237|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 238|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 239|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 240|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 241|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 242|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 243|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 244|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 245|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 246|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 247|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 248|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 249|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 1
+      Data: w
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 250|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 251|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 252|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 1
+      Data: s
+    - Name: GroundColor
+      Entry: 3
+      Data: 1
+    - Name: GroundGroup
+      Entry: 3
+      Data: -1
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 253|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 1
+      Data: s
+    - Name: GroundColor
+      Entry: 3
+      Data: 3
+    - Name: GroundGroup
+      Entry: 3
+      Data: -1
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 254|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 1
+      Data: s
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: -1
+    - Name: ObjectKey
+      Entry: 1
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 255|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 256|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: 0
     - Name: ObjectKey
       Entry: 6
       Data: 
@@ -5366,16 +6107,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 227|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+      Data: 257|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
     - Name: Key
       Entry: 1
-      Data: 75233927-540b-4510-9971-192c0b6b1317
+      Data: 7106ca04-5b6e-4495-a4fa-8bf2cd46f9b2
     - Name: Name
       Entry: 1
       Data: New Level
     - Name: Cells
       Entry: 7
-      Data: 228|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
+      Data: 258|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
     - Name: 
       Entry: 12
       Data: 1
@@ -5384,7 +6125,7 @@ MonoBehaviour:
       Data: 1|1
     - Name: 
       Entry: 7
-      Data: 229|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+      Data: 259|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
       Entry: 6
       Data: 
@@ -5417,16 +6158,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 230|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+      Data: 260|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
     - Name: Key
       Entry: 1
-      Data: d9671d44-50eb-4e4f-8165-11c25fc27c8a
+      Data: 75233927-540b-4510-9971-192c0b6b1317
     - Name: Name
       Entry: 1
       Data: New Level
     - Name: Cells
       Entry: 7
-      Data: 231|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
+      Data: 261|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
     - Name: 
       Entry: 12
       Data: 1
@@ -5435,7 +6176,58 @@ MonoBehaviour:
       Data: 1|1
     - Name: 
       Entry: 7
-      Data: 232|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+      Data: 262|Soko.Core.Models.Levels.CellData, Assembly-CSharp
+    - Name: GroundObjectKey
+      Entry: 6
+      Data: 
+    - Name: GroundColor
+      Entry: 3
+      Data: 0
+    - Name: GroundGroup
+      Entry: 3
+      Data: -1
+    - Name: ObjectKey
+      Entry: 6
+      Data: 
+    - Name: Color
+      Entry: 3
+      Data: 0
+    - Name: Group
+      Entry: 3
+      Data: -1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 263|Soko.Core.Models.Levels.LevelData, Assembly-CSharp
+    - Name: Key
+      Entry: 1
+      Data: d9671d44-50eb-4e4f-8165-11c25fc27c8a
+    - Name: Name
+      Entry: 1
+      Data: New Level
+    - Name: Cells
+      Entry: 7
+      Data: 264|Soko.Core.Models.Levels.CellData[,], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: ranks
+      Entry: 1
+      Data: 1|1
+    - Name: 
+      Entry: 7
+      Data: 265|Soko.Core.Models.Levels.CellData, Assembly-CSharp
     - Name: GroundObjectKey
       Entry: 6
       Data: 
