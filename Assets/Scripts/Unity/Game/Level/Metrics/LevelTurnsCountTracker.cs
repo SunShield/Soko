@@ -19,8 +19,10 @@ namespace Soko.Unity.Game.Level.Metrics
             _eventBus.GetEvent<TurnRevertedEvent>().SubscribeForGlobal(RetreatTurnCount);
         }
         
-        private void AdvanceTurnCount(EmptyArgs args)
+        private void AdvanceTurnCount(MovementFinishedArgs args)
         {
+            if (!args.AnyObjectMoved) return;
+            
             TurnCount++;
             OnTurnCountChanged?.Invoke(TurnCount);
         }

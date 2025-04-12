@@ -54,9 +54,9 @@ namespace Soko.Unity.Game.Level.History
             }
         }
 
-        private void OnMovementFinished(EmptyArgs args)
+        private void OnMovementFinished(MovementFinishedArgs args)
         {
-            CreateTurnImprint();
+            if (args.AnyObjectMoved) CreateTurnImprint();
             _movementIsExecuted = false;
         }
 

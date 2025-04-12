@@ -112,14 +112,18 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             IsExecuting = true;
             
             if (!isSecondary) _eventBus.GetEvent<MovementStartedEvent>().InvokeForGlobal(new());
-            
+
+            var anyObjectMoved = false;
             var movedObjects = GetSortedMoveObjects(direction);
             do
             {
                 CheckObjectsMovement(direction, movedObjects);
+                var endMovement = CheckEndMovement();
+                anyObjectMoved = anyObjectMoved || !endMovement;
+                if (endMovement) break;
                 await PerformMovement(direction, movedObjects);
                 
-            } while (!CheckContinueMovement());
+            } while (true);
 
             await ExecuteObjectsTeleportation();
             ClearMovementState();
@@ -128,7 +132,8 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             
             if (HasDelayedObjects) ExecuteDelayedObjectsMovement();
             
-            if (!isSecondary) _eventBus.GetEvent<MovementFinishedEvent>().InvokeForGlobal(new());
+            if (!isSecondary)
+                _eventBus.GetEvent<MovementFinishedEvent>().InvokeForGlobal(new() { AnyObjectMoved = anyObjectMoved });
         }
 
         private List<LevelObjectBase> GetSortedMoveObjects(Direction direction)
@@ -307,7 +312,7 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Movement
             _objectMovementSequences.Clear();
         }
 
-        private bool CheckContinueMovement() => _moveActions.Values.All(v => v.Interrupted);
+        private bool CheckEndMovement() => _moveActions.Values.All(v => v.Interrupted);
 
         private void ClearMovementState()
         {
