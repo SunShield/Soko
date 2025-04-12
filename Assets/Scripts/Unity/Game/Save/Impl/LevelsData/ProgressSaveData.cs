@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Soko.Unity.Game.Save.Impl.LevelsData
 {
     [Serializable]
-    public class LevelsProgressSaveData : AbstractSaveData
+    public class ProgressSaveData : AbstractSaveData
     {
         public string LastPackKey;
         public string LastLevelKey;

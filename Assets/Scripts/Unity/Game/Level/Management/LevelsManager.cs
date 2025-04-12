@@ -43,7 +43,7 @@ namespace Soko.Unity.Game.Level.Management
 
         public LevelPlayCycleManager PlayCycleManager { get; private set; }
 
-        private LevelsProgressSaveData SaveData => _progressSaveDataManager.SaveData;
+        private ProgressSaveData SaveData => _progressSaveDataManager.SaveData;
         public LevelPack CurrentLevelPack => _levelPacks[LevelPackKey];
         public LevelData CurrentLevelData => CurrentLevelPack.Levels.First(lp => lp.Key == LevelKey);
         
