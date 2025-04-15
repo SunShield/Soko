@@ -82,10 +82,9 @@ namespace Soko.Unity.Game.Level.Management
 
         private void GetKeys()
         {
-            string unpassedLevelKey = null;
             if (string.IsNullOrEmpty(LevelPackKey) || !_levelPacks.ContainsKey(LevelPackKey))
             {
-                LevelPackKey = GetFirstLevelPackWithUnpassedLevelsKey(out unpassedLevelKey);
+                LevelPackKey = GetFirstLevelPackWithUnpassedLevelsKey();
                 if (string.IsNullOrEmpty(LevelPackKey))
                     LevelPackKey = _levelPacksSo.LevelPacks[^1].LevelPack.Key;
             }
@@ -94,19 +93,18 @@ namespace Soko.Unity.Game.Level.Management
                 CurrentLevelPack.Levels.Select(lp => lp.Key).All(k => k != LevelKey) ||
                 CheckLevelState(LevelPackKey, LevelKey) == LevelState.Passed)
             {
-                LevelKey = unpassedLevelKey;
+                LevelKey = GetFirstUnpassedLevelKey(CurrentLevelPack);
                 if (string.IsNullOrEmpty(LevelKey))
                     LevelKey = _levelPacksSo.LevelPacks[^1].LevelPack.Levels[^1].Key;
             }
         }
 
-        private string GetFirstLevelPackWithUnpassedLevelsKey(out string unpassedLevelKey)
+        private string GetFirstLevelPackWithUnpassedLevelsKey()
         {
-            unpassedLevelKey = null;
             foreach (var levelPackSo in _levelPacksSo.LevelPacks)
             {
                 var levelPack = levelPackSo.LevelPack;
-                unpassedLevelKey = GetFirstUnpassedLevelKey(levelPack);
+                var unpassedLevelKey = GetFirstUnpassedLevelKey(levelPack);
                 if (!string.IsNullOrEmpty(unpassedLevelKey)) return levelPack.Key; 
             }
 
@@ -118,7 +116,7 @@ namespace Soko.Unity.Game.Level.Management
             foreach (var level in levelPack.Levels)
             {
                 var state = CheckLevelState(levelPack.Key, level.Key);
-                if (state != LevelState.Passed) return level.Key;
+                if (state == LevelState.Playable) return level.Key;
             }
             
             return null;
@@ -163,12 +161,11 @@ namespace Soko.Unity.Game.Level.Management
 
         private void GetNextLevel()
         {
-            string unpassedLevelKey = null;
-            LevelPackKey = GetFirstLevelPackWithUnpassedLevelsKey(out unpassedLevelKey);
+            LevelPackKey = GetFirstLevelPackWithUnpassedLevelsKey();
             if (string.IsNullOrEmpty(LevelPackKey))
                 LevelPackKey = _levelPacksSo.LevelPacks[^1].LevelPack.Key;
             
-            LevelKey = unpassedLevelKey;
+            LevelKey = GetFirstUnpassedLevelKey(CurrentLevelPack);
             if (string.IsNullOrEmpty(LevelKey))
                 LevelKey = _levelPacksSo.LevelPacks[^1].LevelPack.Levels[^1].Key;
         }
