@@ -8,55 +8,63 @@ namespace Soko.Unity.Game.Level.Grid.Objects.Components.Impl
     public class TogglableGateComponent : LevelObjectComponent, IImprintableComponent
     {
         [SerializeField] private GameObject _lockedGraphics;
-        [field: SerializeField] public bool Locked { get; set; }
+        [field: SerializeField] public bool Locked { get; set; } // Internal Locked state
 
-        private bool _reallyLocked;
+        // In-level locked state. Can differ from the internal state if there's an object on gate
+        private bool _lockedInLevel; 
         private bool _hasObjectOn;
 
         public override void OnLevelCreated()
         {
             if (Object.Cell.Objects.Count > 1) _hasObjectOn = true;
-            
-            if (!_hasObjectOn) _reallyLocked = Locked;
+            if (!_hasObjectOn) _lockedInLevel = Locked;
         }
 
         public void ToggleLockedState()
         {
-            _reallyLocked = !_reallyLocked;
-            if (_hasObjectOn) return;
-            
             Locked = !Locked;
-            _lockedGraphics.SetActive(Locked);
+            _lockedInLevel = Locked;
+            if (_hasObjectOn) _lockedInLevel = false;
+            
+            _lockedGraphics.SetActive(_lockedInLevel);
         }
 
-        public override bool CheckObjectEnter(LevelObjectBase enteringObject) => !Locked;
-        public override void OnObjectEntered(LevelObjectBase enteringObject) => _hasObjectOn = true;
+        public override bool CheckObjectEnter(LevelObjectBase enteringObject) => !_lockedInLevel;
+        
+        public override void OnObjectEntered(LevelObjectBase enteringObject)
+        {
+            _hasObjectOn = true;
+            _lockedInLevel = false;
+            _lockedGraphics.SetActive(_lockedInLevel);
+        }
 
         public override void OnObjectLeft(LevelObjectBase enteringObject)
         {
             _hasObjectOn = false;
-            if (_reallyLocked && !Locked) ToggleLockedState();
+            _lockedInLevel = Locked;
+            _lockedGraphics.SetActive(_lockedInLevel);
         }
 
         public ComponentImprint CreateComponentImprint()
         {
             var imprint = new TogglableGateComponentImprint
             {
-                ReallyLocked = _reallyLocked,
+                Locked = Locked,
                 HasObjectOn = _hasObjectOn
             };
+            
             return imprint;
         }
 
         public void RestoreFromImprint(ComponentImprint imprint)
         {
             var imprintTyped = imprint as TogglableGateComponentImprint;
-            _reallyLocked = imprintTyped.ReallyLocked;
+            Locked = imprintTyped.Locked;
             _hasObjectOn = imprintTyped.HasObjectOn;
             
-            Locked = _reallyLocked;
-            if (_hasObjectOn) Locked = false;
-            _lockedGraphics.SetActive(Locked);
+            _lockedInLevel = Locked;
+            if (_hasObjectOn) _lockedInLevel = false;
+            _lockedGraphics.SetActive(_lockedInLevel);
         }
     }
 }
