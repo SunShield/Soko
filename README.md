@@ -83,3 +83,24 @@ Groups is a concept related to simultaneous movement of objects. Objects united 
 <br/><br/>
 
 ![](images/SokoLogo_TechDecisions.png)
+
+# <ins>Movement System</ins>
+Movement rules for all the game elements are consistent and centralized in MoveManager, with a minimum amount of hardcode and corner-cases. Movement system is designed to be easily expandable with new elements and is capable of handling even complex cases of movement (like, player is pushing a boxes group and entering a portal).
+
+### <ins>A brief breakdown of movement rules</ins>
+
+Before movement starts, all objects participating in movement are found. The **first participant** is always an object whose movement was caused by user (Player in our case, but another ones could be added in future). Then, the movement tile is checked and if there's a movable object, it is also registered as a participant. Then, both moved object and **first participant** call their ```GetSubsequentObjects``` to find all objects the movement of which will be caused by the movement of the main object (now, only the Group Movement is a case).
+
+For each object, a ```MoveAction``` is generated. If object cannot move due to various reasons (edge/wall reached, grouped object movement is blocked etc), it's movement action's ```IsInterrupted``` is set to true. **If all object's MoveActions have their IsInterrupted set to true, movement is considered finished**. 
+
+Movement is split into iterations, each iteration handling movement for for tile in any direction. On each iteration, ```OnMoveStarted``` is called for each object which ```MoveAction.Started``` is false, and ```OnMoveFinished``` is called for each object, which ```MoveAction.Interrupted``` is true and ```MoveAction.Finished``` is false.
+
+There are several overridable methods to customize behaviour of the objects: ```MovementRulesComponent.CheckCanMove```, ```MovementRulesComponent.CheckBoundObjectsAllowMove```, ```LevelObjectComponent.CheckObjectEnter``` and others.
+
+There are three types of movement on the code level: **Regular Movement**, **Teleportation** and **Delayed Movement**.
+- **Regular Movement** is the simple movement of objects. Player, Boxes etc are using regular movement when moved/pushed.
+- **Teleportation** is the unique case of movement, always executed after the all regular movement was finished.
+- **Delayed Movement** is used if something during regular movement execution led to another objects movenent. For example, if player pushes a box on the Color Push Button, he will enter the button cell, causing all the colored boxes to move in the direction button shows. This movement will be executed _after_ all the movement caused by player pushing box (including all the grouped boxes) finishes.
+
+# Component System
+
