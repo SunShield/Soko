@@ -6,8 +6,7 @@ While maintaining the classic gameplay loop of Sokoban game, Soko adds a whole n
 
 ![](images/Elements.png)
 Currently, Soko features 12 gameplay elements (13 with empty spaces included). Some elements can have colors or be grouped to extend level variety even further. New elements can be easily created with Soko's flexible Component syste which is describeld in "Technical Decisions" section.
-<details>
-  <summary><h3>Full table of gameplay elements featured in Soko </h3></summary>
+<details><summary>Full table of gameplay elements featured in Soko</summary>
 
   <table>
     <tr>
@@ -68,5 +67,19 @@ Currently, Soko features 12 gameplay elements (13 with empty spaces included). S
       </tr>
   </table>
 </details>
+
+<img align="left" width="100" src="images/Colors.png" />
+Colors both contribute to the aestetics and gameplay. The idea is simple: only elements of the same color interact with each other.
+Not every element can be colored. Walls, Fences, Water and Player do not have colors.
+For elements like Color Push Button color is mandatory. Other elements (like Boxes) can have or not have a color.
+White color is a color wildcard and can be used to substitute any of them.
+<br/><br/>
+<br/><br/>
+
+<img align="left" width="100" src="images/Groups.png" />
+Groups is a concept related to simultaneous movement of objects. Objects united in a same group will move if any of these objects are about to move. Also, movement possibility will be checked for the whole group.	
+	Even objects of different type can be a part of the group. Rules for these hybrid sets are something player is meant to discover, however each individal element always behaves consistently, disregarding of being part of the group.
+ <br/><br/>
+<br/><br/>
 
 ![](images/SokoLogo_TechDecisions.png)
