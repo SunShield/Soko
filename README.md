@@ -1,11 +1,24 @@
 ![](images/SokoLogo_Intro.png)
 Hi! I'm Herman, a passionate game developer from Ukraine. This is my portfolio game, Soko! Soko is a reimagination of a classic Sokoban game, packed with extra elements for the even greater challenge and more varied player experience.
 
+<details><summary>Some example levels</summary>
+<img align="left" width="218" src="images/Lv1.png" /><img align="left" width="250" src="images/Lv2.png" /><img align="left" width="250" src="images/Lv3.png" />
+<br></br><br></br><br></br><br></br><br></br>
+</details>
+
+### Main Features:
+- More than 10 different gameplay elements, colors and groups!
+- No progression stucking - play every level you want!
+- A Turn-revert feature: don't make a wrong click to end your level completion.
+- Tutorial, explaining every new element.
+
+Below, there is a more detailed explanation of every game aspect and system.
+
 ![](images/SokoLogo_WhatsInside.png)
 While maintaining the classic gameplay loop of Sokoban game, Soko adds a whole new sets of conceptions and elements to diversify player's game experience. Below there's a small breakdown of all the concepts alongside with a comprehensive table of all gameplay elements currently present in game.
 
 ![](images/Elements.png)
-Currently, Soko features 12 gameplay elements (13 with empty spaces included). Some elements can have colors or be grouped to extend level variety even further. New elements can be easily created with Soko's flexible Component syste which is describeld in "Technical Decisions" section.
+Currently, Soko features 12 gameplay elements (13 with empty spaces included). Some elements can have colors or be grouped to extend level variety even further. New elements can be easily created with Soko's flexible Component system.
 <details><summary>Full table of gameplay elements featured in Soko</summary>
 
   <table>
@@ -102,5 +115,23 @@ There are three types of movement on the code level: **Regular Movement**, **Tel
 - **Teleportation** is the unique case of movement, always executed after the all regular movement was finished.
 - **Delayed Movement** is used if something during regular movement execution led to another objects movenent. For example, if player pushes a box on the Color Push Button, he will enter the button cell, causing all the colored boxes to move in the direction button shows. This movement will be executed _after_ all the movement caused by player pushing box (including all the grouped boxes) finishes.
 
-# Component System
+# Level Editor
+<img align="left" width="250" src="images/LevelEditor.png">
+Level creation is a process, requiring a fast implementation of changes and clear, immediate vision of changed result. To ensure this is possible, I've created a simple yet powerful level editor able to cover every design situation for the entire game.
 
+Level Editor is a simple ```OdinValueDrawer``` (class provided by ```OdinInspector``` framework) for the ```LevelData``` class. This means, in every MonoBehaviour or ScriptableObject where LevelData is mentioned, this editing interface can be used.
+
+In general, Level Editor fetches objects data on its own from the application. However, for some complicated objects manual drawing logic override is required.
+<br></br>
+
+# Reversion System
+<img align="right" width="250" src="Assets/Graphics/Sprites/Tutorials/Tutorial0Controls3.png">
+
+A very often case in a puzzle games is a wrong user input (misclick) leading to the loss situation and requiring level to be restarted. To avvoid this frustrating situation, a full turn reversion system was implemented in Soko.
+
+Every time movement is executed, an Imprint is created for every object and every it's component with ```IImprintableComponent``` interface. Components of this type have ```CreateComponentImprint``` and ```RestoreFromImprint``` methods where developer can define what is imprinted and how to revert a component to it's previous state base on imprinted information.
+
+# Tutorial System
+
+<img align="left" width="250" src="images/Tutorial.png">
+Sometimes a new element's behaviour can be unintuitive and require an explicit explanation. To make this possible, a compound tutorial system was implemented. As user can start any level he wants (and also levels can be changed by GD), tutorial system relies on a conditions rather than the exact levels. Each time user encounters a new element, that element is focused and an information popup appears, explaining that element's behaviour.
